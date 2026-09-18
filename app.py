@@ -195,17 +195,27 @@ feedback_df = load_live_feedback()
 
 st.title("🧬 Mitochondrial Research Intelligence")
 
-st.caption(
-    "Multi-Omics Analysis of Mitochondrial Dysfunction "
-    "in Cellular Senescence"
-)
-
-st.caption(
-    "Canonical 250-paper mitochondrial literature intelligence pipeline"
-)
 
 st.divider()
 
+
+# ============================================================
+# MITOCHONDRIAL VISUAL
+# ============================================================
+
+HERO_IMAGE = BASE_DIR / "assets" / "mitochondria_hero.png"
+
+
+if HERO_IMAGE.exists():
+    _, image_col, _ = st.columns([1.5, 5, 1.5])
+
+    with image_col:
+        st.image(
+            str(HERO_IMAGE),
+            width=650,
+            caption="Mitochondrial architecture and cellular energy metabolism",
+        )
+st.divider()
 
 # ============================================================
 # TOP METRICS
