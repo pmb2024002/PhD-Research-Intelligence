@@ -190,31 +190,48 @@ feedback_df = load_live_feedback()
 
 
 # ============================================================
-# HEADER
-# ============================================================
-
-st.title("🧬 Mitochondrial Research Intelligence")
-
-
-st.divider()
-
-
-# ============================================================
-# MITOCHONDRIAL VISUAL
+# HEADER + MITOCHONDRIAL VISUAL
 # ============================================================
 
 HERO_IMAGE = BASE_DIR / "assets" / "mitochondria_hero.png"
 
+header_col, visual_col = st.columns(
+    [3.2, 1.3],
+    vertical_alignment="center"
+)
 
-if HERO_IMAGE.exists():
-    _, image_col, _ = st.columns([1.5, 5, 1.5])
+with header_col:
+    st.markdown(
+        """
+        <div style="
+            font-size: 2.7rem;
+            font-weight: 700;
+            line-height: 1.12;
+            letter-spacing: -0.025em;
+            margin: 0;
+            padding: 0;
+        ">
+            🧬 Mitochondrial Research Intelligence
+        </div>
 
-    with image_col:
+        <div style="
+            width: 95px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #a855f7);
+            border-radius: 4px;
+            margin-top: 14px;
+        "></div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with visual_col:
+    if HERO_IMAGE.exists():
         st.image(
             str(HERO_IMAGE),
-            width=650,
-            caption="Mitochondrial architecture and cellular energy metabolism",
+            width=380,
         )
+
 st.divider()
 
 # ============================================================
