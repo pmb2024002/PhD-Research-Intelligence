@@ -1,0 +1,175 @@
+version: "2.0"
+
+principles:
+  direct_biology: "Mitochondrial dysfunction and cellular senescence must be evaluated as a connected biological relationship."
+  mechanism_over_keyword: "Mechanistic evidence is more important than isolated keyword or hub-gene presence."
+  transferability: "A different disease or tissue model does not automatically reduce relevance when the mitochondrial-senescence mechanism is transferable."
+  model_specificity: "Human fibroblast and IMR-90 evidence receives additional value because it directly supports the PhD experimental framework."
+  objective_alignment: "Literature supporting conserved signatures, multi-omics integration, hub identification, pathways, networks, and mechanistic interpretation receives additional value."
+  peripheral_context: "Disease-specific context is a modifier, not an automatic irrelevance penalty."
+
+components:
+  direct_mito_senescence: 8
+  mitochondrial_mechanism: 5
+  mechanistic_evidence: 5
+  transferable_mechanism: 4
+  primary_hub_gene: 3
+  fibroblast_model: 4
+  multiomics_or_omics: 3
+  phd_objective_alignment: 4
+  peripheral_context_penalty: 2
+
+thresholds:
+  R1_direct_core: 20
+  R2_direct_mechanistic: 14
+  R3_computational_multiomics: 9
+  R4_transferable: 6
+  R5_supporting: 3
+
+anti_rules:
+  - "Do not rank a paper highly solely because it contains a priority hub gene."
+  - "Do not rank a paper highly solely because it contains mitochondrial terminology."
+  - "Do not treat aging terminology as equivalent to cellular senescence."
+  - "Do not treat disease-specific context as automatic irrelevance."
+  - "Do not allow generic semantic similarity to dominate biological evidence."
+
+scope_gating:
+  direct_mito_senescence_requires_specificity: true
+  minimum_specific_features_for_core:
+    - mitochondrial_process
+    - primary_hub_gene
+    - mechanistic_evidence
+    - fibroblast_model
+    - omics_evidence
+  minimum_specific_features_for_direct_mechanistic:
+    - mitochondrial_process
+    - primary_hub_gene
+    - mechanistic_evidence
+
+evidence_dimensions:
+  direct_mito_senescence:
+    description: "Direct biological relationship between mitochondrial dysfunction/processes and cellular senescence."
+  mitochondrial_mechanism:
+    description: "Specific mitochondrial mechanism such as dynamics, mitophagy, quality control, biogenesis, ROS, membrane potential, or proteostasis."
+  priority_hub:
+    description: "Involvement of a PhD-priority mitochondrial hub gene."
+  systems_mechanism:
+    description: "Systems-level connection involving mitochondrial dysfunction, senescence, metabolism, ROS, NAD+, AMPK, mTOR, NF-kB, or related signaling."
+  model_relevance:
+    description: "Evidence from IMR-90, human fibroblast, fibroblast, or another transferable senescence model."
+  omics_relevance:
+    description: "Transcriptomic, proteomic, metabolomic, single-cell, or multi-omics evidence relevant to the PhD."
+  transferable_biology:
+    description: "Mechanistically useful mitochondrial-senescence biology demonstrated outside the preferred model."
+  peripheral_context:
+    description: "Disease or tissue context that may modify relevance but does not automatically imply irrelevance."
+
+mitochondrial_evidence_classes:
+  core_mechanistic:
+    - mitochondrial dynamics
+    - mitochondrial fission
+    - mitochondrial fusion
+    - mitophagy
+    - mitochondrial quality control
+    - mitochondrial homeostasis
+    - mitochondrial biogenesis
+    - mitochondrial proteostasis
+
+  functional:
+    - mitochondrial membrane potential
+    - mitochondrial ROS
+    - mitochondrial stress
+
+  metabolic:
+    - oxidative phosphorylation
+    - mitochondrial metabolism
+    - mitochondrial DNA
+
+senescence_evidence_classes:
+  direct:
+    - cellular senescence
+    - replicative senescence
+    - stress-induced senescence
+    - irradiation-induced senescence
+    - DNA damage-induced senescence
+    - therapy-induced senescence
+
+  supporting:
+    - SASP
+    - p16
+    - CDKN2A
+    - p21
+    - CDKN1A
+    - DNA damage response
+    - DDR
+
+evidence_weights:
+  mitochondrial_evidence:
+    core_mechanistic: 6
+    functional: 3
+    metabolic: 2
+
+  senescence_evidence:
+    direct: 5
+    supporting: 2
+
+  systems_mechanism: 4
+  transferable_biology: 4
+  priority_hub: 3
+  model_relevance: 4
+  omics_relevance: 3
+
+research_question_centrality:
+  C3:
+    description: "Mitochondrial dysfunction, mitochondrial processes, or mitochondrial-senescence coupling is a central research question."
+  C2:
+    description: "A mitochondrial-senescence mechanism is an important secondary research question."
+  C1:
+    description: "Mitochondrial or senescence biology is mainly supporting context."
+  C0:
+    description: "Mitochondrial-senescence overlap is incidental to the main research question."
+
+centrality_weights:
+  C3: 6
+  C2: 3
+  C1: 1
+  C0: 0
+
+centrality_signals:
+  title_core:
+    description: "Core mitochondrial-senescence concepts occur in the paper title."
+  objective_core:
+    description: "The abstract objective, hypothesis, or primary study aim directly concerns mitochondrial-senescence biology."
+  mechanistic_core:
+    description: "The abstract explicitly describes a mechanistic or causal mitochondrial-senescence relationship."
+
+centrality_signal_weights:
+  title_core: 3
+  objective_core: 3
+  mechanistic_core: 3
+
+centrality_classification:
+  C3:
+    description: "Mitochondrial-senescence biology is central to the research question."
+    minimum_signals: 2
+    requires_strong_signal: true
+
+  C2:
+    description: "Mitochondrial-senescence biology is an important secondary research question."
+    minimum_signals: 1
+    requires_strong_signal: false
+
+  C1:
+    description: "Mitochondrial or senescence biology is mainly supporting context."
+    minimum_signals: 0
+    requires_strong_signal: false
+
+  C0:
+    description: "Mitochondrial-senescence overlap is incidental."
+    minimum_signals: 0
+    requires_strong_signal: false
+
+centrality_strong_signals:
+  - title_core
+  - objective_core
+  - mechanistic_core

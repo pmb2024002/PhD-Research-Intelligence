@@ -1,0 +1,72 @@
+version: '1.0'
+research_scope:
+  title: Multi-Omics Analysis of Mitochondrial Dysfunction in Cellular Senescence
+  priority_hubs:
+  - DNM1L
+  - DRP1
+  - OPA1
+  - MFN1
+  - MFN2
+  - PINK1
+  - PRKN
+  - PARK2
+  core_question:
+  - mitochondrial dysfunction in cellular senescence
+  - mitochondrial dysfunction as a driver or consequence of senescence
+  - conserved mitochondrial signatures across senescence models
+  - mechanistic connection between mitochondrial dysfunction and senescence
+  core_mitochondrial_processes:
+  - mitochondrial dynamics
+  - mitochondrial fission
+  - mitochondrial fusion
+  - mitophagy
+  - mitochondrial quality control
+  - mitochondrial homeostasis
+  - mitochondrial biogenesis
+  - mitochondrial proteostasis
+  - mitochondrial membrane potential
+  - mitochondrial ROS
+  - oxidative phosphorylation
+  - mitochondrial metabolism
+  - mitochondrial DNA
+  - mitochondrial stress
+  senescence_processes:
+  - cellular senescence
+  - replicative senescence
+  - stress-induced senescence
+  - irradiation-induced senescence
+  - DNA damage-induced senescence
+  - therapy-induced senescence
+  - SASP
+  - p16
+  - CDKN2A
+  - p21
+  - CDKN1A
+  - DNA damage response
+  - DDR
+  omics:
+  - transcriptomics
+  - RNA-seq
+  - single-cell RNA-seq
+  - single-cell transcriptomics
+  - proteomics
+  - metabolomics
+  - multi-omics
+  - multiomics
+  - differential expression
+  - pathway enrichment
+  - GSVA
+  - ssGSEA
+  - network analysis
+  preferred_models:
+  - IMR-90
+  - human fibroblast
+  - fibroblast
+  - primary fibroblast
+relevance_tiers:
+  R1: Direct Core Relevance
+  R2: Direct Mechanistic Relevance
+  R3: Computational and Multi-Omics Relevance
+  R4: Transferable Biological Relevance
+  R5: Supporting Background Relevance
+  R6: Peripheral or Low Relevance

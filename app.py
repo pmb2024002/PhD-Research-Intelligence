@@ -9,7 +9,7 @@ from datetime import datetime
 # ============================================================
 
 st.set_page_config(
-    page_title="PhD Research Intelligence",
+    page_title="Mitochondrial Research Intelligence",
     page_icon="🧬",
     layout="wide",
 )
@@ -193,7 +193,7 @@ feedback_df = load_live_feedback()
 # HEADER
 # ============================================================
 
-st.title("🧬 PhD Research Intelligence System")
+st.title("🧬 Mitochondrial Research Intelligence")
 
 st.caption(
     "Multi-Omics Analysis of Mitochondrial Dysfunction "
@@ -201,7 +201,7 @@ st.caption(
 )
 
 st.caption(
-    "Canonical 250-paper literature intelligence pipeline"
+    "Canonical 250-paper mitochondrial literature intelligence pipeline"
 )
 
 st.divider()

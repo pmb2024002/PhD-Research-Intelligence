@@ -1,0 +1,79 @@
+version: "1.0"
+
+name: "Canonical PhD Biological Vocabulary"
+
+research_title: "Multi-Omics Analysis of Mitochondrial Dysfunction in Cellular Senescence"
+
+# ============================================================
+# CANONICAL PRIMARY HUB GENES
+# ============================================================
+
+primary_hub_genes:
+  - DNM1L
+  - DRP1
+  - OPA1
+  - MFN1
+  - MFN2
+  - PINK1
+  - PRKN
+  - PARK2
+
+# ============================================================
+# CANONICAL CORE MITOCHONDRIAL PROCESSES
+# ============================================================
+
+core_mitochondrial_processes:
+  - mitochondrial fission
+  - mitochondrial fusion
+  - mitochondrial dynamics
+  - mitophagy
+  - mitochondrial quality control
+  - mitochondrial homeostasis
+  - mitochondrial biogenesis
+  - mitochondrial proteostasis
+  - mitochondrial membrane potential
+  - mitochondrial ROS
+
+# ============================================================
+# EXTENDED BIOLOGICAL TARGETS
+# ============================================================
+# These are retained as supporting/secondary biology and are
+# NOT part of the primary hub-gene set.
+
+extended_hub_genes:
+  - SIRT3
+  - MTFR1L
+
+# ============================================================
+# EXTENDED MITOCHONDRIAL BIOLOGY
+# ============================================================
+# These remain biologically relevant but are not treated as
+# canonical core processes for the primary priority layer.
+
+extended_mitochondrial_processes:
+  - oxidative phosphorylation
+  - mitochondrial metabolism
+  - mitochondrial DNA
+  - mitochondrial stress
+
+# ============================================================
+# PREFERRED EXPERIMENTAL MODELS
+# ============================================================
+
+preferred_models:
+  - IMR-90
+  - human fibroblast
+  - fibroblast
+
+# ============================================================
+# STATUS
+# ============================================================
+
+status: "canonical_candidate"
+
+notes:
+  - "The primary hub-gene vocabulary is restricted to the established 8-gene core."
+  - "SIRT3 and MTFR1L are retained as extended biological targets."
+  - "The core mitochondrial-process vocabulary follows the strict current PhD core."
+  - "Extended mitochondrial processes remain supporting biology."
+  - "This vocabulary is authoritative for the canonical PhD-specific feature layer."

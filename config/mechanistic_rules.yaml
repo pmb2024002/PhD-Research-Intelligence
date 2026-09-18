@@ -1,0 +1,72 @@
+mechanistic_relationships:
+
+  DNM1L:
+    aliases:
+      - DNM1L
+      - DRP1
+    mitochondrial_processes:
+      - mitochondrial fission
+      - mitochondrial dynamics
+
+  OPA1:
+    aliases:
+      - OPA1
+    mitochondrial_processes:
+      - mitochondrial fusion
+      - mitochondrial dynamics
+      - cristae
+
+  MFN1:
+    aliases:
+      - MFN1
+    mitochondrial_processes:
+      - mitochondrial fusion
+      - mitochondrial dynamics
+
+  MFN2:
+    aliases:
+      - MFN2
+    mitochondrial_processes:
+      - mitochondrial fusion
+      - mitochondrial dynamics
+
+  PINK1:
+    aliases:
+      - PINK1
+    mitochondrial_processes:
+      - mitophagy
+      - mitochondrial quality control
+
+  PRKN:
+    aliases:
+      - PRKN
+      - PARK2
+      - Parkin
+    mitochondrial_processes:
+      - mitophagy
+      - mitochondrial quality control
+
+  MTFR1L:
+    aliases:
+      - MTFR1L
+      - mitochondrial fission regulator 1-like
+    mitochondrial_processes:
+      - mitochondrial fission
+      - mitochondrial dynamics
+
+  SIRT3:
+    aliases:
+      - SIRT3
+      - sirtuin 3
+    mitochondrial_processes:
+      - mitochondrial quality control
+      - mitochondrial function
+      - mitophagy
+
+direct_senescence_terms:
+  - cellular senescence
+  - replicative senescence
+  - irradiation-induced senescence
+  - DNA damage-induced senescence
+  - stress-induced premature senescence
+  - therapy-induced senescence

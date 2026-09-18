@@ -1,0 +1,22 @@
+CANONICAL PHD RESEARCH INTELLIGENCE — PRODUCTION SNAPSHOT V1
+Updated=2026-09-18T08:44:50
+Python=3.12.13 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:38:16) [GCC 14.3.0]
+
+PRODUCTION ARTIFACT SHA256
+data/production_v1/canonical_literature_v1.csv | SHA256=bdedf993ca4c58fca2d2a6955d125124180dac9053e394f0427c7095ed66ee09 | SIZE=620352
+data/production_v1/canonical_objective_features_v1.csv | SHA256=83cd92f518bf7c52671b9c96f1ed7e9990623fb306d4dfbfc8eb8d7bec334bea | SIZE=51526
+data/production_v1/scientific_priority_v1_1.csv | SHA256=8f4a367965d9139ffd57b8ee3b079337bad01c1d71e9986b2376a385f11a0b35 | SIZE=643264
+data/production_v1/human_preference_layer_v1.csv | SHA256=bc61fe1ed57dbf41a466a26838e3c235a597f02adfa602489145267430cc5adb | SIZE=666909
+data/production_v1/canonical_explanations_v1.csv | SHA256=a8f7868a268b8edd1b8f7900ead72736aa8a780bb39bffca781bda28303ad4a9 | SIZE=964596
+data/production_v1/human_preference_calibration_v1_oof.csv | SHA256=8ef798d298494d4a5a04427e823b338a04e158366cd6382b0ec43dc932306879 | SIZE=13110
+data/production_v1/human_preference_calibration_v1_metrics.csv | SHA256=2fac03f9d6592e74eb9237618af60788117447a5aa793803b8e15109d0ae17ad | SIZE=221
+data/production_v1/human_preference_calibrator_v1_params.csv | SHA256=a09e3674834a322e1e2812070fd6873c6733b5a14aed7a5a5c99e18e95e22fe1 | SIZE=93
+app.py | SHA256=3f04193367553830e400cf042d704ee09baa696a34a3092d103ed3b6690fe397 | SIZE=18373
+
+STATUS
+250-paper production snapshot = READY
+Scientific Priority V1.1 = frozen candidate
+Human Preference layer = secondary candidate
+Explanation V1 = frozen candidate
+Streamlit V1 = functional candidate
+Legacy production dependencies = NONE

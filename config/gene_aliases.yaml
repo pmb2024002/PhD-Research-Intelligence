@@ -1,0 +1,64 @@
+canonical_genes:
+  DNM1L:
+    aliases:
+    - DNM1L
+    - DRP1
+    - Drp1
+    - dynamin-related protein 1
+    processes:
+    - mitochondrial fission
+    - mitochondrial dynamics
+  OPA1:
+    aliases:
+    - OPA1
+    - optic atrophy 1
+    processes:
+    - mitochondrial fusion
+    - mitochondrial dynamics
+    - cristae
+  MFN1:
+    aliases:
+    - MFN1
+    - mitofusin 1
+    processes:
+    - mitochondrial fusion
+    - mitochondrial dynamics
+  MFN2:
+    aliases:
+    - MFN2
+    - mitofusin 2
+    processes:
+    - mitochondrial fusion
+    - mitochondrial dynamics
+    - ER-mitochondria communication
+  PINK1:
+    aliases:
+    - PINK1
+    - PTEN-induced kinase 1
+    processes:
+    - mitophagy
+    - mitochondrial quality control
+  PRKN:
+    aliases:
+    - PRKN
+    - PARK2
+    - Parkin
+    - parkin
+    processes:
+    - mitophagy
+    - mitochondrial quality control
+  SIRT3:
+    aliases:
+    - SIRT3
+    - sirtuin 3
+    processes:
+    - mitochondrial quality control
+    - mitochondrial function
+    - mitophagy
+  MTFR1L:
+    aliases:
+    - MTFR1L
+    - mitochondrial fission regulator 1-like
+    processes:
+    - mitochondrial fission
+    - mitochondrial dynamics

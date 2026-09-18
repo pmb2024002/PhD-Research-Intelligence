@@ -1,0 +1,65 @@
+decision_framework:
+
+  core_phd_match:
+    description: "Paper directly useful for the central PhD research question."
+    signals:
+      - direct_mitochondrial_senescence_mechanism
+      - primary_hub_gene
+      - human_fibroblast_or_imr90
+      - relevant_omics
+
+  strong_supporting_match:
+    description: "Biologically strong paper that supports the PhD but has a model, disease, or scope mismatch."
+    signals:
+      - mitochondrial_senescence_mechanism
+      - primary_hub_gene
+      - relevant_omics
+      - strong_mitochondrial_process
+
+  model_mismatch:
+    description: "Biologically relevant paper using a non-primary experimental model."
+    penalty_contexts:
+      - ovarian_granulosa
+      - rpe
+      - bovine_cumulus
+      - bmsc
+      - chondrocyte
+      - skeletal_muscle
+      - myocardial
+      - kidney
+      - cardiovascular
+      - cancer
+      - disc
+
+  disease_context:
+    description: "Disease-specific application should reduce PhD utility but should not automatically make a paper irrelevant."
+    examples:
+      - ipf
+      - pulmonary_fibrosis
+      - rheumatoid_arthritis
+      - osteoarthritis
+      - cardiovascular_disease
+      - myocardial_fibrosis
+      - disc_degeneration
+      - alzheimers
+      - kidney_disease
+      - cancer
+
+  peripheral_context:
+    description: "Paper has only weak or indirect connection to the PhD research question."
+    examples:
+      - generic_aging
+      - aging_clocks
+      - biological_age
+      - unrelated_disease
+      - drug_delivery_without_mitochondrial_senescence_focus
+
+  ranking_principles:
+    - "Biological relevance and PhD research utility must be scored separately."
+    - "Primary hub genes are strong positive evidence but are not sufficient alone."
+    - "Human fibroblast or IMR-90 context increases PhD utility."
+    - "Mitochondrial dysfunction plus cellular senescence is necessary for strong biological relevance but is not sufficient for core PhD utility."
+    - "Different disease or cell models reduce PhD utility rather than automatically making a paper irrelevant."
+    - "Multi-omics increases methodological utility, especially when multiple omics modalities are actually integrated."
+    - "Generic mechanistic language should not receive a large ranking bonus."
+    - "Disease context should be treated as contextual evidence, not an automatic exclusion criterion."

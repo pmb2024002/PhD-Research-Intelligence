@@ -1,0 +1,18 @@
+direct_senescence: 15
+mitochondrial_mechanism: 12
+primary_gene: 10
+experimental_model: 10
+omics_relevance: 6
+core_topic: 5
+supporting_biology: 2
+peripheral_penalty: 5
+
+mechanistic_tiers:
+  tier_1: 20
+  tier_2: 8
+
+model_priority:
+  IMR-90: 15
+  human fibroblast: 12
+  fibroblast: 10
+  cellular senescence: 8

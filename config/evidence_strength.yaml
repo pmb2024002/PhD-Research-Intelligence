@@ -1,0 +1,64 @@
+evidence_levels:
+
+  gene:
+    0: "No priority hub gene evidence"
+    1: "Priority hub gene mentioned"
+    2: "Priority hub gene investigated or associated with the phenotype"
+    3: "Priority hub gene mechanistically linked to mitochondrial dysfunction and senescence"
+
+  mitochondrial_process:
+    0: "No relevant mitochondrial process"
+    1: "Mitochondrial process mentioned"
+    2: "Mitochondrial process investigated"
+    3: "Mitochondrial process directly linked to senescence phenotype"
+
+  senescence:
+    0: "No direct senescence evidence"
+    1: "Senescence mentioned"
+    2: "Senescence phenotype/model investigated"
+    3: "Senescence mechanism directly investigated"
+
+  model:
+    0: "No relevant experimental model"
+    1: "Non-primary relevant model"
+    2: "Human fibroblast model"
+    3: "IMR-90 or closely matching primary PhD model"
+
+  omics:
+    0: "No relevant omics"
+    1: "Single omics modality"
+    2: "Multiple omics modalities"
+    3: "Integrated multi-omics analysis"
+
+  evidence_strength_rules:
+
+    strongest:
+      description: "Direct mechanistic evidence connecting a priority mitochondrial hub/process with cellular senescence."
+      requirements:
+        - priority_gene
+        - mitochondrial_process
+        - senescence
+
+    strong:
+      description: "Strong mitochondrial-senescence evidence without complete direct mechanistic linkage."
+      requirements:
+        - mitochondrial_process
+        - senescence
+
+    moderate:
+      description: "Biologically relevant evidence but limited direct mechanistic or model relevance."
+      requirements:
+        - mitochondrial_or_senescence_evidence
+
+    weak:
+      description: "Peripheral biological overlap with limited PhD utility."
+      requirements:
+        - indirect_context
+
+  scoring_principles:
+    - "Do not treat simple keyword presence as equivalent to mechanistic evidence."
+    - "Gene mentions and gene investigations must be distinguished."
+    - "Mitochondrial process mentions and experimentally investigated processes must be distinguished."
+    - "Senescence mention and demonstrated senescence phenotype must be distinguished."
+    - "IMR-90 should receive higher model relevance than generic fibroblast."
+    - "Integrated multi-omics should receive higher methodological evidence than a single omics modality."

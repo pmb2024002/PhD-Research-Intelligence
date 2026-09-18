@@ -1,0 +1,197 @@
+version: "1.0"
+
+senescence:
+  - cellular senescence
+  - cellular senescent
+  - senescent cells
+  - senescence
+  - replicative senescence
+  - stress-induced senescence
+  - stress induced senescence
+  - irradiation-induced senescence
+  - irradiation induced senescence
+  - DNA damage-induced senescence
+  - DNA damage induced senescence
+  - therapy-induced senescence
+  - therapy induced senescence
+  - premature senescence
+
+mitochondrial:
+  - mitochondria
+  - mitochondrial
+  - mitochondrial dysfunction
+  - mitochondrial homeostasis
+  - mitochondrial function
+  - mitochondrial health
+  - mitochondrial quality control
+  - mitochondrial proteostasis
+  - mitochondrial dynamics
+  - mitochondrial fission
+  - mitochondrial fusion
+  - mitophagy
+  - mitochondrial biogenesis
+  - mitochondrial membrane potential
+  - mitochondrial ROS
+  - mitochondrial reactive oxygen species
+  - mitochondrial metabolism
+  - mitochondrial oxidative stress
+  - mitochondria-derived ROS
+
+priority_hubs:
+  DNM1L:
+    - DNM1L
+    - DRP1
+    - dynamin-related protein 1
+    - dynamin 1 like
+
+  OPA1:
+    - OPA1
+    - optic atrophy 1
+
+  MFN1:
+    - MFN1
+    - mitofusin 1
+
+  MFN2:
+    - MFN2
+    - mitofusin 2
+
+  PINK1:
+    - PINK1
+    - PTEN-induced kinase 1
+
+  PRKN:
+    - PRKN
+    - PARK2
+    - Parkin
+    - parkin
+
+  MTFR1L:
+    - MTFR1L
+    - mitochondrial fission regulator 1-like
+
+  SIRT3:
+    - SIRT3
+    - sirtuin 3
+
+omics:
+  transcriptomics:
+    - transcriptomics
+    - transcriptome
+    - transcriptomic
+    - RNA-seq
+    - RNA sequencing
+    - RNA sequencing analysis
+    - gene expression profiling
+    - gene expression analysis
+
+  single_cell:
+    - single-cell
+    - single cell
+    - scRNA-seq
+    - single-cell RNA sequencing
+    - single-cell transcriptomics
+    - single-cell transcriptome
+
+  proteomics:
+    - proteomics
+    - proteome
+    - proteomic
+    - protein profiling
+    - protein expression profiling
+
+  metabolomics:
+    - metabolomics
+    - metabolome
+    - metabolomic
+    - metabolic profiling
+
+  multiomics:
+    - multiomics
+    - multi-omics
+    - multiomic
+    - multi-omic
+    - multi omics
+    - integrated omics
+    - integrative omics
+    - multi-modal omics
+
+biological_processes:
+  mitochondrial_dynamics:
+    - mitochondrial dynamics
+    - mitochondrial fission
+    - mitochondrial fusion
+    - mitochondrial morphology
+    - mitochondrial fragmentation
+    - mitochondrial elongation
+
+  mitophagy:
+    - mitophagy
+    - mitochondrial autophagy
+    - PINK1-Parkin
+    - PINK1/Parkin
+    - PINK1 Parkin
+
+  mitochondrial_quality_control:
+    - mitochondrial quality control
+    - mitochondrial proteostasis
+    - mitochondrial homeostasis
+    - mitochondrial surveillance
+
+  mitochondrial_biogenesis:
+    - mitochondrial biogenesis
+    - mitochondrial mass
+    - mitochondrial replication
+
+  mitochondrial_stress:
+    - mitochondrial oxidative stress
+    - mitochondrial ROS
+    - mitochondrial reactive oxygen species
+    - mitochondrial membrane potential
+    - mitochondrial depolarization
+
+signaling:
+  cgas_sting:
+    - cGAS-STING
+    - cGAS/STING
+    - cGAS STING
+    - cGAS–STING
+    - cGAS and STING
+
+  nf_kb:
+    - NF-kB
+    - NF-κB
+    - NFκB
+    - nuclear factor kappa B
+
+  ampk:
+    - AMPK
+    - AMP-activated protein kinase
+
+  mtor:
+    - mTOR
+    - mechanistic target of rapamycin
+
+  mtorc1:
+    - mTORC1
+    - mTOR complex 1
+
+  p53:
+    - p53
+    - TP53
+
+  p38_mapk:
+    - p38 MAPK
+    - p38-MAPK
+    - MAPK14
+
+  nad_metabolism:
+    - NAD+ metabolism
+    - NAD metabolism
+    - NAD+ homeostasis
+    - nicotinamide adenine dinucleotide metabolism
+
+  sasp:
+    - SASP
+    - senescence-associated secretory phenotype
+    - senescence associated secretory phenotype

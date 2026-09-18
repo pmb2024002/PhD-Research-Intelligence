@@ -1,0 +1,27 @@
+# ============================================================
+# PhD Research Intelligence System
+# Explainability Configuration
+# ============================================================
+
+evidence_labels:
+  core_topics: "Core research topic"
+  primary_genes: "Priority gene"
+  mitochondrial_processes: "Mitochondrial mechanism"
+  senescence_processes: "Senescence mechanism"
+  signaling: "Relevant signaling pathway"
+  omics_methods: "Relevant omics/method"
+  experimental_models: "Relevant experimental model"
+
+context_labels:
+  strong_context: "Strong biological/contextual match"
+  supporting_context: "Supporting biological evidence"
+  peripheral_context: "Peripheral or potentially distracting context"
+
+explanation_sections:
+  - phd_relevance
+  - key_evidence
+  - biological_connection
+  - model_relevance
+  - methodological_relevance
+  - peripheral_context
+  - potential_use

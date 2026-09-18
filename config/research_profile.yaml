@@ -1,0 +1,96 @@
+# ============================================================
+# PhD Research Intelligence System
+# Research Profile
+# ============================================================
+
+research_title: "Multi-Omics Analysis of Mitochondrial Dysfunction in Cellular Senescence"
+
+core_topics:
+  - cellular senescence
+  - mitochondrial dysfunction
+  - mitochondrial dynamics
+  - mitochondrial quality control
+  - mitochondrial homeostasis
+  - MiDAS
+  - multi-omics
+  - transcriptomics
+  - proteomics
+
+primary_genes:
+  - DNM1L
+  - DRP1
+  - OPA1
+  - MFN1
+  - MFN2
+  - PINK1
+  - PRKN
+  - PARK2
+
+mitochondrial_processes:
+  - mitochondrial fission
+  - mitochondrial fusion
+  - mitophagy
+  - mitochondrial biogenesis
+  - mitochondrial proteostasis
+  - mitochondrial quality control
+  - mitochondrial membrane potential
+  - mitochondrial dynamics
+  - mitochondrial ROS
+
+senescence_processes:
+  - SASP
+  - p16
+  - CDKN2A
+  - p21
+  - CDKN1A
+  - DNA damage response
+  - DDR
+  - replicative senescence
+  - stress-induced premature senescence
+  - therapy-induced senescence
+
+signaling:
+  - cGAS-STING
+  - AMPK
+  - mTOR
+  - p53
+  - p38 MAPK
+  - NF-kB
+  - NAD metabolism
+
+omics_methods:
+  - RNA-seq
+  - transcriptomics
+  - differential expression
+  - DESeq2
+  - limma
+  - edgeR
+  - proteomics
+  - multi-omics integration
+  - GSVA
+  - ssGSEA
+  - pathway enrichment
+  - network analysis
+
+experimental_models:
+  - IMR-90
+  - fibroblast
+  - human fibroblast
+  - cellular senescence
+  - replicative senescence
+  - irradiation-induced senescence
+  - DNA damage-induced senescence
+
+important_databases:
+  - MitoCarta
+  - STRING
+  - GEO
+  - PubMed
+  - PRIDE
+
+research_goal:
+  - identify conserved mitochondrial dysfunction signatures in cellular senescence
+  - integrate transcriptomic and proteomic evidence
+  - identify mitochondrial hub genes
+  - identify conserved mitochondrial pathways
+  - investigate mechanisms connecting mitochondrial dysfunction with senescence

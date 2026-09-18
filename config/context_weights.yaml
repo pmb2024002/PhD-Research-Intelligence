@@ -1,0 +1,53 @@
+# ============================================================
+# PhD Research Intelligence System
+# Context Weights
+# ============================================================
+
+strong_context:
+  - cellular senescence
+  - mitochondrial dysfunction
+  - mitochondrial dynamics
+  - mitochondrial quality control
+  - mitochondrial homeostasis
+  - MiDAS
+  - fibroblast
+  - human fibroblast
+  - IMR-90
+  - replicative senescence
+  - irradiation-induced senescence
+  - DNA damage-induced senescence
+  - genotoxic stress
+  - mitochondrial fission
+  - mitochondrial fusion
+  - mitophagy
+  - mitochondrial biogenesis
+  - mitochondrial ROS
+
+supporting_context:
+  - SASP
+  - p16
+  - CDKN2A
+  - p21
+  - CDKN1A
+  - DNA damage response
+  - DDR
+  - cGAS-STING
+  - AMPK
+  - mTOR
+  - p53
+  - p38 MAPK
+  - NF-kB
+  - NAD metabolism
+  - aging
+
+peripheral_context:
+  - disc regeneration
+  - osteoarthritis
+  - cancer
+  - tumor
+  - drug delivery
+  - tissue regeneration
+  - rheumatoid arthritis
+  - Alzheimer's disease
+  - cardiovascular disease
+  - pulmonary fibrosis

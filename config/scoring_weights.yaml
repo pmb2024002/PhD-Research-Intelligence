@@ -1,0 +1,30 @@
+# ============================================================
+# PhD Research Intelligence System
+# Relevance Scoring Weights
+# ============================================================
+
+core_topics: 5
+
+primary_genes: 8
+
+mitochondrial_processes: 6
+
+senescence_processes: 4
+
+signaling: 2
+
+omics_methods: 2
+
+experimental_models: 5
+
+
+# ============================================================
+# Multi-omics evidence weights
+# ============================================================
+
+omics_evidence:
+  transcriptomics: 5
+  single_cell_transcriptomics: 6
+  proteomics: 5
+  metabolomics: 5
+  multi_omics: 8

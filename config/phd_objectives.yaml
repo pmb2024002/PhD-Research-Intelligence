@@ -1,0 +1,87 @@
+phd_objectives:
+
+  O1_conserved_signatures:
+    name: "Conserved mitochondrial dysfunction signatures"
+    description: "Evidence identifying conserved mitochondrial dysfunction signatures across cellular senescence models or datasets."
+    keywords:
+      - mitochondrial dysfunction
+      - mitochondrial signature
+      - mitochondrial signatures
+      - transcriptomic
+      - transcriptomics
+      - RNA-seq
+      - gene expression
+      - differential expression
+      - proteomic
+      - proteomics
+      - conserved
+      - cross-dataset
+      - meta-analysis
+
+  O2_multiomics_integration:
+    name: "Transcriptomic-proteomic / multi-omics integration"
+    description: "Evidence integrating transcriptomic, proteomic, metabolomic, or other omics layers."
+    keywords:
+      - multi-omics
+      - multiomics
+      - transcriptomics
+      - RNA-seq
+      - proteomics
+      - proteomic
+      - metabolomics
+      - multi-omics integration
+      - integrative analysis
+      - cross-omics
+
+  O3_hub_genes:
+    name: "Mitochondrial hub genes"
+    description: "Evidence involving priority mitochondrial genes relevant to the PhD."
+    genes:
+      - DNM1L
+      - DRP1
+      - OPA1
+      - MFN1
+      - MFN2
+      - PINK1
+      - PRKN
+      - PARK2
+      - SIRT3
+      - MTFR1L
+
+  O4_conserved_pathways:
+    name: "Conserved mitochondrial pathways"
+    description: "Evidence involving mitochondrial pathways and processes relevant to senescence."
+    processes:
+      - mitochondrial fission
+      - mitochondrial fusion
+      - mitophagy
+      - mitochondrial biogenesis
+      - mitochondrial proteostasis
+      - mitochondrial quality control
+      - mitochondrial membrane potential
+      - mitochondrial dynamics
+      - mitochondrial ROS
+
+  O5_mechanistic_connection:
+    name: "Mechanistic mitochondrial-senescence connection"
+    description: "Evidence explaining mechanistically how mitochondrial dysfunction or mitochondrial processes connect with cellular senescence."
+    keywords:
+      - mechanism
+      - mechanistic
+      - mitochondrial dysfunction
+      - mitochondrial quality control
+      - mitochondrial dynamics
+      - mitochondrial fission
+      - mitochondrial fusion
+      - mitophagy
+      - mitochondrial ROS
+      - cellular senescence
+      - replicative senescence
+      - irradiation-induced senescence
+      - DNA damage-induced senescence
+      - stress-induced premature senescence
+      - SASP
+      - p16
+      - CDKN2A
+      - p21
+      - CDKN1A
