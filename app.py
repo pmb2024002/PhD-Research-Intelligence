@@ -29,8 +29,12 @@ st.markdown(
 )
 
 BASE_DIR = Path(__file__).resolve().parent
+
 HERO_IMAGE = BASE_DIR / "assets" / "mitochondria_hero.png"
 
+STRUCTURE_FUNCTION_IMAGE = (
+    BASE_DIR / "assets" / "mitochondria_structure_function.png"
+)
 
 def render_svg(svg_markup: str):
     """
@@ -199,7 +203,7 @@ learn_tabs = st.tabs([
 
 with learn_tabs[0]:
 
-    col_text, col_svg = st.columns([1.1, 1])
+    col_text, col_image = st.columns([1.1, 1])
 
     with col_text:
         st.markdown(
@@ -230,35 +234,21 @@ billion years ago (the endosymbiotic theory).
             """
         )
 
-    with col_svg:
-        render_svg("""
-<svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
-                <ellipse cx="250" cy="160" rx="230" ry="140" fill="none" stroke="#3b82f6" stroke-width="4"/>
-                <text x="250" y="30" fill="#94a3b8" font-size="14" text-anchor="middle">Outer Membrane</text>
+    with col_image:
+        if STRUCTURE_FUNCTION_IMAGE.exists():
+            st.image(
+                str(STRUCTURE_FUNCTION_IMAGE),
+                use_container_width=True,
+            )
 
-                <path d="M 90,160
-                         Q 130,80 190,110
-                         Q 230,130 250,90
-                         Q 280,50 320,90
-                         Q 360,130 400,100
-                         Q 420,150 400,200
-                         Q 360,230 320,210
-                         Q 280,190 250,220
-                         Q 230,250 190,220
-                         Q 130,190 90,160 Z"
-                      fill="#1e293b" stroke="#a855f7" stroke-width="4"/>
+            st.caption(
+                "Mitochondrial structure and major functional compartments."
+            )
 
-                <text x="250" y="170" fill="#e2e8f0" font-size="16" text-anchor="middle" font-weight="600">Matrix</text>
-                <text x="250" y="190" fill="#94a3b8" font-size="11" text-anchor="middle">(mtDNA, enzymes)</text>
-
-                <text x="250" y="290" fill="#a855f7" font-size="14" text-anchor="middle">Inner Membrane (Cristae)</text>
-
-                <line x1="80" y1="160" x2="30" y2="160" stroke="#eab308" stroke-width="2"/>
-                <text x="20" y="160" fill="#eab308" font-size="12" text-anchor="end">Intermembrane Space</text>
-            </svg>
-""")
-        st.caption("Simplified cross-section of a mitochondrion (original diagram).")
-
+        else:
+            st.warning(
+                "Structure & Function image not found."
+            )
 
 # ------------------------------------------------------------
 # TAB 2: ENERGY PRODUCTION
