@@ -177,6 +177,54 @@ st.divider()
 
 
 # ============================================================
+# MY PhD RESEARCH — BRIEF PUBLIC OVERVIEW
+# ============================================================
+
+st.markdown("## 🔬 My PhD Research")
+
+st.markdown(
+    """
+### Multi-Omics Analysis of Mitochondrial Dysfunction in Cellular Senescence
+
+My doctoral research focuses on understanding the molecular relationship
+between **mitochondrial dysfunction and cellular senescence**, using
+computational and multi-omics approaches to investigate conserved
+molecular signatures associated with cellular aging.
+"""
+)
+
+research_col1, research_col2 = st.columns(2)
+
+with research_col1:
+    st.markdown(
+        """
+#### 🧬 Research Area
+
+- **Mitochondrial Biology**
+- **Cellular Senescence**
+- **Aging Biology**
+- **Bioinformatics & Multi-Omics**
+"""
+    )
+
+with research_col2:
+    st.markdown(
+        """
+#### 🔎 Research Focus
+
+Understanding how mitochondrial alterations are associated with
+the molecular programs underlying **cellular senescence** and
+age-related cellular dysfunction.
+"""
+    )
+
+st.caption(
+    "A brief overview of the research theme and scientific focus."
+)
+
+st.divider()
+
+# ============================================================
 # LEARN — MITOCHONDRIA & AGING (EDUCATIONAL SECTION)
 # ============================================================
 
