@@ -1,11 +1,9 @@
 import streamlit as st
-import pandas as pd
 from pathlib import Path
-from datetime import datetime
 
 
 # ============================================================
-# CANONICAL STREAMLIT APPLICATION V1
+# MITOCHONDRIAL RESEARCH INTELLIGENCE — HOMEPAGE
 # ============================================================
 
 st.set_page_config(
@@ -14,805 +12,645 @@ st.set_page_config(
     layout="wide",
 )
 
+st.markdown(
+    """
+    <style>
+    div[data-testid="stVerticalBlockBorderWrapper"] {
+        border-radius: 14px !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+        margin-bottom: 18px;
+    }
+    div[data-testid="stTabs"] button {
+        font-weight: 600;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 BASE_DIR = Path(__file__).resolve().parent
-
-PRIORITY_FILE = (
-    BASE_DIR
-    / "data"
-    / "production_v1"
-    / "human_preference_layer_v1.csv"
-)
-
-EXPLANATION_FILE = (
-    BASE_DIR
-    / "data"
-    / "production_v1"
-    / "canonical_explanations_v1.csv"
-)
-
-LIVE_FEEDBACK_FILE = (
-    BASE_DIR
-    / "data"
-    / "processed"
-    / "user_feedback_live.csv"
-)
-
-
-# ============================================================
-# HELPERS
-# ============================================================
-
-def clean_value(value, default="Not detected"):
-    if pd.isna(value):
-        return default
-    value = str(value).strip()
-    if value.lower() in {"", "nan", "none"}:
-        return default
-    return value
-
-
-def evidence_label(level):
-    mapping = {
-        0: "Absent",
-        1: "Mentioned",
-        2: "Investigated / associated",
-        3: "Strong / direct",
-    }
-    try:
-        return mapping.get(int(level), "Unknown")
-    except Exception:
-        return "Unknown"
-
-
-def load_main_data():
-    if not PRIORITY_FILE.exists():
-        raise FileNotFoundError(
-            f"Missing canonical priority file:\n{PRIORITY_FILE}"
-        )
-
-    if not EXPLANATION_FILE.exists():
-        raise FileNotFoundError(
-            f"Missing canonical explanation file:\n{EXPLANATION_FILE}"
-        )
-
-    priority = pd.read_csv(PRIORITY_FILE)
-
-    explanation = pd.read_csv(
-        EXPLANATION_FILE,
-        usecols=["pmid", "canonical_explanation_v1"],
-    )
-
-    if priority["pmid"].duplicated().any():
-        raise ValueError("Duplicate PMIDs detected in priority dataset.")
-
-    if explanation["pmid"].duplicated().any():
-        raise ValueError("Duplicate PMIDs detected in explanation dataset.")
-
-    df = priority.merge(
-        explanation,
-        on="pmid",
-        how="left",
-        validate="one_to_one",
-    )
-
-    if len(df) != 250:
-        raise ValueError(
-            f"Expected 250 canonical papers, found {len(df)}."
-        )
-
-    if df["pmid"].nunique() != 250:
-        raise ValueError("Canonical dataset does not contain 250 unique PMIDs.")
-
-    return df
-
-
-@st.cache_data
-def get_data():
-    return load_main_data()
-
-
-def load_live_feedback():
-    if not LIVE_FEEDBACK_FILE.exists():
-        return pd.DataFrame(
-            columns=[
-                "pmid",
-                "user_relevance",
-                "user_reason",
-                "timestamp",
-            ]
-        )
-
-    df = pd.read_csv(LIVE_FEEDBACK_FILE)
-
-    if "pmid" not in df.columns:
-        return pd.DataFrame(
-            columns=[
-                "pmid",
-                "user_relevance",
-                "user_reason",
-                "timestamp",
-            ]
-        )
-
-    for col in ["user_relevance", "user_reason"]:
-        if col not in df.columns:
-            df[col] = ""
-
-    return df
-
-
-def save_live_feedback(pmid, label, reason):
-    feedback = load_live_feedback()
-
-    feedback = feedback[
-        feedback["pmid"].astype(str) != str(pmid)
-    ].copy()
-
-    new_row = pd.DataFrame(
-        [{
-            "pmid": str(pmid),
-            "user_relevance": label,
-            "user_reason": reason,
-            "timestamp": datetime.now().isoformat(timespec="seconds"),
-        }]
-    )
-
-    feedback = pd.concat(
-        [feedback, new_row],
-        ignore_index=True,
-    )
-
-    LIVE_FEEDBACK_FILE.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    feedback.to_csv(
-        LIVE_FEEDBACK_FILE,
-        index=False,
-    )
-
-
-# ============================================================
-# LOAD
-# ============================================================
-
-try:
-    df = get_data()
-except Exception as exc:
-    st.error("Canonical literature database could not be loaded.")
-    st.code(str(exc))
-    st.stop()
-
-
-feedback_df = load_live_feedback()
-
-
-# ============================================================
-# HEADER + MITOCHONDRIAL VISUAL
-# ============================================================
-
 HERO_IMAGE = BASE_DIR / "assets" / "mitochondria_hero.png"
 
-header_col, visual_col = st.columns(
-    [3.2, 1.3],
-    vertical_alignment="center"
+
+def render_svg(svg_markup: str):
+    """
+    Render inline SVG safely. Streamlit's markdown parser treats
+    lines with 4+ leading spaces as a code block (standard Markdown
+    behavior), which breaks indented multi-line SVG. This strips
+    per-line leading whitespace before rendering so the SVG is
+    always parsed as raw HTML, not a code block.
+    """
+    cleaned = "\n".join(
+        line.strip() for line in svg_markup.strip().split("\n")
+    )
+    st.markdown(cleaned, unsafe_allow_html=True)
+
+
+# ============================================================
+# HEADER
+# ============================================================
+
+st.markdown(
+    """
+    <div style="
+        font-size: 2.7rem;
+        font-weight: 700;
+        line-height: 1.12;
+        letter-spacing: -0.025em;
+        margin: 0;
+        padding: 0;
+    ">
+        🧬 Mitochondrial Research Intelligence
+    </div>
+
+    <div style="
+        width: 95px;
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6, #a855f7);
+        border-radius: 4px;
+        margin-top: 14px;
+        margin-bottom: 20px;
+    "></div>
+    """,
+    unsafe_allow_html=True,
 )
 
-with header_col:
-    st.markdown(
-        """
-        <div style="
-            font-size: 2.7rem;
-            font-weight: 700;
-            line-height: 1.12;
-            letter-spacing: -0.025em;
-            margin: 0;
-            padding: 0;
-        ">
-            🧬 Mitochondrial Research Intelligence
-        </div>
 
-        <div style="
-            width: 95px;
-            height: 4px;
-            background: linear-gradient(90deg, #3b82f6, #a855f7);
-            border-radius: 4px;
-            margin-top: 14px;
-        "></div>
-        """,
-        unsafe_allow_html=True,
-    )
+# ============================================================
+# NEW PAPERS CHECKER (TOP PRIORITY SECTION)
+# ============================================================
 
-with visual_col:
-    if HERO_IMAGE.exists():
-        st.image(
-            str(HERO_IMAGE),
-            width=380,
-        )
+st.markdown("### 🆕 Check for New Aging & Senescence Research")
+
+st.caption(
+    "Searches PubMed live for the latest cellular senescence / "
+    "mitochondrial dysfunction literature not yet in the database."
+)
+
+if st.button("🔍 Check PubMed now", type="primary"):
+
+    with st.spinner("Searching PubMed..."):
+
+        import sys as _sys
+        _sys.path.insert(0, str(BASE_DIR / "pipeline"))
+
+        from check_new_papers import check_for_new_papers
+
+        new_df = check_for_new_papers()
+
+    if len(new_df) == 0:
+        st.info("No new papers found since the canonical dataset was built.")
+    else:
+        st.success(f"Found {len(new_df)} new paper(s)!")
+
+        for _, nrow in new_df.iterrows():
+
+            with st.container(border=True):
+
+                st.markdown(f"**{nrow.get('title', 'Untitled')}**")
+
+                st.caption(
+                    f"{nrow.get('journal', '')} • "
+                    f"{nrow.get('publication_date', '')} • "
+                    f"PMID {nrow.get('pmid', '')}"
+                )
+
+                abstract = nrow.get("abstract", "")
+                if abstract:
+                    st.write(
+                        abstract[:400]
+                        + ("..." if len(abstract) > 400 else "")
+                    )
+
+                url = nrow.get("pubmed_url", "")
+                if url:
+                    st.link_button("🔗 Open in PubMed", url)
 
 st.divider()
 
+
 # ============================================================
-# TOP METRICS
+# MITOCHONDRIA — INTRODUCTION
 # ============================================================
 
-total_papers = len(df)
+intro_col, image_col = st.columns([2.2, 1.3], vertical_alignment="center")
 
-critical = int(
-    (df["final_priority_category"] == "Critical").sum()
+with intro_col:
+    st.markdown("## What Are Mitochondria?")
+    st.markdown(
+        """
+Mitochondria are membrane-bound organelles found in nearly every cell
+of the body, often called the **"powerhouse of the cell."** Their
+primary role is producing **ATP** (adenosine triphosphate), the
+molecule that powers almost every cellular process, through a process
+called **oxidative phosphorylation**.
+
+Beyond energy production, mitochondria are central to:
+
+- **Cellular signaling** — regulating calcium levels and reactive
+  oxygen species (ROS)
+- **Apoptosis** — controlling programmed cell death pathways
+- **Metabolic regulation** — integrating nutrient and energy status
+- **Mitochondrial dynamics** — continuously undergoing **fission**
+  (dividing) and **fusion** (merging) to maintain a healthy network
+- **Mitophagy** — the selective clearance of damaged mitochondria via
+  autophagy, a key quality-control mechanism
+
+As cells age, mitochondrial function tends to decline: energy
+production becomes less efficient, ROS accumulates, and the balance
+between fission/fusion and mitophagy breaks down. This
+**mitochondrial dysfunction** is increasingly recognized as a driver
+-- not just a consequence -- of **cellular senescence**, the
+irreversible growth arrest linked to aging and age-related disease.
+        """
+    )
+
+with image_col:
+    if HERO_IMAGE.exists():
+        st.image(str(HERO_IMAGE), width=380)
+
+st.divider()
+
+
+# ============================================================
+# LEARN — MITOCHONDRIA & AGING (EDUCATIONAL SECTION)
+# ============================================================
+
+st.markdown("## 📖 Learn: Mitochondria, Aging & Disease")
+st.caption(
+    "A deeper dive — from basic structure to advanced disease "
+    "mechanisms. All diagrams below are original illustrations, "
+    "not reproductions of published figures."
 )
 
-high = int(
-    (df["final_priority_category"] == "High").sum()
-)
-
-moderate = int(
-    (df["final_priority_category"] == "Moderate").sum()
-)
-
-live_labels = int(
-    feedback_df["user_relevance"]
-    .astype(str)
-    .str.strip()
-    .ne("")
-    .sum()
-)
-
-col1, col2, col3, col4, col5 = st.columns(5)
-
-with col1:
-    st.metric("📚 Papers", total_papers)
-
-with col2:
-    st.metric("🔥 Critical", critical)
-
-with col3:
-    st.metric("⭐ High", high)
-
-with col4:
-    st.metric("📊 Moderate", moderate)
-
-with col5:
-    st.metric("🧑‍🔬 Live Labels", live_labels)
+learn_tabs = st.tabs([
+    "🔬 Structure & Function",
+    "⚡ Energy Production",
+    "🧬 Mitochondria & Aging",
+    "🎯 Hallmarks of Aging",
+    "🌍 Causes of Aging",
+    "🏥 Age-Related Diseases",
+])
 
 
-# ============================================================
-# SIDEBAR FILTERS
-# ============================================================
+# ------------------------------------------------------------
+# TAB 1: STRUCTURE & FUNCTION
+# ------------------------------------------------------------
 
-st.sidebar.header("🔎 Literature Filters")
+with learn_tabs[0]:
 
-category_options = [
-    "All",
-    "Critical",
-    "High",
-    "Moderate",
-    "Low",
-    "Peripheral",
-]
+    col_text, col_svg = st.columns([1.1, 1])
 
-selected_category = st.sidebar.selectbox(
-    "Scientific Priority",
-    category_options,
-)
-
-min_score = st.sidebar.slider(
-    "Minimum Scientific Priority Score",
-    min_value=0.0,
-    max_value=100.0,
-    value=0.0,
-    step=1.0,
-)
-
-min_p_relevant = st.sidebar.slider(
-    "Minimum P(Relevant)",
-    min_value=0.0,
-    max_value=1.0,
-    value=0.0,
-    step=0.05,
-)
-
-o5_options = ["All", 0, 1, 2, 3]
-
-selected_o5 = st.sidebar.selectbox(
-    "O5 Mechanistic Connection Level",
-    o5_options,
-)
-
-search_term = st.sidebar.text_input(
-    "Search title / abstract / evidence",
-    placeholder="DRP1, PINK1, mitophagy...",
-)
-
-sort_option = st.sidebar.selectbox(
-    "Sort By",
-    [
-        "Scientific Priority",
-        "Human Relevance Probability",
-        "Publication Date",
-    ],
-)
-
-
-# ============================================================
-# FILTER DATA
-# ============================================================
-
-filtered = df.copy()
-
-if selected_category != "All":
-    filtered = filtered[
-        filtered["final_priority_category"] == selected_category
-    ]
-
-filtered = filtered[
-    filtered["final_phd_priority_score"] >= min_score
-]
-
-filtered = filtered[
-    filtered["P_relevant"] >= min_p_relevant
-]
-
-if selected_o5 != "All":
-    filtered = filtered[
-        filtered["O5_mechanistic_connection_level"] == int(selected_o5)
-    ]
-
-if search_term.strip():
-
-    q = search_term.strip()
-
-    mask = (
-        filtered["title"]
-        .fillna("")
-        .str.contains(q, case=False, regex=False)
-        |
-        filtered["abstract"]
-        .fillna("")
-        .str.contains(q, case=False, regex=False)
-        |
-        filtered["gene_evidence_genes"]
-        .fillna("")
-        .str.contains(q, case=False, regex=False)
-        |
-        filtered["mitochondrial_process_evidence"]
-        .fillna("")
-        .str.contains(q, case=False, regex=False)
-        |
-        filtered["senescence_evidence"]
-        .fillna("")
-        .str.contains(q, case=False, regex=False)
-        |
-        filtered["model_evidence"]
-        .fillna("")
-        .str.contains(q, case=False, regex=False)
-        |
-        filtered["omics_evidence"]
-        .fillna("")
-        .str.contains(q, case=False, regex=False)
-    )
-
-    filtered = filtered[mask]
-
-
-# ============================================================
-# SORT
-# ============================================================
-
-if sort_option == "Scientific Priority":
-    filtered = filtered.sort_values(
-        "final_phd_priority_score",
-        ascending=False,
-    )
-
-elif sort_option == "Human Relevance Probability":
-    filtered = filtered.sort_values(
-        "P_relevant",
-        ascending=False,
-    )
-
-else:
-    filtered = filtered.sort_values(
-        "publication_date",
-        ascending=False,
-    )
-
-
-# ============================================================
-# SUMMARY
-# ============================================================
-
-st.subheader("📖 Literature Explorer")
-
-st.write(
-    f"Showing **{len(filtered)}** of **{total_papers}** canonical papers."
-)
-
-if len(filtered) == 0:
-    st.warning("No papers match the selected filters.")
-    st.stop()
-
-
-# ============================================================
-# PAPER CARDS
-# ============================================================
-
-for _, row in filtered.iterrows():
-
-    title = clean_value(
-        row.get("title"),
-        "Untitled paper",
-    )
-
-    pmid = clean_value(
-        row.get("pmid"),
-        "",
-    )
-
-    score = float(
-        row.get(
-            "final_phd_priority_score",
-            0,
-        )
-    )
-
-    rank = int(
-        row.get(
-            "final_phd_rank",
-            0,
-        )
-    )
-
-    category = clean_value(
-        row.get("final_priority_category"),
-        "Unknown",
-    )
-
-    p_not = float(
-        row.get(
-            "P_not_relevant",
-            0,
-        )
-    )
-
-    p_maybe = float(
-        row.get(
-            "P_maybe",
-            0,
-        )
-    )
-
-    p_relevant = float(
-        row.get(
-            "P_relevant",
-            0,
-        )
-    )
-
-    journal = clean_value(
-        row.get("journal"),
-        "Unknown journal",
-    )
-
-    publication_date = clean_value(
-        row.get("publication_date"),
-        "",
-    )
-
-    with st.container(border=True):
-
+    with col_text:
         st.markdown(
-            f"### #{rank} — {title}"
+            """
+### Anatomy of a Mitochondrion
+
+Mitochondria have a distinctive double-membrane structure that sets
+them apart from most other organelles:
+
+- **Outer membrane** — smooth, permeable to small molecules and ions
+  via channel proteins called porins.
+- **Intermembrane space** — the thin gap between the outer and inner
+  membranes; a critical site for proton accumulation during ATP
+  production.
+- **Inner membrane** — highly folded into structures called
+  **cristae**, which dramatically increase surface area for the
+  enzyme complexes that generate ATP. It is far less permeable than
+  the outer membrane, allowing a proton gradient to build up.
+- **Matrix** — the innermost compartment, containing mitochondrial
+  DNA (mtDNA), ribosomes, and enzymes for the citric acid (Krebs)
+  cycle.
+
+Unlike most organelles, mitochondria contain their **own circular
+DNA** (inherited maternally) and can **replicate independently** of
+the cell cycle — a legacy of their evolutionary origin as free-living
+bacteria that were engulfed by an ancestral cell roughly 1.5–2
+billion years ago (the endosymbiotic theory).
+            """
         )
 
-        st.caption(
-            f"{journal} • {publication_date} • PMID {pmid}"
+    with col_svg:
+        render_svg("""
+<svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+                <ellipse cx="250" cy="160" rx="230" ry="140" fill="none" stroke="#3b82f6" stroke-width="4"/>
+                <text x="250" y="30" fill="#94a3b8" font-size="14" text-anchor="middle">Outer Membrane</text>
+
+                <path d="M 90,160
+                         Q 130,80 190,110
+                         Q 230,130 250,90
+                         Q 280,50 320,90
+                         Q 360,130 400,100
+                         Q 420,150 400,200
+                         Q 360,230 320,210
+                         Q 280,190 250,220
+                         Q 230,250 190,220
+                         Q 130,190 90,160 Z"
+                      fill="#1e293b" stroke="#a855f7" stroke-width="4"/>
+
+                <text x="250" y="170" fill="#e2e8f0" font-size="16" text-anchor="middle" font-weight="600">Matrix</text>
+                <text x="250" y="190" fill="#94a3b8" font-size="11" text-anchor="middle">(mtDNA, enzymes)</text>
+
+                <text x="250" y="290" fill="#a855f7" font-size="14" text-anchor="middle">Inner Membrane (Cristae)</text>
+
+                <line x1="80" y1="160" x2="30" y2="160" stroke="#eab308" stroke-width="2"/>
+                <text x="20" y="160" fill="#eab308" font-size="12" text-anchor="end">Intermembrane Space</text>
+            </svg>
+""")
+        st.caption("Simplified cross-section of a mitochondrion (original diagram).")
+
+
+# ------------------------------------------------------------
+# TAB 2: ENERGY PRODUCTION
+# ------------------------------------------------------------
+
+with learn_tabs[1]:
+
+    st.markdown(
+        """
+### How Mitochondria Make Energy
+
+Mitochondria generate ATP primarily through **oxidative
+phosphorylation**, a process carried out by the **electron transport
+chain (ETC)** — a series of five protein complexes embedded in the
+inner membrane.
+        """
+    )
+
+    render_svg("""
+<svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+            <rect x="20" y="110" width="660" height="20" fill="#334155"/>
+            <text x="350" y="105" fill="#94a3b8" font-size="12" text-anchor="middle">Inner Mitochondrial Membrane</text>
+
+            <rect x="40" y="90" width="60" height="60" rx="8" fill="#3b82f6"/>
+            <text x="70" y="125" fill="white" font-size="12" text-anchor="middle" font-weight="600">I</text>
+
+            <rect x="150" y="95" width="55" height="50" rx="8" fill="#0ea5e9"/>
+            <text x="177" y="125" fill="white" font-size="12" text-anchor="middle" font-weight="600">II</text>
+
+            <rect x="255" y="90" width="60" height="60" rx="8" fill="#a855f7"/>
+            <text x="285" y="125" fill="white" font-size="12" text-anchor="middle" font-weight="600">III</text>
+
+            <rect x="365" y="90" width="60" height="60" rx="8" fill="#ec4899"/>
+            <text x="395" y="125" fill="white" font-size="12" text-anchor="middle" font-weight="600">IV</text>
+
+            <rect x="480" y="80" width="90" height="80" rx="10" fill="#22c55e"/>
+            <text x="525" y="115" fill="white" font-size="11" text-anchor="middle" font-weight="600">ATP</text>
+            <text x="525" y="132" fill="white" font-size="11" text-anchor="middle" font-weight="600">Synthase</text>
+
+            <path d="M100,100 L150,100" stroke="#facc15" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M205,100 L255,100" stroke="#facc15" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M315,100 L365,100" stroke="#facc15" stroke-width="2" marker-end="url(#arrow)"/>
+            <text x="230" y="80" fill="#facc15" font-size="11" text-anchor="middle">e⁻ flow</text>
+
+            <path d="M70,90 L70,40" stroke="#f97316" stroke-width="2" marker-end="url(#arrow2)"/>
+            <path d="M285,90 L285,40" stroke="#f97316" stroke-width="2" marker-end="url(#arrow2)"/>
+            <path d="M395,90 L395,40" stroke="#f97316" stroke-width="2" marker-end="url(#arrow2)"/>
+            <text x="380" y="25" fill="#f97316" font-size="11" text-anchor="middle">H⁺ pumped to intermembrane space</text>
+
+            <path d="M550,80 L550,30 L100,30 L100,80" stroke="#f97316" stroke-width="2" fill="none" stroke-dasharray="4,3" marker-end="url(#arrow2)"/>
+            <text x="325" y="185" fill="#22c55e" font-size="12" text-anchor="middle">H⁺ flows back through ATP Synthase → ATP produced</text>
+
+            <text x="20" y="170" fill="#94a3b8" font-size="12">Matrix</text>
+            <text x="20" y="15" fill="#94a3b8" font-size="12">Intermembrane Space</text>
+
+            <defs>
+                <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#facc15"/>
+                </marker>
+                <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#f97316"/>
+                </marker>
+            </defs>
+        </svg>
+""")
+    st.caption("The electron transport chain and chemiosmotic ATP production (original diagram).")
+
+    st.markdown(
+        """
+**In brief:**
+
+1. Nutrients (glucose, fatty acids) are broken down to produce
+   electron carriers (NADH, FADH₂) via glycolysis and the citric acid
+   cycle.
+2. These carriers donate electrons to **Complex I** and **Complex
+   II**, which pass electrons down the chain to **Complex III** and
+   **Complex IV**.
+3. As electrons move through Complexes I, III, and IV, protons (H⁺)
+   are pumped from the matrix into the intermembrane space, creating
+   an electrochemical gradient.
+4. Protons flow back into the matrix through **ATP synthase**, and
+   this flow drives the synthesis of ATP from ADP and inorganic
+   phosphate.
+5. At Complex IV, electrons finally combine with oxygen to form
+   water — this is why mitochondria consume the oxygen we breathe.
+
+This process is remarkably efficient but not perfect: a small
+fraction of electrons "leak" from the chain and react with oxygen to
+form **reactive oxygen species (ROS)** — a byproduct with major
+implications for aging (see the next tab).
+        """
+    )
+
+
+# ------------------------------------------------------------
+# TAB 3: MITOCHONDRIA & AGING
+# ------------------------------------------------------------
+
+with learn_tabs[2]:
+
+    st.markdown(
+        """
+### The Mitochondrial Theory of Aging
+
+First proposed by Denham Harman in the 1970s (building on his
+earlier free-radical theory of aging), the **mitochondrial theory of
+aging** holds that the slow accumulation of mitochondrial damage —
+driven largely by reactive oxygen species (ROS) — is a central
+mechanism of biological aging.
+
+**The proposed vicious cycle:**
+
+1. Normal ETC activity generates a small, constant flux of ROS.
+2. ROS damage mitochondrial DNA (mtDNA), which lacks the protective
+   histones and robust repair machinery of nuclear DNA, making it
+   more mutation-prone.
+3. Damaged mtDNA can encode defective ETC proteins.
+4. Defective ETC complexes leak more electrons, generating **more**
+   ROS.
+5. Over time, this feedback loop leads to progressively worsening
+   mitochondrial function, energy deficits, and cellular damage.
+
+**How this connects to cellular senescence:**
+
+- Dysfunctional mitochondria are a well-established driver of
+  **cellular senescence** — a state in which damaged cells stop
+  dividing but remain metabolically active, often secreting
+  inflammatory molecules (the senescence-associated secretory
+  phenotype, or SASP).
+- Senescent cells accumulate with age in nearly every tissue,
+  contributing to chronic low-grade inflammation ("inflammaging")
+  and tissue dysfunction.
+- Impaired **mitophagy** (the clearance of damaged mitochondria)
+  allows dysfunctional mitochondria to persist and accumulate,
+  further amplifying ROS output and senescence induction.
+- Reduced **mitochondrial biogenesis** (the production of new,
+  healthy mitochondria, regulated in part by the PGC-1α pathway)
+  means cells become less able to replace damaged mitochondria as
+  they age.
+
+**Important nuance:** the simple "ROS causes aging" version of this
+theory has been refined considerably in recent decades. ROS at low,
+regulated levels also serve as important **signaling molecules** —
+so the relationship between mitochondrial ROS and aging is now
+understood as more complex than pure accumulated damage, involving
+signaling, adaptive stress responses (mitohormesis), and quality
+control failure, not just oxidative damage alone.
+        """
+    )
+
+
+# ------------------------------------------------------------
+# TAB 4: HALLMARKS OF AGING
+# ------------------------------------------------------------
+
+with learn_tabs[3]:
+
+    st.markdown(
+        """
+### The Hallmarks of Aging
+
+In 2013, López-Otín and colleagues proposed a widely cited framework
+of **nine hallmarks of aging** — common cellular and molecular
+features observed across aging organisms. This was expanded to
+**twelve hallmarks** in a 2023 update. **Mitochondrial dysfunction**
+is one of the core hallmarks, and it interacts closely with several
+of the others.
+        """
+    )
+
+    render_svg("""
+<svg viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:520px; height:auto; display:block; margin:0 auto;">
+            <circle cx="280" cy="280" r="100" fill="#1e293b" stroke="#3b82f6" stroke-width="3"/>
+            <text x="280" y="272" fill="#e2e8f0" font-size="15" text-anchor="middle" font-weight="700">12 Hallmarks</text>
+            <text x="280" y="292" fill="#94a3b8" font-size="12" text-anchor="middle">of Aging</text>
+
+            <circle cx="280" cy="100" r="55" fill="#f97316"/>
+            <text x="280" y="95" fill="white" font-size="10" text-anchor="middle" font-weight="600">Mitochondrial</text>
+            <text x="280" y="108" fill="white" font-size="10" text-anchor="middle" font-weight="600">Dysfunction</text>
+
+            <circle cx="440" cy="155" r="50" fill="#334155"/>
+            <text x="440" y="150" fill="white" font-size="9" text-anchor="middle">Genomic</text>
+            <text x="440" y="162" fill="white" font-size="9" text-anchor="middle">Instability</text>
+
+            <circle cx="495" cy="290" r="50" fill="#334155"/>
+            <text x="495" y="285" fill="white" font-size="9" text-anchor="middle">Telomere</text>
+            <text x="495" y="297" fill="white" font-size="9" text-anchor="middle">Attrition</text>
+
+            <circle cx="440" cy="425" r="50" fill="#334155"/>
+            <text x="440" y="420" fill="white" font-size="9" text-anchor="middle">Epigenetic</text>
+            <text x="440" y="432" fill="white" font-size="9" text-anchor="middle">Alterations</text>
+
+            <circle cx="280" cy="480" r="50" fill="#334155"/>
+            <text x="280" y="475" fill="white" font-size="9" text-anchor="middle">Loss of</text>
+            <text x="280" y="487" fill="white" font-size="9" text-anchor="middle">Proteostasis</text>
+
+            <circle cx="120" cy="425" r="50" fill="#334155"/>
+            <text x="120" y="420" fill="white" font-size="9" text-anchor="middle">Disabled</text>
+            <text x="120" y="432" fill="white" font-size="9" text-anchor="middle">Macroautophagy</text>
+
+            <circle cx="65" cy="290" r="50" fill="#334155"/>
+            <text x="65" y="285" fill="white" font-size="9" text-anchor="middle">Deregulated</text>
+            <text x="65" y="297" fill="white" font-size="9" text-anchor="middle">Nutrient Sensing</text>
+
+            <circle cx="120" cy="155" r="50" fill="#334155"/>
+            <text x="120" y="150" fill="white" font-size="9" text-anchor="middle">Cellular</text>
+            <text x="120" y="162" fill="white" font-size="9" text-anchor="middle">Senescence</text>
+
+            <circle cx="200" cy="65" r="45" fill="#334155"/>
+            <text x="200" y="60" fill="white" font-size="8" text-anchor="middle">Stem Cell</text>
+            <text x="200" y="72" fill="white" font-size="8" text-anchor="middle">Exhaustion</text>
+
+            <circle cx="360" cy="65" r="45" fill="#334155"/>
+            <text x="360" y="60" fill="white" font-size="8" text-anchor="middle">Altered Intercell.</text>
+            <text x="360" y="72" fill="white" font-size="8" text-anchor="middle">Communication</text>
+
+            <circle cx="520" cy="220" r="42" fill="#334155"/>
+            <text x="520" y="215" fill="white" font-size="8" text-anchor="middle">Chronic</text>
+            <text x="520" y="227" fill="white" font-size="8" text-anchor="middle">Inflammation</text>
+
+            <circle cx="520" cy="360" r="42" fill="#334155"/>
+            <text x="520" y="355" fill="white" font-size="8" text-anchor="middle">Dysbiosis</text>
+
+            <circle cx="360" cy="500" r="42" fill="#334155"/>
+            <text x="360" y="495" fill="white" font-size="8" text-anchor="middle">Splicing</text>
+            <text x="360" y="507" fill="white" font-size="8" text-anchor="middle">Dysregulation</text>
+        </svg>
+""")
+    st.caption(
+        "The 12 Hallmarks of Aging (López-Otín et al., 2013; updated 2023) — "
+        "original layout, not a reproduction of the published figure."
+    )
+
+    st.markdown(
+        """
+**Why mitochondrial dysfunction is central:** unlike most other
+hallmarks, mitochondrial dysfunction has extensive bidirectional
+links to nearly all the others — it contributes to genomic
+instability (via ROS-induced DNA damage), drives cellular senescence,
+impairs stem cell function, and is itself worsened by deregulated
+nutrient sensing and disabled autophagy/mitophagy. This central,
+interconnected role is a major reason it is a focus of current aging
+and senescence research (including this project's own focus area).
+        """
+    )
+
+
+# ------------------------------------------------------------
+# TAB 5: CAUSES OF AGING
+# ------------------------------------------------------------
+
+with learn_tabs[4]:
+
+    st.markdown(
+        """
+### What Causes Aging?
+
+Aging is not driven by a single cause — it results from the
+interaction of **intrinsic (genetic/biological)** and **extrinsic
+(environmental/lifestyle)** factors accumulating over a lifetime.
+        """
+    )
+
+    cause_col1, cause_col2 = st.columns(2)
+
+    with cause_col1:
+        st.markdown(
+            """
+#### 🧬 Intrinsic Factors
+
+- **Genetic programming** — inherited genes influence baseline
+  longevity and disease susceptibility (though genetics is estimated
+  to account for only ~20-30% of lifespan variation in humans).
+- **Telomere shortening** — the protective caps on chromosome ends
+  shorten with each cell division, eventually triggering senescence.
+- **Accumulated DNA damage** — from replication errors and oxidative
+  stress, faster than repair mechanisms can fully correct.
+- **Mitochondrial dysfunction** — declining ATP production and
+  rising ROS output, as discussed in the earlier tabs.
+- **Epigenetic drift** — age-related changes in DNA methylation and
+  chromatin structure that alter gene expression patterns without
+  changing the underlying DNA sequence.
+- **Stem cell exhaustion** — a gradual decline in the regenerative
+  capacity of tissue-specific stem cell pools.
+            """
         )
 
-        c1, c2, c3, c4 = st.columns(4)
+    with cause_col2:
+        st.markdown(
+            """
+#### 🌍 Extrinsic Factors
 
-        with c1:
-            st.metric(
-                "Scientific Priority",
-                f"{score:.2f}",
-            )
-
-        with c2:
-            st.metric(
-                "Category",
-                category,
-            )
-
-        with c3:
-            st.metric(
-                "P(Relevant)",
-                f"{p_relevant:.3f}",
-            )
-
-        with c4:
-            st.metric(
-                "O5 Mechanistic",
-                f"{int(row.get('O5_mechanistic_connection_level', 0))}/3",
-            )
-
-        # ----------------------------------------------------
-        # EVIDENCE
-        # ----------------------------------------------------
-
-        with st.expander("🔬 Canonical Evidence"):
-
-            e1, e2 = st.columns(2)
-
-            with e1:
-
-                st.write(
-                    "**Priority genes**"
-                )
-
-                st.write(
-                    clean_value(
-                        row.get("gene_evidence_genes"),
-                        "None detected",
-                    )
-                )
-
-                st.caption(
-                    f"Level: "
-                    f"{evidence_label(row.get('gene_evidence_level', 0))}"
-                )
-
-                st.write(
-                    "**Mitochondrial processes**"
-                )
-
-                st.write(
-                    clean_value(
-                        row.get("mitochondrial_process_evidence"),
-                        "None detected",
-                    )
-                )
-
-                st.caption(
-                    f"Level: "
-                    f"{evidence_label(row.get('mitochondrial_process_evidence_level', 0))}"
-                )
-
-                st.write(
-                    "**Senescence evidence**"
-                )
-
-                st.write(
-                    clean_value(
-                        row.get("senescence_evidence"),
-                        "None detected",
-                    )
-                )
-
-                st.caption(
-                    f"Level: "
-                    f"{evidence_label(row.get('senescence_evidence_level', 0))}"
-                )
-
-            with e2:
-
-                st.write(
-                    "**Experimental model**"
-                )
-
-                st.write(
-                    clean_value(
-                        row.get("model_evidence"),
-                        "None detected",
-                    )
-                )
-
-                st.caption(
-                    f"Level: "
-                    f"{evidence_label(row.get('model_evidence_level', 0))}"
-                )
-
-                st.write(
-                    "**Omics evidence**"
-                )
-
-                st.write(
-                    clean_value(
-                        row.get("omics_evidence"),
-                        "None detected",
-                    )
-                )
-
-                st.caption(
-                    f"Level: "
-                    f"{evidence_label(row.get('omics_evidence_level', 0))}"
-                )
-
-        # ----------------------------------------------------
-        # OBJECTIVE ALIGNMENT
-        # ----------------------------------------------------
-
-        with st.expander("🎯 PhD Objective Alignment"):
-
-            o1, o2, o3 = st.columns(3)
-
-            with o1:
-                st.metric(
-                    "O2 Multi-omics",
-                    f"{int(row.get('O2_multiomics_integration_level', 0))}/3",
-                )
-
-            with o2:
-                st.metric(
-                    "O3 Hub Genes",
-                    f"{int(row.get('O3_hub_gene_level', 0))}/2",
-                )
-
-            with o3:
-                st.metric(
-                    "O4 Core Processes",
-                    f"{int(row.get('O4_core_mito_process_level', 0))}/2",
-                )
-
-            st.caption(
-                "O1 conserved-signature evidence is excluded from the "
-                "current Scientific Priority score pending final definition."
-            )
-
-        # ----------------------------------------------------
-        # HUMAN PREFERENCE
-        # ----------------------------------------------------
-
-        with st.expander("🧑‍🔬 Human Preference Layer"):
-
-            st.write(
-                "Current calibrated probability mapping:"
-            )
-
-            h1, h2, h3 = st.columns(3)
-
-            with h1:
-                st.metric(
-                    "P(Not Relevant)",
-                    f"{p_not:.3f}",
-                )
-
-            with h2:
-                st.metric(
-                    "P(Maybe)",
-                    f"{p_maybe:.3f}",
-                )
-
-            with h3:
-                st.metric(
-                    "P(Relevant)",
-                    f"{p_relevant:.3f}",
-                )
-
-            st.caption(
-                "This probability layer is secondary to Scientific Priority "
-                "and is based on the current 110-paper human-label dataset."
-            )
-
-        # ----------------------------------------------------
-        # EXPLANATION
-        # ----------------------------------------------------
-
-        with st.expander("💡 Why this paper is here"):
-
-            explanation = clean_value(
-                row.get("canonical_explanation_v1"),
-                "No explanation available.",
-            )
-
-            st.text(explanation)
-
-        # ----------------------------------------------------
-        # ABSTRACT
-        # ----------------------------------------------------
-
-        with st.expander("📄 Abstract"):
-
-            st.write(
-                clean_value(
-                    row.get(
-                        "abstract"
-                    ),
-                    "Abstract unavailable.",
-                )
-            )
-
-        # ----------------------------------------------------
-        # PUBMED
-        # ----------------------------------------------------
-
-        pubmed_url = clean_value(
-            row.get(
-                "pubmed_url"
-            ),
-            "",
+- **Diet and nutrition** — chronic overnutrition, poor diet quality,
+  and metabolic dysregulation accelerate cellular damage.
+- **Physical inactivity** — reduces mitochondrial biogenesis and
+  cardiovascular/muscular resilience.
+- **Chronic stress** — sustained cortisol elevation is linked to
+  accelerated telomere attrition and inflammation.
+- **Environmental toxins** — UV radiation, air pollution, and
+  cigarette smoke increase oxidative and DNA damage.
+- **Sleep disruption** — impairs cellular repair processes and
+  metabolic regulation.
+- **Chronic infections/inflammation** — sustained immune activation
+  ("inflammaging") accelerates tissue damage over decades.
+            """
         )
 
-        if pubmed_url:
-            st.link_button(
-                "🔗 Open in PubMed",
-                pubmed_url,
-            )
+    st.markdown(
+        """
+**Key concept — the interaction of these factors:** intrinsic and
+extrinsic factors do not act independently. For example, poor diet
+(extrinsic) increases mitochondrial ROS production (intrinsic
+mechanism), which accelerates DNA damage (another intrinsic hallmark)
+and promotes cellular senescence. This is why aging research
+increasingly focuses on **interconnected mechanisms** — like
+mitochondrial dysfunction — rather than any single isolated cause.
+        """
+    )
 
-        # ----------------------------------------------------
-        # LIVE USER ASSESSMENT
-        # ----------------------------------------------------
 
-        with st.expander("📝 Add New Assessment"):
+# ------------------------------------------------------------
+# TAB 6: AGE-RELATED DISEASES
+# ------------------------------------------------------------
 
-            existing = feedback_df[
-                feedback_df["pmid"].astype(str)
-                == str(pmid)
-            ]
+with learn_tabs[5]:
 
-            current_label = ""
+    st.markdown(
+        """
+### Mitochondrial Dysfunction & Age-Related Disease
 
-            current_reason = ""
+Mitochondrial dysfunction and cellular senescence are implicated as
+contributing mechanisms across a wide range of age-related diseases,
+spanning nearly every organ system.
+        """
+    )
 
-            if len(existing) > 0:
+    disease_col1, disease_col2 = st.columns(2)
 
-                current_label = clean_value(
-                    existing.iloc[-1]["user_relevance"],
-                    "",
-                )
+    with disease_col1:
+        st.markdown(
+            """
+#### 🧠 Neurodegenerative Diseases
+- **Alzheimer's disease** — impaired mitochondrial bioenergetics and
+  ROS accumulation in neurons
+- **Parkinson's disease** — directly linked to genes (PINK1, PRKN)
+  that regulate **mitophagy**
+- **Amyotrophic lateral sclerosis (ALS)** — mitochondrial dysfunction
+  in motor neurons
 
-                current_reason = clean_value(
-                    existing.iloc[-1]["user_reason"],
-                    "",
-                )
+#### ❤️ Cardiovascular Disease
+- **Atherosclerosis** — senescent vascular cells contribute to
+  plaque formation and instability
+- **Heart failure** — declining cardiac mitochondrial ATP output
+- **Vascular aging/stiffness** — linked to endothelial cell
+  senescence
 
-            labels = [
-                "Not labeled",
-                "Relevant",
-                "Maybe",
-                "Not Relevant",
-            ]
+#### 🦴 Musculoskeletal Disease
+- **Sarcopenia** (age-related muscle loss) — reduced mitochondrial
+  density and function in skeletal muscle
+- **Osteoarthritis** — senescent chondrocytes drive cartilage
+  degradation
+            """
+        )
 
-            try:
-                default_index = labels.index(current_label)
-            except ValueError:
-                default_index = 0
+    with disease_col2:
+        st.markdown(
+            """
+#### 🩸 Metabolic Disease
+- **Type 2 diabetes** — impaired mitochondrial function in muscle
+  and pancreatic beta cells contributes to insulin resistance
+- **Non-alcoholic fatty liver disease (NAFLD)** — linked to
+  hepatocyte mitochondrial dysfunction
 
-            selected_label = st.radio(
-                "Your assessment",
-                labels,
-                index=default_index,
-                horizontal=True,
-                key=f"label_{pmid}",
-            )
+#### 🦠 Cancer
+- Cellular senescence has a **complex dual role** — it can suppress
+  early tumor growth, but senescent cells that persist can also
+  promote tumor progression in surrounding tissue via the SASP
+  (senescence-associated secretory phenotype)
 
-            reason = st.text_area(
-                "Optional reason",
-                value=current_reason if current_reason else "",
-                key=f"reason_{pmid}",
-                height=80,
-            )
+#### 👁️ Other Age-Related Conditions
+- **Age-related macular degeneration (AMD)** — retinal pigment
+  epithelium senescence and mitochondrial dysfunction
+- **Chronic kidney disease** — tubular cell senescence
+- **Intervertebral disc degeneration** — nucleus pulposus cell
+  senescence linked to mitochondrial fission dysregulation
+            """
+        )
 
-            if st.button(
-                "💾 Save Assessment",
-                key=f"save_{pmid}",
-            ):
-
-                saved_label = (
-                    ""
-                    if selected_label == "Not labeled"
-                    else selected_label
-                )
-
-                save_live_feedback(
-                    pmid,
-                    saved_label,
-                    reason,
-                )
-
-                st.success(
-                    "Assessment saved separately from the calibration dataset."
-                )
-
-                st.rerun()
+    st.info(
+        "💡 This is exactly the research space this tool is built to "
+        "track — the papers analyzed above (V1 ranking + V2 deep "
+        "evidence extraction) focus specifically on mitochondrial "
+        "dysfunction as a driver of cellular senescence across these "
+        "disease contexts."
+    )

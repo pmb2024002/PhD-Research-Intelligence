@@ -1,0 +1,47 @@
+version: "2.0"
+
+principles:
+  direct_biology: "Mitochondrial dysfunction and cellular senescence must be evaluated as a connected biological relationship."
+  mechanism_over_keyword: "Mechanistic evidence is more important than isolated keyword or hub-gene presence."
+  transferability: "A different disease or tissue model does not automatically reduce relevance when the mitochondrial-senescence mechanism is transferable."
+  model_specificity: "Human fibroblast and IMR-90 evidence receives additional value because it directly supports the PhD experimental framework."
+  objective_alignment: "Literature supporting conserved signatures, multi-omics integration, hub identification, pathways, networks, and mechanistic interpretation receives additional value."
+  peripheral_context: "Disease-specific context is a modifier, not an automatic irrelevance penalty."
+
+components:
+  direct_mito_senescence: 8
+  mitochondrial_mechanism: 5
+  mechanistic_evidence: 5
+  transferable_mechanism: 4
+  primary_hub_gene: 3
+  fibroblast_model: 4
+  multiomics_or_omics: 3
+  phd_objective_alignment: 4
+  peripheral_context_penalty: 2
+
+thresholds:
+  R1_direct_core: 20
+  R2_direct_mechanistic: 14
+  R3_computational_multiomics: 9
+  R4_transferable: 6
+  R5_supporting: 3
+
+anti_rules:
+  - "Do not rank a paper highly solely because it contains a priority hub gene."
+  - "Do not rank a paper highly solely because it contains mitochondrial terminology."
+  - "Do not treat aging terminology as equivalent to cellular senescence."
+  - "Do not treat disease-specific context as automatic irrelevance."
+  - "Do not allow generic semantic similarity to dominate biological evidence."
+
+scope_gating:
+  direct_mito_senescence_requires_specificity: true
+  minimum_specific_features_for_core:
+    - mitochondrial_process
+    - primary_hub_gene
+    - mechanistic_evidence
+    - fibroblast_model
+    - omics_evidence
+  minimum_specific_features_for_direct_mechanistic:
+    - mitochondrial_process
+    - primary_hub_gene
+    - mechanistic_evidence

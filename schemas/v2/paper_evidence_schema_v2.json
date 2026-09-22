@@ -1,0 +1,742 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mitochondrial Research Intelligence - Paper Evidence Schema V2",
+  "description": "Structured scientific evidence representation for automated literature intelligence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "paper_identity",
+    "biological_context",
+    "senescence",
+    "mitochondrial",
+    "molecular_entities",
+    "omics",
+    "experimental_design",
+    "mechanism",
+    "findings",
+    "evidence_assessment",
+    "limitations",
+    "research_gaps",
+    "phd_objectives",
+    "phd_relevance",
+    "research_priority",
+    "why_this_paper_matters",
+    "confidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "2.0"
+    },
+    "paper_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pmid",
+        "title",
+        "authors",
+        "journal",
+        "publication_date",
+        "doi",
+        "pubmed_url",
+        "source",
+        "retrieval_date"
+      ],
+      "properties": {
+        "pmid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "journal": {
+          "type": "string"
+        },
+        "publication_date": {
+          "type": "string"
+        },
+        "doi": {
+          "type": "string"
+        },
+        "pubmed_url": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "retrieval_date": {
+          "type": "string"
+        }
+      }
+    },
+    "biological_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "organism",
+        "species",
+        "cell_type",
+        "tissue",
+        "organ",
+        "disease",
+        "primary_model",
+        "senescence_model",
+        "senescence_trigger"
+      ],
+      "properties": {
+        "organism": {
+          "type": "string"
+        },
+        "species": {
+          "type": "string"
+        },
+        "cell_type": {
+          "type": "string"
+        },
+        "tissue": {
+          "type": "string"
+        },
+        "organ": {
+          "type": "string"
+        },
+        "disease": {
+          "type": "string"
+        },
+        "primary_model": {
+          "type": "string"
+        },
+        "senescence_model": {
+          "type": "string"
+        },
+        "senescence_trigger": {
+          "type": "string"
+        }
+      }
+    },
+    "senescence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "investigated",
+        "evidence_type",
+        "trigger",
+        "markers",
+        "phenotype"
+      ],
+      "properties": {
+        "investigated": {
+          "type": "boolean"
+        },
+        "evidence_type": {
+          "type": "string",
+          "enum": [
+            "direct_experimental",
+            "indirect",
+            "background",
+            "none",
+            "unclear"
+          ]
+        },
+        "trigger": {
+          "type": "string"
+        },
+        "markers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "phenotype": {
+          "type": "string"
+        }
+      }
+    },
+    "mitochondrial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "investigated",
+        "evidence_type",
+        "dysfunction",
+        "processes",
+        "mitochondrial_dynamics",
+        "mitophagy",
+        "ros",
+        "metabolism",
+        "bioenergetics",
+        "morphology"
+      ],
+      "properties": {
+        "investigated": {
+          "type": "boolean"
+        },
+        "evidence_type": {
+          "type": "string",
+          "enum": [
+            "direct_experimental",
+            "indirect",
+            "background",
+            "none",
+            "unclear"
+          ]
+        },
+        "dysfunction": {
+          "type": "string"
+        },
+        "processes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mitochondrial_dynamics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mitophagy": {
+          "type": "string"
+        },
+        "ros": {
+          "type": "string"
+        },
+        "metabolism": {
+          "type": "string"
+        },
+        "bioenergetics": {
+          "type": "string"
+        },
+        "morphology": {
+          "type": "string"
+        }
+      }
+    },
+    "molecular_entities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "genes",
+        "proteins",
+        "pathways",
+        "metabolites",
+        "interventions"
+      ],
+      "properties": {
+        "genes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "symbol",
+              "aliases",
+              "role",
+              "direction"
+            ],
+            "properties": {
+              "symbol": {
+                "type": "string"
+              },
+              "aliases": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "role": {
+                "type": "string"
+              },
+              "direction": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "proteins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pathways": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "metabolites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "interventions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "omics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "modalities",
+        "integration_level",
+        "methods",
+        "targets"
+      ],
+      "properties": {
+        "modalities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "integration_level": {
+          "type": "string",
+          "enum": [
+            "none",
+            "single_modality",
+            "multiple_separate",
+            "statistically_integrated",
+            "mechanistically_integrated",
+            "unclear"
+          ]
+        },
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "experimental_design": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "study_type",
+        "groups",
+        "controls",
+        "interventions",
+        "assays",
+        "time_points"
+      ],
+      "properties": {
+        "study_type": {
+          "type": "string"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "interventions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assays": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "time_points": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "mechanism": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "cause",
+          "intermediate",
+          "effect",
+          "relationship",
+          "support_type",
+          "evidence"
+        ],
+        "properties": {
+          "cause": {
+            "type": "string"
+          },
+          "intermediate": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "effect": {
+            "type": "string"
+          },
+          "relationship": {
+            "type": "string"
+          },
+          "support_type": {
+            "type": "string",
+            "enum": [
+              "experimentally_supported",
+              "author_proposed",
+              "observational_association",
+              "model_inference",
+              "unclear"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "finding",
+          "finding_type",
+          "entities",
+          "evidence",
+          "direction"
+        ],
+        "properties": {
+          "finding": {
+            "type": "string"
+          },
+          "finding_type": {
+            "type": "string",
+            "enum": [
+              "positive",
+              "negative",
+              "null",
+              "association",
+              "causal",
+              "descriptive",
+              "unclear"
+            ]
+          },
+          "entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evidence_assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "overall_strength",
+        "direct_experimental",
+        "mechanistic_perturbation",
+        "orthogonal_validation",
+        "omics_support",
+        "functional_validation",
+        "uncertainties"
+      ],
+      "properties": {
+        "overall_strength": {
+          "type": "string",
+          "enum": [
+            "strong",
+            "moderate",
+            "weak",
+            "insufficient",
+            "unclear"
+          ]
+        },
+        "direct_experimental": {
+          "type": "boolean"
+        },
+        "mechanistic_perturbation": {
+          "type": "boolean"
+        },
+        "orthogonal_validation": {
+          "type": "boolean"
+        },
+        "omics_support": {
+          "type": "boolean"
+        },
+        "functional_validation": {
+          "type": "boolean"
+        },
+        "uncertainties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "limitation",
+          "source"
+        ],
+        "properties": {
+          "limitation": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "author_stated",
+              "model_inference",
+              "unclear"
+            ]
+          }
+        }
+      }
+    },
+    "research_gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "gap",
+          "source",
+          "confidence"
+        ],
+        "properties": {
+          "gap": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "author_stated",
+              "limitation_derived",
+              "model_inference",
+              "unclear"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        }
+      }
+    },
+    "phd_objectives": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "O1",
+        "O2",
+        "O3",
+        "O4",
+        "O5"
+      ],
+      "properties": {
+        "O1": {
+          "$ref": "#/$defs/objective_assessment"
+        },
+        "O2": {
+          "$ref": "#/$defs/objective_assessment"
+        },
+        "O3": {
+          "$ref": "#/$defs/objective_assessment"
+        },
+        "O4": {
+          "$ref": "#/$defs/objective_assessment"
+        },
+        "O5": {
+          "$ref": "#/$defs/objective_assessment"
+        }
+      }
+    },
+    "phd_relevance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "classification",
+        "reason",
+        "supporting_evidence"
+      ],
+      "properties": {
+        "classification": {
+          "type": "string",
+          "enum": [
+            "direct",
+            "supporting",
+            "methodological",
+            "peripheral",
+            "not_relevant",
+            "unclear"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "supporting_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "research_priority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "category",
+        "components",
+        "reason"
+      ],
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "Critical",
+            "High",
+            "Moderate",
+            "Low",
+            "Peripheral"
+          ]
+        },
+        "components": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "why_this_paper_matters": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "overall",
+        "scientific_extraction",
+        "mechanism",
+        "relevance"
+      ],
+      "properties": {
+        "overall": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "scientific_extraction": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "mechanism": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "relevance": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "objective_assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "reason",
+        "evidence",
+        "confidence"
+      ],
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "reason": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,139 @@
+"""
+Mitochondrial Research Intelligence
+V2 OpenAI Research Model Adapter
+
+This module connects the provider-independent V2 adapter
+to the OpenAI Responses API.
+
+API credentials are loaded from the environment.
+They are never stored in source code.
+"""
+
+import json
+import os
+from abc import ABC, abstractmethod
+from typing import Any, Dict
+
+from dotenv import load_dotenv
+from openai import OpenAI
+
+
+# Load local .env file
+load_dotenv()
+
+
+# ============================================================
+# Provider-independent interface
+# ============================================================
+
+class ResearchModelAdapter(ABC):
+    """Abstract interface for scientific paper extraction models."""
+
+    @abstractmethod
+    def analyze_paper(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+    ) -> Dict[str, Any]:
+        """Analyze one scientific paper."""
+        raise NotImplementedError
+
+
+# ============================================================
+# OpenAI implementation
+# ============================================================
+
+class OpenAIResearchModel(ResearchModelAdapter):
+    """
+    OpenAI-backed scientific research model.
+
+    The model is instructed to return structured JSON.
+    """
+
+    def __init__(
+        self,
+        model: str = "gpt-5.6-sol",
+    ):
+        api_key = os.getenv("OPENAI_API_KEY")
+
+        if not api_key:
+            raise RuntimeError(
+                "OPENAI_API_KEY is not configured."
+            )
+
+        self.client = OpenAI(api_key=api_key)
+        self.model = model
+
+    def analyze_paper(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+    ) -> Dict[str, Any]:
+
+        response = self.client.responses.create(
+            model=self.model,
+            instructions=system_prompt,
+            input=user_prompt,
+        )
+
+        output_text = response.output_text
+
+        if not output_text:
+            raise RuntimeError(
+                "OpenAI returned an empty response."
+            )
+
+        try:
+            return json.loads(output_text)
+
+        except json.JSONDecodeError as exc:
+            raise ValueError(
+                "OpenAI returned non-JSON output."
+            ) from exc
+
+
+# ============================================================
+# Factory
+# ============================================================
+
+def get_model_adapter() -> ResearchModelAdapter:
+    """
+    Return the configured Research Model adapter.
+    """
+
+    provider = os.getenv(
+        "RESEARCH_MODEL_PROVIDER",
+        "openai",
+    ).lower()
+
+    if provider == "openai":
+        return OpenAIResearchModel()
+
+    raise RuntimeError(
+        f"Unsupported Research Model provider: {provider}"
+    )
+
+
+# ============================================================
+# Direct test
+# ============================================================
+
+if __name__ == "__main__":
+
+    adapter = get_model_adapter()
+
+    print("V2 Research Model adapter loaded.")
+    print(
+        "Adapter:",
+        adapter.__class__.__name__,
+    )
+
+    print(
+        "Model:",
+        adapter.model,
+    )
+
+    print(
+        "API key configured:",
+        bool(os.getenv("OPENAI_API_KEY")),
+    )

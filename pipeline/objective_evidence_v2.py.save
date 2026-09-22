@@ -1,0 +1,222 @@
+    return {
+        "pmid": row.get("pmid", ""),
+        "title": row.get("title", ""),
+        "hub_gene_priority": hub_priority,
+        "hub_gene_names": hub_names,
+
+        "O1_conserved_signature_level": o1,
+        "O1_conserved_signature_reason": o1_reason,
+
+        "O2_multiomics_integration_level": o2,
+        "O2_multiomics_integration_reason": o2_reason,
+
+        "O3_hub_gene_level": o3,
+        "O3_hub_gene_reason": o3_reason,
+
+        "O4_mito_senescence_conservation_level": o4,
+        "O4_mito_senescence_conservation_reason": o4_reason,
+
+        "O5_mechanistic_connection_level": o5,
+        "O5_mechanistic_connection_reason": o5_reason,
+    }
+
+
+# ============================================================
+# MAIN
+# ============================================================
+
+def main():
+
+    # --------------------------------------------------------
+    # Check input files
+    # --------------------------------------------------------
+
+    if not EVIDENCE_FILE.exists():
+        raise FileNotFoundError(
+            f"Evidence file not found: {EVIDENCE_FILE}"
+        )
+
+    if not RANKED_FILE.exists():
+        raise FileNotFoundError(
+            f"Ranked PubMed file not found: {RANKED_FILE}"
+        )
+
+    # --------------------------------------------------------
+    # Load evidence-strength data
+    # --------------------------------------------------------
+
+    df = pd.read_csv(
+        EVIDENCE_FILE
+    ).fillna("")
+
+    # --------------------------------------------------------
+    # Load existing ranker annotations
+    # --------------------------------------------------------
+
+    ranked_df = pd.read_csv(
+        RANKED_FILE
+    ).fillna("")
+
+    required_ranked_columns = [
+        "pmid",
+        "mechanistic_evidence",
+    ]
+
+    missing_ranked = [
+        column
+        for column in required_ranked_columns
+        if column not in ranked_df.columns
+    ]
+
+    if missing_ranked:
+        raise ValueError(
+            "Missing required columns in pubmed_ranked.csv: "
+            + ", ".join(missing_ranked)
+        )
+
+    ranked_mechanistic = ranked_df[
+        [
+            "pmid",
+            "mechanistic_evidence",
+        ]
+    ].copy()
+
+    # --------------------------------------------------------
+    # Normalize PMID datatype before merge
+    # --------------------------------------------------------
+
+    ranked_mechanistic["pmid"] = (
+        ranked_mechanistic["pmid"]
+        .astype(str)
+        .str.strip()
+    )
+
+    df["pmid"] = (
+        df["pmid"]
+        .astype(str)
+        .str.strip()
+    )
+
+    # --------------------------------------------------------
+    # Merge mechanistic annotations
+    # --------------------------------------------------------
+
+    df = df.merge(
+        ranked_mechanistic,
+        on="pmid",
+        how="left",
+    )
+
+    df["mechanistic_evidence"] = (
+        df["mechanistic_evidence"]
+        .fillna("")
+    )
+
+    # --------------------------------------------------------
+    # Required evidence columns
+    # --------------------------------------------------------
+
+    required_columns = [
+        "pmid",
+        "title",
+        "gene_evidence_level",
+        "gene_evidence_genes",
+        "mitochondrial_process_evidence_level",
+        "mitochondrial_process_evidence",
+        "senescence_evidence_level",
+        "senescence_evidence",
+        "omics_evidence_level",
+        "omics_evidence",
+    ]
+
+    missing = [
+        column
+        for column in required_columns
+        if column not in df.columns
+    ]
+
+    if missing:
+        raise ValueError(
+            "Missing required columns in evidence file: "
+            + ", ".join(missing)
+        )
+
+    # --------------------------------------------------------
+    # Analyze papers
+    # --------------------------------------------------------
+
+    results = []
+
+    for _, row in df.iterrows():
+        results.append(
+            analyze_paper(row)
+        )
+
+    result_df = pd.DataFrame(
+        results
+    )
+
+    # --------------------------------------------------------
+    # Save
+    # --------------------------------------------------------
+
+    result_df.to_csv(
+        OUTPUT_FILE,
+        index=False,
+    )
+
+    # --------------------------------------------------------
+    # Summary
+    # --------------------------------------------------------
+
+    print(
+        f"Processed {len(result_df)} papers."
+    )
+
+    print(
+        f"Saved: {OUTPUT_FILE}"
+    )
+
+    print(
+        "\nObjective level distributions:"
+    )
+
+    objective_columns = [
+        "O1_conserved_signature_level",
+        "O2_multiomics_integration_level",
+        "O3_hub_gene_level",
+        "O4_mito_senescence_conservation_level",
+        "O5_mechanistic_connection_level",
+    ]
+
+    for column in objective_columns:
+        print(
+            f"\n{column}"
+        )
+        print(
+            result_df[column]
+            .value_counts()
+            .sort_index()
+            .to_string()
+        )
+
+    print(
+        "\nO5 mechanistic audit:"
+    )
+
+    print(
+        result_df[
+            [
+                "pmid",
+                "title",
+                "hub_gene_priority",
+                "hub_gene_names",
+                "O5_mechanistic_connection_level",
+                "O5_mechanistic_connection_reason",
+            ]
+        ].to_string(index=False)
+    )
+
+
+if __name__ == "__main__":
+    main()

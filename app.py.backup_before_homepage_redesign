@@ -1,0 +1,1080 @@
+import streamlit as st
+import pandas as pd
+from pathlib import Path
+from datetime import datetime
+
+
+# ============================================================
+# CANONICAL STREAMLIT APPLICATION V1
+# ============================================================
+
+st.set_page_config(
+    page_title="Mitochondrial Research Intelligence",
+    page_icon="🧬",
+    layout="wide",
+)
+
+st.markdown(
+    """
+    <style>
+    div[data-testid="stVerticalBlockBorderWrapper"] {
+        border-radius: 14px !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+        margin-bottom: 18px;
+    }
+    div[data-testid="stTabs"] button {
+        font-weight: 600;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+BASE_DIR = Path(__file__).resolve().parent
+
+PRIORITY_FILE = (
+    BASE_DIR
+    / "data"
+    / "production_v1"
+    / "human_preference_layer_v1.csv"
+)
+
+EXPLANATION_FILE = (
+    BASE_DIR
+    / "data"
+    / "production_v1"
+    / "canonical_explanations_v1.csv"
+)
+
+LIVE_FEEDBACK_FILE = (
+    BASE_DIR
+    / "data"
+    / "processed"
+    / "user_feedback_live.csv"
+)
+
+V2_DATA_FILE = (
+    BASE_DIR
+    / "data"
+    / "processed"
+    / "v2"
+    / "all_papers_v2_combined.json"
+)
+
+V2_CATEGORY_COLORS = {
+    "Critical": "#ef4444",
+    "High": "#f97316",
+    "Moderate": "#eab308",
+    "Low": "#22c55e",
+    "Peripheral": "#94a3b8",
+}
+
+V2_RELEVANCE_LABELS = {
+    "direct": "🎯 Direct",
+    "supporting": "🤝 Supporting",
+    "methodological": "🧪 Methodological",
+    "peripheral": "🌫️ Peripheral",
+    "not_relevant": "🚫 Not relevant",
+    "unclear": "❓ Unclear",
+}
+
+
+@st.cache_data
+def load_v2_data():
+    import json
+    if not V2_DATA_FILE.exists():
+        return {}
+    with open(V2_DATA_FILE, "r", encoding="utf-8") as f:
+        records = json.load(f)
+    return {
+        str(r.get("paper_identity", {}).get("pmid", "")): r
+        for r in records
+    }
+
+
+# ============================================================
+# HELPERS
+# ============================================================
+
+def clean_value(value, default="Not detected"):
+    if pd.isna(value):
+        return default
+    value = str(value).strip()
+    if value.lower() in {"", "nan", "none"}:
+        return default
+    return value
+
+
+def evidence_label(level):
+    mapping = {
+        0: "Absent",
+        1: "Mentioned",
+        2: "Investigated / associated",
+        3: "Strong / direct",
+    }
+    try:
+        return mapping.get(int(level), "Unknown")
+    except Exception:
+        return "Unknown"
+
+
+def load_main_data():
+    if not PRIORITY_FILE.exists():
+        raise FileNotFoundError(
+            f"Missing canonical priority file:\n{PRIORITY_FILE}"
+        )
+
+    if not EXPLANATION_FILE.exists():
+        raise FileNotFoundError(
+            f"Missing canonical explanation file:\n{EXPLANATION_FILE}"
+        )
+
+    priority = pd.read_csv(PRIORITY_FILE)
+
+    explanation = pd.read_csv(
+        EXPLANATION_FILE,
+        usecols=["pmid", "canonical_explanation_v1"],
+    )
+
+    if priority["pmid"].duplicated().any():
+        raise ValueError("Duplicate PMIDs detected in priority dataset.")
+
+    if explanation["pmid"].duplicated().any():
+        raise ValueError("Duplicate PMIDs detected in explanation dataset.")
+
+    df = priority.merge(
+        explanation,
+        on="pmid",
+        how="left",
+        validate="one_to_one",
+    )
+
+    if len(df) != 250:
+        raise ValueError(
+            f"Expected 250 canonical papers, found {len(df)}."
+        )
+
+    if df["pmid"].nunique() != 250:
+        raise ValueError("Canonical dataset does not contain 250 unique PMIDs.")
+
+    return df
+
+
+@st.cache_data
+def get_data():
+    return load_main_data()
+
+
+def load_live_feedback():
+    if not LIVE_FEEDBACK_FILE.exists():
+        return pd.DataFrame(
+            columns=[
+                "pmid",
+                "user_relevance",
+                "user_reason",
+                "timestamp",
+            ]
+        )
+
+    df = pd.read_csv(LIVE_FEEDBACK_FILE)
+
+    if "pmid" not in df.columns:
+        return pd.DataFrame(
+            columns=[
+                "pmid",
+                "user_relevance",
+                "user_reason",
+                "timestamp",
+            ]
+        )
+
+    for col in ["user_relevance", "user_reason"]:
+        if col not in df.columns:
+            df[col] = ""
+
+    return df
+
+
+def save_live_feedback(pmid, label, reason):
+    feedback = load_live_feedback()
+
+    feedback = feedback[
+        feedback["pmid"].astype(str) != str(pmid)
+    ].copy()
+
+    new_row = pd.DataFrame(
+        [{
+            "pmid": str(pmid),
+            "user_relevance": label,
+            "user_reason": reason,
+            "timestamp": datetime.now().isoformat(timespec="seconds"),
+        }]
+    )
+
+    feedback = pd.concat(
+        [feedback, new_row],
+        ignore_index=True,
+    )
+
+    LIVE_FEEDBACK_FILE.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    feedback.to_csv(
+        LIVE_FEEDBACK_FILE,
+        index=False,
+    )
+
+
+# ============================================================
+# LOAD
+# ============================================================
+
+try:
+    df = get_data()
+except Exception as exc:
+    st.error("Canonical literature database could not be loaded.")
+    st.code(str(exc))
+    st.stop()
+
+
+feedback_df = load_live_feedback()
+v2_by_pmid = load_v2_data()
+
+
+# ============================================================
+# HEADER + MITOCHONDRIAL VISUAL
+# ============================================================
+
+HERO_IMAGE = BASE_DIR / "assets" / "mitochondria_hero.png"
+
+header_col, visual_col = st.columns(
+    [3.2, 1.3],
+    vertical_alignment="center"
+)
+
+with header_col:
+    st.markdown(
+        """
+        <div style="
+            font-size: 2.7rem;
+            font-weight: 700;
+            line-height: 1.12;
+            letter-spacing: -0.025em;
+            margin: 0;
+            padding: 0;
+        ">
+            🧬 Mitochondrial Research Intelligence
+        </div>
+
+        <div style="
+            width: 95px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #a855f7);
+            border-radius: 4px;
+            margin-top: 14px;
+        "></div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with visual_col:
+    if HERO_IMAGE.exists():
+        st.image(
+            str(HERO_IMAGE),
+            width=380,
+        )
+
+st.divider()
+
+# ============================================================
+# NEW PAPERS CHECKER
+# ============================================================
+
+with st.expander("🆕 Check for new papers", expanded=False):
+
+    st.caption(
+        "Searches PubMed using the same query as the canonical "
+        "dataset and shows any papers not already in it. Read-only "
+        "-- does not modify the canonical dataset or trigger V1/V2 "
+        "scoring automatically."
+    )
+
+    if st.button("🔍 Check PubMed now"):
+
+        with st.spinner("Searching PubMed..."):
+
+            import sys as _sys
+            _sys.path.insert(0, str(BASE_DIR / "pipeline"))
+
+            from check_new_papers import check_for_new_papers
+
+            new_df = check_for_new_papers()
+
+        if len(new_df) == 0:
+            st.info("No new papers found since the canonical dataset was built.")
+        else:
+            st.success(f"Found {len(new_df)} new paper(s)!")
+
+            for _, nrow in new_df.iterrows():
+
+                with st.container(border=True):
+
+                    st.markdown(f"**{nrow.get('title', 'Untitled')}**")
+
+                    st.caption(
+                        f"{nrow.get('journal', '')} • "
+                        f"{nrow.get('publication_date', '')} • "
+                        f"PMID {nrow.get('pmid', '')}"
+                    )
+
+                    abstract = nrow.get("abstract", "")
+                    if abstract:
+                        st.write(
+                            abstract[:400]
+                            + ("..." if len(abstract) > 400 else "")
+                        )
+
+                    url = nrow.get("pubmed_url", "")
+                    if url:
+                        st.link_button("🔗 Open in PubMed", url)
+
+st.divider()
+
+# ============================================================
+# TOP METRICS
+# ============================================================
+
+total_papers = len(df)
+
+critical = int(
+    (df["final_priority_category"] == "Critical").sum()
+)
+
+high = int(
+    (df["final_priority_category"] == "High").sum()
+)
+
+moderate = int(
+    (df["final_priority_category"] == "Moderate").sum()
+)
+
+live_labels = int(
+    feedback_df["user_relevance"]
+    .astype(str)
+    .str.strip()
+    .ne("")
+    .sum()
+)
+
+col1, col2, col3, col4, col5 = st.columns(5)
+
+with col1:
+    st.metric("📚 Papers", total_papers)
+
+with col2:
+    st.metric("🔥 Critical", critical)
+
+with col3:
+    st.metric("⭐ High", high)
+
+with col4:
+    st.metric("📊 Moderate", moderate)
+
+with col5:
+    st.metric("🧑‍🔬 Live Labels", live_labels)
+
+
+# ============================================================
+# SIDEBAR FILTERS
+# ============================================================
+
+st.sidebar.header("🔎 Literature Filters")
+
+category_options = [
+    "All",
+    "Critical",
+    "High",
+    "Moderate",
+    "Low",
+    "Peripheral",
+]
+
+selected_category = st.sidebar.selectbox(
+    "Scientific Priority",
+    category_options,
+)
+
+min_score = st.sidebar.slider(
+    "Minimum Scientific Priority Score",
+    min_value=0.0,
+    max_value=100.0,
+    value=0.0,
+    step=1.0,
+)
+
+min_p_relevant = st.sidebar.slider(
+    "Minimum P(Relevant)",
+    min_value=0.0,
+    max_value=1.0,
+    value=0.0,
+    step=0.05,
+)
+
+o5_options = ["All", 0, 1, 2, 3]
+
+selected_o5 = st.sidebar.selectbox(
+    "O5 Mechanistic Connection Level",
+    o5_options,
+)
+
+search_term = st.sidebar.text_input(
+    "Search title / abstract / evidence",
+    placeholder="DRP1, PINK1, mitophagy...",
+)
+
+sort_option = st.sidebar.selectbox(
+    "Sort By",
+    [
+        "Scientific Priority",
+        "Human Relevance Probability",
+        "Publication Date",
+    ],
+)
+
+
+# ============================================================
+# FILTER DATA
+# ============================================================
+
+filtered = df.copy()
+
+if selected_category != "All":
+    filtered = filtered[
+        filtered["final_priority_category"] == selected_category
+    ]
+
+filtered = filtered[
+    filtered["final_phd_priority_score"] >= min_score
+]
+
+filtered = filtered[
+    filtered["P_relevant"] >= min_p_relevant
+]
+
+if selected_o5 != "All":
+    filtered = filtered[
+        filtered["O5_mechanistic_connection_level"] == int(selected_o5)
+    ]
+
+if search_term.strip():
+
+    q = search_term.strip()
+
+    mask = (
+        filtered["title"]
+        .fillna("")
+        .str.contains(q, case=False, regex=False)
+        |
+        filtered["abstract"]
+        .fillna("")
+        .str.contains(q, case=False, regex=False)
+        |
+        filtered["gene_evidence_genes"]
+        .fillna("")
+        .str.contains(q, case=False, regex=False)
+        |
+        filtered["mitochondrial_process_evidence"]
+        .fillna("")
+        .str.contains(q, case=False, regex=False)
+        |
+        filtered["senescence_evidence"]
+        .fillna("")
+        .str.contains(q, case=False, regex=False)
+        |
+        filtered["model_evidence"]
+        .fillna("")
+        .str.contains(q, case=False, regex=False)
+        |
+        filtered["omics_evidence"]
+        .fillna("")
+        .str.contains(q, case=False, regex=False)
+    )
+
+    filtered = filtered[mask]
+
+
+# ============================================================
+# SORT
+# ============================================================
+
+if sort_option == "Scientific Priority":
+    filtered = filtered.sort_values(
+        "final_phd_priority_score",
+        ascending=False,
+    )
+
+elif sort_option == "Human Relevance Probability":
+    filtered = filtered.sort_values(
+        "P_relevant",
+        ascending=False,
+    )
+
+else:
+    filtered = filtered.sort_values(
+        "publication_date",
+        ascending=False,
+    )
+
+
+# ============================================================
+# SUMMARY
+# ============================================================
+
+st.subheader("📖 Literature Explorer")
+
+st.write(
+    f"Showing **{len(filtered)}** of **{total_papers}** canonical papers."
+)
+
+if len(filtered) == 0:
+    st.warning("No papers match the selected filters.")
+    st.stop()
+
+
+# ============================================================
+# PAPER CARDS
+# ============================================================
+
+for _, row in filtered.iterrows():
+
+    title = clean_value(
+        row.get("title"),
+        "Untitled paper",
+    )
+
+    pmid = clean_value(
+        row.get("pmid"),
+        "",
+    )
+
+    score = float(
+        row.get(
+            "final_phd_priority_score",
+            0,
+        )
+    )
+
+    rank = int(
+        row.get(
+            "final_phd_rank",
+            0,
+        )
+    )
+
+    category = clean_value(
+        row.get("final_priority_category"),
+        "Unknown",
+    )
+
+    p_not = float(
+        row.get(
+            "P_not_relevant",
+            0,
+        )
+    )
+
+    p_maybe = float(
+        row.get(
+            "P_maybe",
+            0,
+        )
+    )
+
+    p_relevant = float(
+        row.get(
+            "P_relevant",
+            0,
+        )
+    )
+
+    journal = clean_value(
+        row.get("journal"),
+        "Unknown journal",
+    )
+
+    publication_date = clean_value(
+        row.get("publication_date"),
+        "",
+    )
+
+    with st.container(border=True):
+
+        st.markdown(
+            f"### #{rank} — {title}"
+        )
+
+        st.caption(
+            f"{journal} • {publication_date} • PMID {pmid}"
+        )
+
+        c1, c2, c3, c4 = st.columns(4)
+
+        with c1:
+            st.metric(
+                "Scientific Priority",
+                f"{score:.2f}",
+            )
+
+        with c2:
+            st.metric(
+                "Category",
+                category,
+            )
+
+        with c3:
+            st.metric(
+                "P(Relevant)",
+                f"{p_relevant:.3f}",
+            )
+
+        with c4:
+            st.metric(
+                "O5 Mechanistic",
+                f"{int(row.get('O5_mechanistic_connection_level', 0))}/3",
+            )
+
+        # ----------------------------------------------------
+        # EVIDENCE
+        # ----------------------------------------------------
+
+        with st.expander("🔬 Canonical Evidence"):
+
+            e1, e2 = st.columns(2)
+
+            with e1:
+
+                st.write(
+                    "**Priority genes**"
+                )
+
+                st.write(
+                    clean_value(
+                        row.get("gene_evidence_genes"),
+                        "None detected",
+                    )
+                )
+
+                st.caption(
+                    f"Level: "
+                    f"{evidence_label(row.get('gene_evidence_level', 0))}"
+                )
+
+                st.write(
+                    "**Mitochondrial processes**"
+                )
+
+                st.write(
+                    clean_value(
+                        row.get("mitochondrial_process_evidence"),
+                        "None detected",
+                    )
+                )
+
+                st.caption(
+                    f"Level: "
+                    f"{evidence_label(row.get('mitochondrial_process_evidence_level', 0))}"
+                )
+
+                st.write(
+                    "**Senescence evidence**"
+                )
+
+                st.write(
+                    clean_value(
+                        row.get("senescence_evidence"),
+                        "None detected",
+                    )
+                )
+
+                st.caption(
+                    f"Level: "
+                    f"{evidence_label(row.get('senescence_evidence_level', 0))}"
+                )
+
+            with e2:
+
+                st.write(
+                    "**Experimental model**"
+                )
+
+                st.write(
+                    clean_value(
+                        row.get("model_evidence"),
+                        "None detected",
+                    )
+                )
+
+                st.caption(
+                    f"Level: "
+                    f"{evidence_label(row.get('model_evidence_level', 0))}"
+                )
+
+                st.write(
+                    "**Omics evidence**"
+                )
+
+                st.write(
+                    clean_value(
+                        row.get("omics_evidence"),
+                        "None detected",
+                    )
+                )
+
+                st.caption(
+                    f"Level: "
+                    f"{evidence_label(row.get('omics_evidence_level', 0))}"
+                )
+
+        # ----------------------------------------------------
+        # OBJECTIVE ALIGNMENT
+        # ----------------------------------------------------
+
+        with st.expander("🎯 PhD Objective Alignment"):
+
+            o1, o2, o3 = st.columns(3)
+
+            with o1:
+                st.metric(
+                    "O2 Multi-omics",
+                    f"{int(row.get('O2_multiomics_integration_level', 0))}/3",
+                )
+
+            with o2:
+                st.metric(
+                    "O3 Hub Genes",
+                    f"{int(row.get('O3_hub_gene_level', 0))}/2",
+                )
+
+            with o3:
+                st.metric(
+                    "O4 Core Processes",
+                    f"{int(row.get('O4_core_mito_process_level', 0))}/2",
+                )
+
+            st.caption(
+                "O1 conserved-signature evidence is excluded from the "
+                "current Scientific Priority score pending final definition."
+            )
+
+        # ----------------------------------------------------
+        # HUMAN PREFERENCE
+        # ----------------------------------------------------
+
+        with st.expander("🧑‍🔬 Human Preference Layer"):
+
+            st.write(
+                "Current calibrated probability mapping:"
+            )
+
+            h1, h2, h3 = st.columns(3)
+
+            with h1:
+                st.metric(
+                    "P(Not Relevant)",
+                    f"{p_not:.3f}",
+                )
+
+            with h2:
+                st.metric(
+                    "P(Maybe)",
+                    f"{p_maybe:.3f}",
+                )
+
+            with h3:
+                st.metric(
+                    "P(Relevant)",
+                    f"{p_relevant:.3f}",
+                )
+
+            st.caption(
+                "This probability layer is secondary to Scientific Priority "
+                "and is based on the current 110-paper human-label dataset."
+            )
+
+        # ----------------------------------------------------
+        # EXPLANATION
+        # ----------------------------------------------------
+
+        with st.expander("💡 Why this paper is here"):
+
+            explanation = clean_value(
+                row.get("canonical_explanation_v1"),
+                "No explanation available.",
+            )
+
+            st.text(explanation)
+
+        # ----------------------------------------------------
+        # ABSTRACT
+        # ----------------------------------------------------
+
+        with st.expander("📄 Abstract"):
+
+            st.write(
+                clean_value(
+                    row.get(
+                        "abstract"
+                    ),
+                    "Abstract unavailable.",
+                )
+            )
+
+        # ----------------------------------------------------
+        # PUBMED
+        # ----------------------------------------------------
+
+        pubmed_url = clean_value(
+            row.get(
+                "pubmed_url"
+            ),
+            "",
+        )
+
+        if pubmed_url:
+            st.link_button(
+                "🔗 Open in PubMed",
+                pubmed_url,
+            )
+
+        # ----------------------------------------------------
+        # V2 DEEP EXTRACTION (if available for this paper)
+        # ----------------------------------------------------
+
+        v2_record = v2_by_pmid.get(str(pmid))
+
+        if v2_record:
+
+            st.markdown("#### 🧬 Deep Evidence Extraction (V2)")
+
+            v2_relevance = v2_record.get("phd_relevance", {}).get(
+                "classification", "unclear"
+            )
+            v2_relevance_label = V2_RELEVANCE_LABELS.get(
+                v2_relevance, v2_relevance
+            )
+
+            genes = v2_record.get("molecular_entities", {}).get("genes", [])
+            gene_symbols = [g.get("symbol", "") for g in genes if g.get("symbol")]
+
+            is_flagged = v2_record.get("_review_flags", {}).get(
+                "direction_may_reflect_intervention_not_baseline", False
+            )
+
+            st.caption(f"PhD relevance: {v2_relevance_label}")
+
+            if gene_symbols:
+                st.markdown(" ".join(f"`{g}`" for g in gene_symbols))
+
+            why_matters = v2_record.get("why_this_paper_matters", "")
+            if why_matters:
+                st.markdown(f"💡 {why_matters}")
+
+            if is_flagged:
+                st.warning(
+                    "⚠️ Gene/protein direction fields in this paper may "
+                    "reflect intervention mechanism rather than baseline "
+                    "disease-state expression. Verify against the abstract "
+                    "before relying on direction claims.",
+                    icon="⚠️",
+                )
+
+            v2_tabs = st.tabs([
+                "⚙️ Mechanism",
+                "🔬 Findings",
+                "📊 Evidence",
+                "🎯 PhD Objectives (V2)",
+                "🧫 Biology",
+                "🕳️ Gaps",
+            ])
+
+            with v2_tabs[0]:
+                mechanisms = v2_record.get("mechanism", [])
+                if mechanisms:
+                    for m in mechanisms:
+                        chain = " → ".join(
+                            [m.get("cause", "")]
+                            + m.get("intermediate", [])
+                            + [m.get("effect", "")]
+                        )
+                        st.markdown(f"**{chain}**")
+                        st.caption(f"Support: {m.get('support_type', '')}")
+                        st.markdown(m.get("evidence", ""))
+                        st.markdown("---")
+                else:
+                    st.caption("No mechanism data extracted.")
+
+            with v2_tabs[1]:
+                findings = v2_record.get("findings", [])
+                if findings:
+                    for finding in findings:
+                        st.markdown(
+                            f"- **{finding.get('finding', '')}** "
+                            f"_(type: {finding.get('finding_type', '')})_"
+                        )
+                else:
+                    st.caption("No findings extracted.")
+
+            with v2_tabs[2]:
+                evidence = v2_record.get("evidence_assessment", {})
+                if evidence:
+                    ve1, ve2 = st.columns(2)
+                    with ve1:
+                        st.markdown(
+                            f"**Overall strength:** "
+                            f"{evidence.get('overall_strength', 'unclear')}"
+                        )
+                        st.markdown(
+                            f"**Direct experimental:** "
+                            f"{evidence.get('direct_experimental', False)}"
+                        )
+                        st.markdown(
+                            f"**Mechanistic perturbation:** "
+                            f"{evidence.get('mechanistic_perturbation', False)}"
+                        )
+                    with ve2:
+                        st.markdown(
+                            f"**Omics support:** "
+                            f"{evidence.get('omics_support', False)}"
+                        )
+                        st.markdown(
+                            f"**Functional validation:** "
+                            f"{evidence.get('functional_validation', False)}"
+                        )
+                else:
+                    st.caption("No evidence assessment extracted.")
+
+            with v2_tabs[3]:
+                objectives = v2_record.get("phd_objectives", {})
+                if objectives:
+                    vo_cols = st.columns(5)
+                    for i, obj_key in enumerate(["O1", "O2", "O3", "O4", "O5"]):
+                        obj = objectives.get(obj_key, {})
+                        with vo_cols[i]:
+                            st.metric(obj_key, f"{obj.get('level', 0)}/3")
+                    for obj_key in ["O1", "O2", "O3", "O4", "O5"]:
+                        obj = objectives.get(obj_key, {})
+                        if obj.get("reason"):
+                            st.caption(f"**{obj_key}:** {obj.get('reason')}")
+                else:
+                    st.caption("No PhD objective mapping extracted.")
+
+            with v2_tabs[4]:
+                bio = v2_record.get("biological_context", {})
+                if bio:
+                    vb1, vb2 = st.columns(2)
+                    with vb1:
+                        st.markdown(f"**Organism:** {bio.get('organism', 'unclear')}")
+                        st.markdown(f"**Cell type:** {bio.get('cell_type', 'unclear')}")
+                        st.markdown(f"**Tissue:** {bio.get('tissue', 'unclear')}")
+                    with vb2:
+                        st.markdown(f"**Disease:** {bio.get('disease', 'unclear')}")
+                        st.markdown(
+                            f"**Senescence trigger:** "
+                            f"{bio.get('senescence_trigger', 'unclear')}"
+                        )
+                else:
+                    st.caption("No biological context extracted.")
+
+            with v2_tabs[5]:
+                limitations = v2_record.get("limitations", [])
+                gaps = v2_record.get("research_gaps", [])
+                if limitations:
+                    st.markdown("**Limitations:**")
+                    for lim in limitations:
+                        st.markdown(f"- {lim.get('limitation', '')}")
+                if gaps:
+                    st.markdown("**Research gaps:**")
+                    for gap in gaps:
+                        st.markdown(f"- {gap.get('gap', '')}")
+                if not limitations and not gaps:
+                    st.caption("No limitations or gaps extracted.")
+
+        # ----------------------------------------------------
+        # LIVE USER ASSESSMENT
+        # ----------------------------------------------------
+
+        with st.expander("📝 Add New Assessment"):
+
+            existing = feedback_df[
+                feedback_df["pmid"].astype(str)
+                == str(pmid)
+            ]
+
+            current_label = ""
+
+            current_reason = ""
+
+            if len(existing) > 0:
+
+                current_label = clean_value(
+                    existing.iloc[-1]["user_relevance"],
+                    "",
+                )
+
+                current_reason = clean_value(
+                    existing.iloc[-1]["user_reason"],
+                    "",
+                )
+
+            labels = [
+                "Not labeled",
+                "Relevant",
+                "Maybe",
+                "Not Relevant",
+            ]
+
+            try:
+                default_index = labels.index(current_label)
+            except ValueError:
+                default_index = 0
+
+            selected_label = st.radio(
+                "Your assessment",
+                labels,
+                index=default_index,
+                horizontal=True,
+                key=f"label_{pmid}",
+            )
+
+            reason = st.text_area(
+                "Optional reason",
+                value=current_reason if current_reason else "",
+                key=f"reason_{pmid}",
+                height=80,
+            )
+
+            if st.button(
+                "💾 Save Assessment",
+                key=f"save_{pmid}",
+            ):
+
+                saved_label = (
+                    ""
+                    if selected_label == "Not labeled"
+                    else selected_label
+                )
+
+                save_live_feedback(
+                    pmid,
+                    saved_label,
+                    reason,
+                )
+
+                st.success(
+                    "Assessment saved separately from the calibration dataset."
+                )
+
+                st.rerun()
