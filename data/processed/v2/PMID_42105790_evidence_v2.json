@@ -1,0 +1,304 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42105790",
+    "title": "FMO1 disrupts mitochondrial functional homeostasis through ROS-mediated mechanisms to drive chondrocyte senescence and hypertrophy.",
+    "authors": [
+      "Ruohui Tang",
+      "Debin Guo",
+      "Shidan Li",
+      "Shaochuan Wang",
+      "Jin Yin",
+      "Jing Yang",
+      "Jingze Yang",
+      "Jun Fei",
+      "Zhaowen Zhou"
+    ],
+    "journal": "Free radical biology & medicine",
+    "publication_date": "2026-05-07",
+    "doi": "10.1016/j.freeradbiomed.2026.04.158",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42105790/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "human",
+    "species": "Homo sapiens",
+    "cell_type": "chondrocyte",
+    "tissue": "cartilage",
+    "organ": "unclear",
+    "disease": "unclear",
+    "primary_model": "in vivo and in vitro models",
+    "senescence_model": "T3-induced chondrocyte hypertrophy",
+    "senescence_trigger": "triiodothyronine (T3)"
+  },
+  "senescence": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "trigger": "triiodothyronine (T3)",
+    "markers": [
+      "p16/p21"
+    ],
+    "phenotype": "abnormal matrix mineralization, increased expression of catabolic markers (COL10A1, MMP13)"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "fission",
+      "fusion",
+      "mitophagy",
+      "ROS",
+      "metabolism",
+      "bioenergetics",
+      "morphology"
+    ],
+    "mitochondrial_dynamics": [
+      "fission (Drp1 upregulation, Mfn1/2 downregulation)"
+    ],
+    "mitophagy": "unclear",
+    "ros": "elevated (intracellular and mitochondrial)",
+    "metabolism": "altered (via FMO1-mediated ROS)",
+    "bioenergetics": "unclear",
+    "morphology": "fragmented (due to increased fission)"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "FMO1",
+        "aliases": [],
+        "role": "upregulated in chondrocyte hypertrophy",
+        "direction": "upregulated in senescent cells"
+      },
+      {
+        "symbol": "Drp1",
+        "aliases": [],
+        "role": "fission regulator",
+        "direction": "upregulated in senescent cells"
+      },
+      {
+        "symbol": "Mfn1",
+        "aliases": [],
+        "role": "fusion regulator",
+        "direction": "downregulated in senescent cells"
+      },
+      {
+        "symbol": "Mfn2",
+        "aliases": [],
+        "role": "fusion regulator",
+        "direction": "downregulated in senescent cells"
+      }
+    ],
+    "proteins": [
+      "p16",
+      "p21",
+      "COL10A1",
+      "MMP13"
+    ],
+    "pathways": [
+      "ROS-mediated mitochondrial dysfunction"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "methimazole (pharmacological inhibition of FMO1)",
+      "ABT-263 (senolytic clearance)"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "scRNA-seq"
+    ],
+    "integration_level": "single_modality",
+    "methods": [
+      "scRNA-seq"
+    ],
+    "targets": [
+      "mitochondrial functional homeostasis"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "in vivo and in vitro",
+    "groups": [
+      "T3-stimulated chondrocytes",
+      "FMO1 knockdown cells",
+      "FMO1 overexpression cells",
+      "FMO1 inhibition (methimazole) cells"
+    ],
+    "controls": [
+      "wild-type chondrocytes",
+      "ABT-263 treatment (senolytic clearance)"
+    ],
+    "interventions": [
+      "T3 stimulation",
+      "FMO1 knockdown",
+      "FMO1 overexpression",
+      "methimazole",
+      "ABT-263"
+    ],
+    "assays": [
+      "scRNA-seq",
+      "reactive oxygen species (ROS) assays",
+      "mitochondrial morphology assays"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "FMO1 upregulation",
+      "intermediate": [
+        "elevated ROS",
+        "mitochondrial fission (Drp1 upregulation, Mfn1/2 downregulation)"
+      ],
+      "effect": "cellular senescence (p16/p21 axis)",
+      "relationship": "causal",
+      "support_type": "experimentally_supported",
+      "evidence": "FMO1 upregulation increased intracellular and mitochondrial ROS, which altered mitochondrial dynamics and induced senescence"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "FMO1 is upregulated during chondrocyte hypertrophy",
+      "finding_type": "descriptive",
+      "entities": [
+        "FMO1"
+      ],
+      "evidence": "upregulated in T3-induced chondrocyte hypertrophy",
+      "direction": "upregulated in senescent cells"
+    },
+    {
+      "finding": "T3 stimulation and FMO1 overexpression increase intracellular and mitochondrial ROS",
+      "finding_type": "descriptive",
+      "entities": [
+        "ROS"
+      ],
+      "evidence": "elevated ROS levels",
+      "direction": "elevated in senescent cells"
+    },
+    {
+      "finding": "ROS-mediated shift in mitochondrial dynamics toward fission",
+      "finding_type": "descriptive",
+      "entities": [
+        "mitochondrial fission"
+      ],
+      "evidence": "Drp1 upregulation and Mfn1/2 downregulation",
+      "direction": "increased fission"
+    },
+    {
+      "finding": "ROS-induced cellular senescence via p16/p21 axis",
+      "finding_type": "causal",
+      "entities": [
+        "p16/p21"
+      ],
+      "evidence": "senescence markers",
+      "direction": "upregulated in senescent cells"
+    },
+    {
+      "finding": "FMO1 inhibition reduces hypertrophic and senescent phenotypes",
+      "finding_type": "causal",
+      "entities": [
+        "FMO1",
+        "hypertrophy"
+      ],
+      "evidence": "genetic knockdown and pharmacological inhibition of FMO1",
+      "direction": "reduced in senescent cells"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "moderate",
+    "direct_experimental": true,
+    "mechanistic_perturbation": true,
+    "orthogonal_validation": false,
+    "omics_support": true,
+    "functional_validation": true,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 1,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 1,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 1,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 1,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 1,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "unclear",
+    "reason": "unclear",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Moderate",
+    "components": {
+      "unclear": 1
+    },
+    "reason": "unclear"
+  },
+  "why_this_paper_matters": "unclear",
+  "confidence": {
+    "overall": "medium",
+    "scientific_extraction": "medium",
+    "mechanism": "high",
+    "relevance": "medium"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "unclear"
+  }
+}

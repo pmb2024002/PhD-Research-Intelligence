@@ -1,0 +1,278 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42617903",
+    "title": "Mitochondrial dysfunction in ifosfamide-induced nephrotoxicity: Mechanisms and possible interventions.",
+    "authors": [
+      "Kate Liang",
+      "Jolita Ciapaite",
+      "Rosalinde Masereeuw",
+      "Marianne C Verhaar",
+      "Marry M van den Heuvel-Eibrink",
+      "Gisela G Slaats",
+      "Gerrit van den Berg"
+    ],
+    "journal": "European journal of pharmacology",
+    "publication_date": "2026-08-19",
+    "doi": "10.1016/j.ejphar.2026.179269",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42617903/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "unclear",
+    "tissue": "unclear",
+    "organ": "unclear",
+    "disease": "unclear",
+    "primary_model": "unclear",
+    "senescence_model": "unclear",
+    "senescence_trigger": "unclear"
+  },
+  "senescence": {
+    "investigated": false,
+    "evidence_type": "background",
+    "trigger": "unclear",
+    "markers": [
+      "unclear"
+    ],
+    "phenotype": "unclear"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "mitochondrial dysfunction",
+      "mitochondrial dynamics",
+      "mitophagy",
+      "ROS",
+      "bioenergetics",
+      "metabolism"
+    ],
+    "mitochondrial_dynamics": [
+      "fragmentation"
+    ],
+    "mitophagy": "unclear",
+    "ros": "elevated",
+    "metabolism": "impairment",
+    "bioenergetics": "ATP depletion",
+    "morphology": "fragmentation"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "unclear",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "unclear",
+        "direction": "unclear"
+      }
+    ],
+    "proteins": [
+      "unclear"
+    ],
+    "pathways": [
+      "unclear"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "antioxidants",
+      "glutathione precursors",
+      "mitochondrial transplantation",
+      "stimulators of mitochondrial biogenesis"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "unclear"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "unclear"
+    ],
+    "targets": [
+      "unclear"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "review",
+    "groups": [
+      "unclear"
+    ],
+    "controls": [
+      "unclear"
+    ],
+    "interventions": [
+      "unclear"
+    ],
+    "assays": [
+      "unclear"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "chloroacetaldehyde (CAA)",
+      "intermediate": [
+        "ATP depletion",
+        "reactive oxygen species formation"
+      ],
+      "effect": "mitochondrial dysfunction",
+      "relationship": "experimentally_supported",
+      "support_type": "experimentally_supported",
+      "evidence": "CAA disrupts oxidative phosphorylation, leading to ATP depletion and increased ROS"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "CAA disrupts oxidative phosphorylation, leading to ATP depletion and increased ROS",
+      "finding_type": "descriptive",
+      "entities": [
+        "chloroacetaldehyde (CAA)",
+        "ATP depletion",
+        "reactive oxygen species formation"
+      ],
+      "evidence": "CAA disrupts oxidative phosphorylation, leading to ATP depletion and increased ROS",
+      "direction": "unclear"
+    },
+    {
+      "finding": "CAA interacts with essential thiols such as glutathione and coenzyme A",
+      "finding_type": "descriptive",
+      "entities": [
+        "chloroacetaldehyde (CAA)",
+        "glutathione",
+        "coenzyme A"
+      ],
+      "evidence": "CAA interacts with essential thiols such as glutathione and coenzyme A",
+      "direction": "unclear"
+    },
+    {
+      "finding": "CAA impairs lipid, protein metabolism and glucose synthesis",
+      "finding_type": "descriptive",
+      "entities": [
+        "chloroacetaldehyde (CAA)",
+        "lipid metabolism",
+        "protein metabolism",
+        "glucose synthesis"
+      ],
+      "evidence": "CAA impairs lipid, protein metabolism and glucose synthesis",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Preclinical interventions to prevent nephrotoxicity include antioxidants and glutathione precursors",
+      "finding_type": "descriptive",
+      "entities": [
+        "antioxidants",
+        "glutathione precursors"
+      ],
+      "evidence": "Antioxidants and glutathione precursors may reduce toxicity markers and preserve kidney histological structure",
+      "direction": "unclear"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "unclear",
+    "direct_experimental": false,
+    "mechanistic_perturbation": false,
+    "orthogonal_validation": false,
+    "omics_support": false,
+    "functional_validation": false,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 0,
+      "reason": "No conserved mitochondrial dysfunction signatures across datasets",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 0,
+      "reason": "No integration of multiple omics layers",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 0,
+      "reason": "No characterization of important mitochondrial dynamics and dysfunction-related genes/proteins",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 0,
+      "reason": "No characterization of mitochondrial processes associated with cellular senescence",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 0,
+      "reason": "No mechanistic relationships connecting mitochondrial dysfunction to cellular senescence",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "peripheral",
+    "reason": "Paper discusses mitochondrial dysfunction in ifosfamide-induced nephrotoxicity but does not directly investigate cellular senescence",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Peripheral",
+    "components": {
+      "biological_relevance": 0,
+      "mechanistic_evidence": 0,
+      "mitochondrial_relevance": 1,
+      "senescence_relevance": 0,
+      "phd_objective_coverage": 0,
+      "methodological_utility": 0,
+      "evidence_strength": 0
+    },
+    "reason": "Paper focuses on mitochondrial dysfunction in nephrotoxicity but does not directly address cellular senescence"
+  },
+  "why_this_paper_matters": "unclear",
+  "confidence": {
+    "overall": "low",
+    "scientific_extraction": "low",
+    "mechanism": "low",
+    "relevance": "low"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "peripheral"
+  }
+}

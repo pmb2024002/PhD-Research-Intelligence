@@ -84,51 +84,199 @@ st.markdown(
 # NEW PAPERS CHECKER (TOP PRIORITY SECTION)
 # ============================================================
 
-st.markdown("### 🆕 Check for New Aging & Senescence Research")
+with st.expander("🆕 Check for New Aging & Senescence Research", expanded=False):
 
-st.caption(
-    "Searches PubMed live for the latest cellular senescence / "
-    "mitochondrial dysfunction literature not yet in the database."
-)
+    st.caption(
+        "Searches PubMed live for the latest cellular senescence / "
+        "mitochondrial dysfunction literature not yet in the database."
+    )
 
-if st.button("🔍 Check PubMed now", type="primary"):
+    if st.button("🔍 Check PubMed now", type="primary"):
 
-    with st.spinner("Searching PubMed..."):
+        with st.spinner("Searching PubMed..."):
 
-        import sys as _sys
-        _sys.path.insert(0, str(BASE_DIR / "pipeline"))
+            import sys as _sys
+            _sys.path.insert(0, str(BASE_DIR / "pipeline"))
 
-        from check_new_papers import check_for_new_papers
+            from check_new_papers import check_for_new_papers
 
-        new_df = check_for_new_papers()
+            new_df = check_for_new_papers()
 
-    if len(new_df) == 0:
-        st.info("No new papers found since the canonical dataset was built.")
-    else:
-        st.success(f"Found {len(new_df)} new paper(s)!")
+        st.session_state["new_papers_df"] = new_df
 
-        for _, nrow in new_df.iterrows():
+    new_df = st.session_state.get("new_papers_df")
 
-            with st.container(border=True):
+    if new_df is not None:
 
-                st.markdown(f"**{nrow.get('title', 'Untitled')}**")
+        if len(new_df) == 0:
+            st.info("No new papers found since the canonical dataset was built.")
+        else:
+            st.success(f"Found {len(new_df)} new paper(s)!")
 
-                st.caption(
-                    f"{nrow.get('journal', '')} • "
-                    f"{nrow.get('publication_date', '')} • "
-                    f"PMID {nrow.get('pmid', '')}"
-                )
+            for _, nrow in new_df.iterrows():
 
-                abstract = nrow.get("abstract", "")
-                if abstract:
-                    st.write(
-                        abstract[:400]
-                        + ("..." if len(abstract) > 400 else "")
+                pmid = nrow.get("pmid", "")
+
+                with st.container(border=True):
+
+                    st.markdown(f"**{nrow.get('title', 'Untitled')}**")
+
+                    st.caption(
+                        f"{nrow.get('journal', '')} • "
+                        f"{nrow.get('publication_date', '')} • "
+                        f"PMID {pmid}"
                     )
 
-                url = nrow.get("pubmed_url", "")
-                if url:
-                    st.link_button("🔗 Open in PubMed", url)
+                    abstract = nrow.get("abstract", "")
+                    if abstract:
+                        st.write(
+                            abstract[:400]
+                            + ("..." if len(abstract) > 400 else "")
+                        )
+
+                    url = nrow.get("pubmed_url", "")
+                    if url:
+                        st.link_button("🔗 Open in PubMed", url)
+
+                    quick_key = f"quick_analysis_{pmid}"
+
+                    if st.button("🔬 Quick Analyze", key=f"analyze_btn_{pmid}"):
+
+                        with st.spinner("Analyzing abstract..."):
+
+                            import sys as _sys
+                            _sys.path.insert(0, str(BASE_DIR / "pipeline"))
+
+                            from quick_analyze import quick_analyze_paper
+
+                            try:
+                                result = quick_analyze_paper(
+                                    title=nrow.get("title", ""),
+                                    abstract=abstract,
+                                )
+                                st.session_state[quick_key] = result
+                            except Exception as exc:
+                                st.error(f"Analysis failed: {exc}")
+
+                    if quick_key in st.session_state:
+
+                        result = st.session_state[quick_key]
+
+                        st.markdown("**🔑 Key Findings:**")
+                        st.write(result.get("key_findings", ""))
+
+                        st.markdown("**🎯 Relevance:**")
+                        st.write(result.get("relevance", ""))
+
+                        st.markdown("**📝 Conclusion:**")
+                        st.write(result.get("conclusion", ""))
+
+st.divider()
+
+
+# ============================================================
+# ABOUT THE RESEARCHER (merged with PhD research overview)
+# ============================================================
+
+with st.container(border=True):
+
+    about_col1, about_col2 = st.columns([1, 3])
+
+    with about_col1:
+
+        PROFILE_PHOTO = BASE_DIR / "assets" / "profile_photo.jpg"
+
+        if PROFILE_PHOTO.exists():
+            import base64
+
+            photo_bytes = PROFILE_PHOTO.read_bytes()
+            photo_b64 = base64.b64encode(photo_bytes).decode()
+
+            st.markdown(
+                f"""
+                <img src="data:image/jpeg;base64,{photo_b64}" style="
+                    width: 90px;
+                    height: 90px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    border: 2px solid #3b82f6;
+                " />
+                """,
+                unsafe_allow_html=True,
+            )
+        else:
+            st.markdown(
+                """
+                <div style="
+                    width: 90px;
+                    height: 90px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #3b82f6, #a855f7);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 2.2rem;
+                    font-weight: 700;
+                    color: white;
+                ">
+                    AK
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    with about_col2:
+        st.markdown("### About the Researcher")
+        st.markdown(
+            """
+**Ankit Kumar Kushwaha**
+Dual-degree (M.Tech + PhD) Scholar, Bioinformatics
+**Indian Institute of Information Technology, Allahabad (IIIT-A)**
+
+Supervised by **Prof. Pritish K. Varadwaj**.
+            """
+        )
+
+    st.markdown(
+        """
+#### 🔬 PhD Research: *Multi-Omics Analysis of Mitochondrial Dysfunction in Cellular Senescence*
+
+Doctoral research focused on understanding the molecular relationship
+between **mitochondrial dysfunction and cellular senescence**, using
+computational and multi-omics approaches to investigate conserved
+molecular signatures associated with cellular aging.
+
+This platform is a working research tool built from that program --
+combining rule-based literature ranking with schema-validated,
+locally-run AI evidence extraction -- to systematically track and
+understand the mitochondrial dysfunction / cellular senescence
+literature.
+        """
+    )
+
+    about_r1, about_r2 = st.columns(2)
+
+    with about_r1:
+        st.markdown(
+            """
+**Research Areas**
+- Mitochondrial Biology
+- Cellular Senescence
+- Aging Biology
+- Bioinformatics & Multi-Omics
+            """
+        )
+
+    with about_r2:
+        st.markdown(
+            """
+**Research Focus**
+
+Understanding how mitochondrial alterations are associated with the
+molecular programs underlying cellular senescence and age-related
+cellular dysfunction.
+            """
+        )
 
 st.divider()
 
@@ -175,54 +323,6 @@ with image_col:
 
 st.divider()
 
-
-# ============================================================
-# MY PhD RESEARCH — BRIEF PUBLIC OVERVIEW
-# ============================================================
-
-st.markdown("## 🔬 My PhD Research")
-
-st.markdown(
-    """
-### Multi-Omics Analysis of Mitochondrial Dysfunction in Cellular Senescence
-
-My doctoral research focuses on understanding the molecular relationship
-between **mitochondrial dysfunction and cellular senescence**, using
-computational and multi-omics approaches to investigate conserved
-molecular signatures associated with cellular aging.
-"""
-)
-
-research_col1, research_col2 = st.columns(2)
-
-with research_col1:
-    st.markdown(
-        """
-#### 🧬 Research Area
-
-- **Mitochondrial Biology**
-- **Cellular Senescence**
-- **Aging Biology**
-- **Bioinformatics & Multi-Omics**
-"""
-    )
-
-with research_col2:
-    st.markdown(
-        """
-#### 🔎 Research Focus
-
-Understanding how mitochondrial alterations are associated with
-the molecular programs underlying **cellular senescence** and
-age-related cellular dysfunction.
-"""
-    )
-
-st.caption(
-    "A brief overview of the research theme and scientific focus."
-)
-
-st.divider()
 
 # ============================================================
 # LEARN — MITOCHONDRIA & AGING (EDUCATIONAL SECTION)
@@ -692,3 +792,31 @@ spanning nearly every organ system.
         "dysfunction as a driver of cellular senescence across these "
         "disease contexts."
     )
+
+
+# ============================================================
+# FOOTER
+# ============================================================
+
+st.divider()
+
+st.markdown(
+    """
+    <div style="text-align: center; padding: 20px 0; color: #94a3b8;">
+        <div style="font-weight: 600; font-size: 1.05rem; margin-bottom: 10px; color: #e2e8f0;">
+            Ankit Kumar Kushwaha
+        </div>
+        <div style="margin-bottom: 14px;">
+            📧 <a href="mailto:ankitkushwaha172000@gmail.com" style="color: #3b82f6; text-decoration: none;">ankitkushwaha172000@gmail.com</a>
+            &nbsp;&nbsp;•&nbsp;&nbsp;
+            💼 <a href="https://www.linkedin.com/in/ankit-k-kushwaha/" target="_blank" style="color: #3b82f6; text-decoration: none;">LinkedIn</a>
+            &nbsp;&nbsp;•&nbsp;&nbsp;
+            💻 <a href="https://github.com/pmb2024002" target="_blank" style="color: #3b82f6; text-decoration: none;">GitHub</a>
+        </div>
+        <div style="font-size: 0.85rem;">
+            🧬 Mitochondrial Research Intelligence — IIIT Allahabad
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)

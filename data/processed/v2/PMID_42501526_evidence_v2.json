@@ -1,0 +1,293 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42501526",
+    "title": "Low-frequency pulsed electromagnetic fields inhibit the NETs/PADI4/MFN2 axis to ameliorate BMSC senescence in the treatment of rheumatoid arthritis.",
+    "authors": [
+      "Qinfeng Lyu",
+      "Gang Chen",
+      "Longfei Chen",
+      "Yun Fan"
+    ],
+    "journal": "Pathology, research and practice",
+    "publication_date": "2026-07-13",
+    "doi": "10.1016/j.prp.2026.156620",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42501526/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "bone marrow mesenchymal stem cells (BMSCs)",
+    "tissue": "unclear",
+    "organ": "unclear",
+    "disease": "rheumatoid arthritis (RA)",
+    "primary_model": "adjuvant-induced arthritis (AIA) mouse model",
+    "senescence_model": "unclear",
+    "senescence_trigger": "neutrophil extracellular traps (NETs) from RA-derived neutrophils"
+  },
+  "senescence": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "trigger": "neutrophil extracellular traps (NETs) from RA-derived neutrophils",
+    "markers": [
+      "typical senescent phenotype"
+    ],
+    "phenotype": "cellular senescence"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "mitochondrial dysfunction",
+      "mitophagy (autophagy-lysosome pathway)"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "present",
+    "ros": "unclear",
+    "metabolism": "unclear",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "unclear",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "unclear",
+        "direction": "unclear"
+      }
+    ],
+    "proteins": [
+      "PADI4",
+      "MFN2",
+      "net"
+    ],
+    "pathways": [
+      "autophagy-lysosome pathway"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "low-frequency pulsed electromagnetic fields (PEMFs)"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "unclear"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "neutrophil-BMSC co-culture system"
+    ],
+    "targets": [
+      "unclear"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "in vivo mouse model",
+    "groups": [
+      "untreated RA mice",
+      "PEMFs-treated RA mice"
+    ],
+    "controls": [
+      "DNase I treatment for NETs"
+    ],
+    "interventions": [
+      "low-frequency PEMFs"
+    ],
+    "assays": [
+      "NET formation",
+      "BMSC senescence"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "neutrophil extracellular traps (NETs)",
+      "intermediate": [
+        "PADI4"
+      ],
+      "effect": "MFN2 citrullination",
+      "relationship": "interaction",
+      "support_type": "author_proposed",
+      "evidence": "PADI4 derived from NETs interacted with and citrullinated MFN2"
+    },
+    {
+      "cause": "MFN2 citrullination",
+      "intermediate": [
+        "reduced protein stability"
+      ],
+      "effect": "mitochondrial dysfunction",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "reduced MFN2 protein stability via the autophagy-lysosome pathway"
+    },
+    {
+      "cause": "mitochondrial dysfunction",
+      "intermediate": [
+        "cellular senescence"
+      ],
+      "effect": "BMSC senescence",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "subsequently leading to mitochondrial dysfunction and cellular senescence in BMSCs"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "NETs from RA-derived neutrophils induce BMSC senescence",
+      "finding_type": "positive",
+      "entities": [
+        "neutrophil extracellular traps (NETs)",
+        "bone marrow mesenchymal stem cells (BMSCs)"
+      ],
+      "evidence": "RA-derived neutrophils induced BMSC senescence through NETs",
+      "direction": "unclear"
+    },
+    {
+      "finding": "PADI4 citrullinates MFN2",
+      "finding_type": "positive",
+      "entities": [
+        "PADI4",
+        "MFN2"
+      ],
+      "evidence": "PADI4 derived from NETs interacted with and citrullinated MFN2",
+      "direction": "unclear"
+    },
+    {
+      "finding": "PADI4 citrullination reduces MFN2 protein stability",
+      "finding_type": "positive",
+      "entities": [
+        "MFN2"
+      ],
+      "evidence": "reduced MFN2 protein stability via the autophagy-lysosome pathway",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Mitochondrial dysfunction and cellular senescence occur in BMSCs",
+      "finding_type": "positive",
+      "entities": [
+        "mitochondrial dysfunction",
+        "cellular senescence"
+      ],
+      "evidence": "subsequently leading to mitochondrial dysfunction and cellular senescence in BMSCs",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Low-frequency PEMFs inhibit NET formation and BMSC senescence",
+      "finding_type": "positive",
+      "entities": [
+        "low-frequency pulsed electromagnetic fields (PEMFs)",
+        "NET formation",
+        "BMSC senescence"
+      ],
+      "evidence": "treatment with low-frequency PEMFs markedly inhibited NET formation, effectively delayed BMSC senescence",
+      "direction": "unclear"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "unclear",
+    "direct_experimental": true,
+    "mechanistic_perturbation": true,
+    "orthogonal_validation": false,
+    "omics_support": false,
+    "functional_validation": true,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "unclear",
+    "reason": "unclear",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Moderate",
+    "components": {
+      "unclear": 0
+    },
+    "reason": "unclear"
+  },
+  "why_this_paper_matters": "unclear",
+  "confidence": {
+    "overall": "low",
+    "scientific_extraction": "low",
+    "mechanism": "low",
+    "relevance": "low"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": true,
+    "matched_keywords": [
+      "treatment with"
+    ],
+    "reason": "Abstract contains intervention/treatment language; gene 'direction' fields should be manually verified against the abstract before trusting them as baseline disease-state findings.",
+    "category_normalized_from": "unclear"
+  }
+}

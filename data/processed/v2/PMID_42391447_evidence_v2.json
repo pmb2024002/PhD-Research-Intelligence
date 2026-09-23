@@ -1,0 +1,292 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42391447",
+    "title": "Acylglycerol Kinase Sensitizes Glioblastoma to Temozolomide via Limiting Mitochondrial Damage Related Cellular Senescence.",
+    "authors": [
+      "Na Ning",
+      "Changtu Wang",
+      "Tingyu Gao",
+      "Jiao Ma",
+      "Min Ding",
+      "Fuqin Zhang",
+      "Qiao Liu",
+      "Wei Zhang",
+      "Li Gong"
+    ],
+    "journal": "Molecular carcinogenesis",
+    "publication_date": "2026-07-02",
+    "doi": "10.1002/mc.70134",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42391447/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "human",
+    "species": "human",
+    "cell_type": "glioblastoma (GBM) cells",
+    "tissue": "brain tumor",
+    "organ": "brain",
+    "disease": "glioblastoma",
+    "primary_model": "cell lines",
+    "senescence_model": "cellular senescence (CSEN)",
+    "senescence_trigger": "temozolomide (TMZ) treatment"
+  },
+  "senescence": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "trigger": "temozolomide (TMZ) treatment",
+    "markers": [
+      "mitochondrial ROS (mtROS)",
+      "decreased membrane potential"
+    ],
+    "phenotype": "senescence-associated senolytic response"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "mitochondrial ROS (mtROS)",
+      "membrane potential",
+      "mitophagy"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "unclear",
+    "ros": "elevated",
+    "metabolism": "unclear",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "AGK",
+        "aliases": [
+          "Acylglycerol kinase"
+        ],
+        "role": "regulator",
+        "direction": "upregulated in GBM patients with poor prognosis"
+      }
+    ],
+    "proteins": [
+      "Mito-TEMPO",
+      "FOXO4-DRI"
+    ],
+    "pathways": [
+      "reactive oxygen species (ROS) production"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "AGK knockdown",
+      "AGK overexpression",
+      "Mito-TEMPO",
+      "FOXO4-DRI"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "transcriptomics (TCGA data)"
+    ],
+    "integration_level": "single_modality",
+    "methods": [
+      "cell experiments"
+    ],
+    "targets": [
+      "mitochondrial dysfunction"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "in vitro and clinical analysis",
+    "groups": [
+      "AGK-knockdown cells",
+      "AGK-overexpression cells",
+      "TMZ-treated cells",
+      "control cells"
+    ],
+    "controls": [
+      "vehicle control"
+    ],
+    "interventions": [
+      "AGK knockdown",
+      "AGK overexpression",
+      "Mito-TEMPO",
+      "FOXO4-DRI"
+    ],
+    "assays": [
+      "cell proliferation",
+      "senescence markers",
+      "ROS levels",
+      "membrane potential"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "AGK suppression",
+      "intermediate": [
+        "elevated mitochondrial ROS (mtROS)",
+        "decreased mitochondrial membrane potential"
+      ],
+      "effect": "cellular senescence (CSEN)",
+      "relationship": "amplifies TMZ-induced CSEN",
+      "support_type": "experimentally_supported",
+      "evidence": "AGK knockdown increased mtROS and decreased membrane potential, leading to CSEN"
+    },
+    {
+      "cause": "mitochondrial ROS (mtROS)",
+      "intermediate": [
+        "senescent cells"
+      ],
+      "effect": "TMZ resistance",
+      "relationship": "mediates TMZ resistance",
+      "support_type": "author_proposed",
+      "evidence": "Mito-TEMPO, a mtROS scavenger, enhanced TMZ efficacy by eliminating senescent cells"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "AGK upregulation correlates with poor prognosis in GBM patients",
+      "finding_type": "association",
+      "entities": [
+        "AGK"
+      ],
+      "evidence": "TCGA data analysis",
+      "direction": "upregulated in GBM patients with poor prognosis"
+    },
+    {
+      "finding": "AGK suppression inhibits tumor cell proliferation but promotes TMZ resistance",
+      "finding_type": "descriptive",
+      "entities": [
+        "AGK"
+      ],
+      "evidence": "cell experiments",
+      "direction": "inhibits proliferation, promotes TMZ resistance"
+    },
+    {
+      "finding": "AGK suppression increases mitochondrial ROS and decreases membrane potential",
+      "finding_type": "descriptive",
+      "entities": [
+        "mitochondrial ROS (mtROS)",
+        "mitochondrial membrane potential"
+      ],
+      "evidence": "cell experiments",
+      "direction": "elevated mtROS, decreased membrane potential"
+    },
+    {
+      "finding": "Mito-TEMPO and FOXO4-DRI enhance TMZ efficacy by eliminating senescent cells",
+      "finding_type": "descriptive",
+      "entities": [
+        "Mito-TEMPO",
+        "FOXO4-DRI"
+      ],
+      "evidence": "cell experiments",
+      "direction": "enhance TMZ efficacy"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "moderate",
+    "direct_experimental": true,
+    "mechanistic_perturbation": true,
+    "orthogonal_validation": true,
+    "omics_support": true,
+    "functional_validation": true,
+    "uncertainties": [
+      "unclear time points",
+      "unclear mitophagy"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 1,
+      "reason": "AGK upregulation correlates with poor prognosis in GBM patients",
+      "evidence": [
+        "TCGA data analysis shows AGK upregulation correlates with poor prognosis"
+      ],
+      "confidence": "medium"
+    },
+    "O2": {
+      "level": 1,
+      "reason": "Integration of mitochondrial ROS and senescence markers",
+      "evidence": [
+        "AGK suppression increases mtROS and decreases membrane potential, leading to CSEN"
+      ],
+      "confidence": "medium"
+    },
+    "O3": {
+      "level": 1,
+      "reason": "AGK is a regulator of mitochondrial ROS and membrane potential",
+      "evidence": [
+        "AGK knockdown increases mtROS and decreases membrane potential"
+      ],
+      "confidence": "medium"
+    },
+    "O4": {
+      "level": 2,
+      "reason": "Mitochondrial dysfunction (elevated ROS, decreased membrane potential) is directly linked to CSEN",
+      "evidence": [
+        "AGK suppression amplifies TMZ-induced CSEN through increased mtROS and decreased membrane potential"
+      ],
+      "confidence": "high"
+    },
+    "O5": {
+      "level": 2,
+      "reason": "CSEN mediates TMZ resistance via mitochondrial dysfunction",
+      "evidence": [
+        "Mito-TEMPO (mtROS scavenger) and FOXO4-DRI (senolytic) enhance TMZ efficacy by eliminating senescent cells"
+      ],
+      "confidence": "high"
+    }
+  },
+  "phd_relevance": {
+    "classification": "direct",
+    "reason": "AGK-mediated mitochondrial dysfunction directly impacts TMZ resistance through CSEN",
+    "supporting_evidence": [
+      "AGK knockdown increases mtROS and decreases membrane potential",
+      "Mito-TEMPO and FOXO4-DRI enhance TMZ efficacy by eliminating senescent cells"
+    ]
+  },
+  "research_priority": {
+    "category": "High",
+    "components": {
+      "mitochondrial_dysfunction": 1,
+      "senescence": 1,
+      "TMZ_resistance": 1
+    },
+    "reason": "AGK-mediated mitochondrial dysfunction is a key mechanism in TMZ resistance"
+  },
+  "why_this_paper_matters": "This paper identifies AGK as a regulator of mitochondrial ROS and membrane potential in GBM cells, linking its upregulation to poor prognosis. The study demonstrates that AGK suppression induces cellular senescence via mitochondrial dysfunction, which paradoxically enhances TMZ resistance. Targeting AGK and senescence represents a promising strategy to improve TMZ therapy for GBM patients with poor prognosis.",
+  "confidence": {
+    "overall": "high",
+    "scientific_extraction": "high",
+    "mechanism": "high",
+    "relevance": "high"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": true,
+    "matched_keywords": [
+      "drug"
+    ],
+    "reason": "Abstract contains intervention/treatment language; gene 'direction' fields should be manually verified against the abstract before trusting them as baseline disease-state findings.",
+    "category_normalized_from": "high"
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42543123",
+    "title": "Brain aging clocks: From methodological advances to cellular mechanisms.",
+    "authors": [
+      "Kyoungho Suk"
+    ],
+    "journal": "Experimental gerontology",
+    "publication_date": "2026-08-02",
+    "doi": "10.1016/j.exger.2026.113260",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42543123/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "unclear",
+    "tissue": "unclear",
+    "organ": "unclear",
+    "disease": "neurodegenerative diseases",
+    "primary_model": "unclear",
+    "senescence_model": "unclear",
+    "senescence_trigger": "unclear"
+  },
+  "senescence": {
+    "investigated": false,
+    "evidence_type": "indirect",
+    "trigger": "unclear",
+    "markers": [
+      "senescent cells"
+    ],
+    "phenotype": "accelerated brain aging"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "indirect",
+    "dysfunction": "mitochondrial decline",
+    "processes": [
+      "mitochondrial decline"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "unclear",
+    "ros": "unclear",
+    "metabolism": "unclear",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "unclear",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "unclear",
+        "direction": "unclear"
+      }
+    ],
+    "proteins": [
+      "neurofilament light",
+      "GFAP",
+      "phosphorylated tau"
+    ],
+    "pathways": [
+      "unclear"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "lifestyle changes",
+      "emerging drugs"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "epigenetic clocks",
+      "neuroimaging markers"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "unclear"
+    ],
+    "targets": [
+      "unclear"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "review",
+    "groups": [
+      "unclear"
+    ],
+    "controls": [
+      "unclear"
+    ],
+    "interventions": [
+      "lifestyle changes",
+      "emerging drugs"
+    ],
+    "assays": [
+      "unclear"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "senescent cells",
+      "intermediate": [
+        "accelerated brain aging"
+      ],
+      "effect": "neurodegenerative diseases",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "unclear"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "Brain aging clocks can measure biological brain age discrepancy from chronological age",
+      "finding_type": "descriptive",
+      "entities": [
+        "brain aging clocks"
+      ],
+      "evidence": "unclear",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Cellular senescence drives accelerated brain aging",
+      "finding_type": "descriptive",
+      "entities": [
+        "cellular senescence"
+      ],
+      "evidence": "unclear",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Mitochondrial decline is a key cellular mechanism in accelerated brain aging",
+      "finding_type": "descriptive",
+      "entities": [
+        "mitochondrial decline"
+      ],
+      "evidence": "unclear",
+      "direction": "unclear"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "unclear",
+    "direct_experimental": false,
+    "mechanistic_perturbation": false,
+    "orthogonal_validation": false,
+    "omics_support": false,
+    "functional_validation": false,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "biomarker standardization",
+      "source": "unclear"
+    },
+    {
+      "limitation": "need for longitudinal validation",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "biomarker standardization",
+      "source": "unclear",
+      "confidence": "low"
+    },
+    {
+      "gap": "longitudinal validation",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 0,
+      "reason": "No conserved mitochondrial dysfunction signatures across datasets",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 0,
+      "reason": "No integration of multiple omics layers",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 0,
+      "reason": "No characterization of mitochondrial dynamics and hub molecules",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 0,
+      "reason": "No detailed characterization of mitochondrial processes",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 0,
+      "reason": "No mechanistic relationships connecting mitochondrial dysfunction to senescence",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "peripheral",
+    "reason": "The paper discusses mitochondrial decline in the context of accelerated brain aging but does not directly investigate mitochondrial dysfunction in cellular senescence",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Peripheral",
+    "components": {
+      "biological_relevance": 0,
+      "mechanistic_evidence": 0,
+      "mitochondrial_relevance": 1,
+      "senescence_relevance": 1,
+      "phd_objective_coverage": 0,
+      "methodological_usefulness": 1,
+      "evidence_strength": 0,
+      "model_compatibility": 0
+    },
+    "reason": "The paper mentions mitochondrial decline in the context of accelerated brain aging but does not provide experimental evidence on mitochondrial dysfunction in cellular senescence"
+  },
+  "why_this_paper_matters": "The paper discusses mitochondrial decline as part of accelerated brain aging but does not provide direct experimental evidence on mitochondrial dysfunction in cellular senescence, making it peripheral to the PhD research focus on multi-omics analysis of mitochondrial dysfunction in cellular senescence.",
+  "confidence": {
+    "overall": "low",
+    "scientific_extraction": "low",
+    "mechanism": "low",
+    "relevance": "low"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": true,
+    "matched_keywords": [
+      "drug"
+    ],
+    "reason": "Abstract contains intervention/treatment language; gene 'direction' fields should be manually verified against the abstract before trusting them as baseline disease-state findings.",
+    "category_normalized_from": "peripheral"
+  }
+}

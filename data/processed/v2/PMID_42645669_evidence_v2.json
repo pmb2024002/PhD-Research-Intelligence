@@ -1,0 +1,267 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42645669",
+    "title": "The Reductive Stress Nexus: Integrated Pathways of Metabolic Dysregulation, Senescence and Blood-Brain Barrier Failure in Neurodegenerative Disease and Brain Aging.",
+    "authors": [
+      "Nataliya Kolotyeva",
+      "Svetlana Novikova",
+      "Eugenia Namiot",
+      "Georgij Zembatov",
+      "Pavel Tregub",
+      "Natalia Rozanova",
+      "Vladimir Makarov",
+      "Yulia Komleva",
+      "Alla Salmina"
+    ],
+    "journal": "Cell biochemistry and biophysics",
+    "publication_date": "2026-08-26",
+    "doi": "10.1007/s12013-026-02132-x",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42645669/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "unclear",
+    "tissue": "unclear",
+    "organ": "unclear",
+    "disease": "neurodegenerative disease",
+    "primary_model": "unclear",
+    "senescence_model": "unclear",
+    "senescence_trigger": "unclear"
+  },
+  "senescence": {
+    "investigated": false,
+    "evidence_type": "background",
+    "trigger": "unclear",
+    "markers": [
+      "unclear"
+    ],
+    "phenotype": "unclear"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "mitochondrial dysfunction",
+      "mitochondrial fission",
+      "mitochondrial fusion",
+      "mitochondrial dynamics",
+      "mitophagy",
+      "ROS",
+      "metabolism",
+      "bioenergetics",
+      "mitochondrial morphology"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "unclear",
+    "ros": "unclear",
+    "metabolism": "unclear",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "unclear",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "unclear",
+        "direction": "unclear"
+      }
+    ],
+    "proteins": [
+      "unclear"
+    ],
+    "pathways": [
+      "unclear"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "unclear"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "unclear"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "unclear"
+    ],
+    "targets": [
+      "unclear"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "unclear",
+    "groups": [
+      "unclear"
+    ],
+    "controls": [
+      "unclear"
+    ],
+    "interventions": [
+      "unclear"
+    ],
+    "assays": [
+      "unclear"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "reductive stress",
+      "intermediate": [
+        "mitochondrial dysfunction",
+        "cellular senescence"
+      ],
+      "effect": "blood-brain barrier failure",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "unclear"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "reductive stress disrupts physiological redox signaling",
+      "finding_type": "descriptive",
+      "entities": [
+        "reductive stress",
+        "redox signaling"
+      ],
+      "evidence": "unclear",
+      "direction": "unclear"
+    },
+    {
+      "finding": "reductive stress impairs mitochondrial function",
+      "finding_type": "descriptive",
+      "entities": [
+        "reductive stress",
+        "mitochondrial function"
+      ],
+      "evidence": "unclear",
+      "direction": "unclear"
+    },
+    {
+      "finding": "reductive stress induces cellular senescence programs",
+      "finding_type": "descriptive",
+      "entities": [
+        "reductive stress",
+        "cellular senescence"
+      ],
+      "evidence": "unclear",
+      "direction": "unclear"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "unclear",
+    "direct_experimental": false,
+    "mechanistic_perturbation": false,
+    "orthogonal_validation": false,
+    "omics_support": false,
+    "functional_validation": false,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "peripheral",
+    "reason": "unclear",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Peripheral",
+    "components": {
+      "biological_relevance": 0,
+      "mechanistic_evidence": 0,
+      "mitochondrial_relevance": 0,
+      "senescence_relevance": 0,
+      "phd_objective_coverage": 0,
+      "methodological_utility": 0,
+      "evidence_strength": 0,
+      "model_compatibility": 0
+    },
+    "reason": "unclear"
+  },
+  "why_this_paper_matters": "unclear",
+  "confidence": {
+    "overall": "low",
+    "scientific_extraction": "low",
+    "mechanism": "low",
+    "relevance": "low"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "peripheral"
+  }
+}

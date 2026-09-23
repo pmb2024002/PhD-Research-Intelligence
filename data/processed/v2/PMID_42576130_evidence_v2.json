@@ -1,0 +1,227 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42576130",
+    "title": "Preserving joint healthspan in knee osteoarthritis: a geroscience-guided review of non-surgical therapies and genicular artery embolization.",
+    "authors": [
+      "Ákos Bérczi",
+      "Fanni É Szablics",
+      "Dóra Hámori",
+      "Edit Dósa",
+      "Gergő Merkely",
+      "Mark Little",
+      "Zoltán Ungvári",
+      "György Nagy"
+    ],
+    "journal": "GeroScience",
+    "publication_date": "2026-08-10",
+    "doi": "10.1007/s11357-026-02467-6",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42576130/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "unclear",
+    "tissue": "unclear",
+    "organ": "unclear",
+    "disease": "knee osteoarthritis (KOA)",
+    "primary_model": "unclear",
+    "senescence_model": "unclear",
+    "senescence_trigger": "unclear"
+  },
+  "senescence": {
+    "investigated": false,
+    "evidence_type": "background",
+    "trigger": "unclear",
+    "markers": [
+      "cellular senescence"
+    ],
+    "phenotype": "unclear"
+  },
+  "mitochondrial": {
+    "investigated": false,
+    "evidence_type": "background",
+    "dysfunction": "unclear",
+    "processes": [
+      "mitochondrial fission",
+      "mitochondrial fusion",
+      "mitochondrial dynamics",
+      "mitophagy",
+      "ROS",
+      "metabolism",
+      "bioenergetics",
+      "mitochondrial morphology"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "unclear",
+    "ros": "unclear",
+    "metabolism": "unclear",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [],
+    "proteins": [],
+    "pathways": [],
+    "metabolites": [],
+    "interventions": []
+  },
+  "omics": {
+    "modalities": [],
+    "integration_level": "unclear",
+    "methods": [],
+    "targets": []
+  },
+  "experimental_design": {
+    "study_type": "unclear",
+    "groups": [],
+    "controls": [],
+    "interventions": [],
+    "assays": [],
+    "time_points": []
+  },
+  "mechanism": [
+    {
+      "cause": "unclear",
+      "intermediate": [],
+      "effect": "unclear",
+      "relationship": "unclear",
+      "support_type": "unclear",
+      "evidence": "unclear"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "Knee osteoarthritis (KOA) is a phenotype-dependent manifestation of joint aging rather than a purely mechanical disorder",
+      "finding_type": "descriptive",
+      "entities": [],
+      "evidence": "unclear",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Weight reduction, exercise, and education remain core joint healthspan interventions",
+      "finding_type": "descriptive",
+      "entities": [],
+      "evidence": "unclear",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Pharmacologic analgesia, intra-articular corticosteroids, and hyaluronic acid are best interpreted as symptom modulators",
+      "finding_type": "descriptive",
+      "entities": [],
+      "evidence": "unclear",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Platelet-rich plasma, autologous conditioned serum, and mesenchymal stromal/stem cell-based approaches remain limited by heterogeneity and insufficient long-term structural data",
+      "finding_type": "descriptive",
+      "entities": [],
+      "evidence": "unclear",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Genicular nerve ablation may support functional longevity through pain control without structural modification",
+      "finding_type": "descriptive",
+      "entities": [],
+      "evidence": "unclear",
+      "direction": "unclear"
+    },
+    {
+      "finding": "GAE is biologically plausible for synovitis/hypervascularity-dominant KOA, but sham-controlled evidence remains inconsistent",
+      "finding_type": "descriptive",
+      "entities": [],
+      "evidence": "unclear",
+      "direction": "unclear"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "unclear",
+    "direct_experimental": false,
+    "mechanistic_perturbation": false,
+    "orthogonal_validation": false,
+    "omics_support": false,
+    "functional_validation": false,
+    "uncertainties": []
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 0,
+      "reason": "No conserved mitochondrial dysfunction signatures across datasets",
+      "evidence": [],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 0,
+      "reason": "No integration of multiple omics layers",
+      "evidence": [],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 0,
+      "reason": "No characterization of mitochondrial dynamics and dysfunction-related genes/proteins",
+      "evidence": [],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 0,
+      "reason": "No characterization of mitochondrial processes associated with cellular senescence",
+      "evidence": [],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 0,
+      "reason": "No mechanistic relationships connecting mitochondrial dysfunction to cellular senescence",
+      "evidence": [],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "peripheral",
+    "reason": "The paper is a narrative review that discusses cellular senescence and mitochondrial dysfunction in the context of knee osteoarthritis but does not provide experimental data on mitochondrial dysfunction in cellular senescence",
+    "supporting_evidence": []
+  },
+  "research_priority": {
+    "category": "Peripheral",
+    "components": {
+      "biological_relevance": 0,
+      "mechanistic_evidence": 0,
+      "mitochondrial_relevance": 0,
+      "senescence_relevance": 0,
+      "phd_objective_coverage": 0,
+      "methodological_utility": 0,
+      "evidence_strength": 0,
+      "model_compatibility": 0
+    },
+    "reason": "The paper discusses cellular senescence and mitochondrial dysfunction in the context of knee osteoarthritis but does not provide experimental data on mitochondrial dysfunction in cellular senescence"
+  },
+  "why_this_paper_matters": "This paper provides a narrative review that discusses cellular senescence and mitochondrial dysfunction as part of the broader context of knee osteoarthritis, but it does not provide experimental data on mitochondrial dysfunction in cellular senescence. Therefore, it is peripheral to the PhD research focus on multi-omics analysis of mitochondrial dysfunction in cellular senescence.",
+  "confidence": {
+    "overall": "low",
+    "scientific_extraction": "low",
+    "mechanism": "low",
+    "relevance": "low"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "peripheral"
+  }
+}

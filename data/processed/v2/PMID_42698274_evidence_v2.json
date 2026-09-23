@@ -1,0 +1,277 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42698274",
+    "title": "Secreted Frizzled-Related Protein 2 (SFRP2) Induces Follistatin-Like 1 (FSTL1) to Regulate Dihydrotestosterone (DHT)-Induced Dermal Papilla Cell Mitochondrial Dysfunction and Senescence.",
+    "authors": [
+      "Youming Huang",
+      "Qiong Bian",
+      "Yeyu Shen",
+      "Xiaoxia Ding",
+      "Yan Teng",
+      "Danfeng Xu",
+      "Xianhong Yang",
+      "Yibin Fan"
+    ],
+    "journal": "Aging cell",
+    "publication_date": "",
+    "doi": "10.1111/acel.70666",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42698274/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "dermal papilla cells (DPCs)",
+    "tissue": "unclear",
+    "organ": "unclear",
+    "disease": "androgenetic alopecia (AGA)",
+    "primary_model": "AGA model mice",
+    "senescence_model": "DHT-induced senescence in DPCs",
+    "senescence_trigger": "Dihydrotestosterone (DHT)"
+  },
+  "senescence": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "trigger": "Dihydrotestosterone (DHT)",
+    "markers": [
+      "mitochondrial dysfunction",
+      "oxidative stress"
+    ],
+    "phenotype": "shortened hair growth phase, miniaturization of dermal papilla cells"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "mitochondrial dysfunction",
+      "oxidative stress"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "unclear",
+    "ros": "elevated",
+    "metabolism": "unclear",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "SFRP2",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "regulator",
+        "direction": "upregulated in AGA patient DPCs"
+      },
+      {
+        "symbol": "FSTL1",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "protein stability mediator",
+        "direction": "stability increased by SFRP2"
+      }
+    ],
+    "proteins": [
+      "SFRP2",
+      "FSTL1"
+    ],
+    "pathways": [
+      "unclear"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "SFRP2 knockdown",
+      "FSTL1 knockdown"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "unclear"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "unclear"
+    ],
+    "targets": [
+      "unclear"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "in vivo and in vitro",
+    "groups": [
+      "AGA model mice",
+      "DPCs in vitro"
+    ],
+    "controls": [
+      "SFRP2 knockdown",
+      "FSTL1 knockdown"
+    ],
+    "interventions": [
+      "SFRP2 knockdown",
+      "FSTL1 knockdown"
+    ],
+    "assays": [
+      "cell proliferation",
+      "migration",
+      "invasion",
+      "inflammation assessment",
+      "senescence markers",
+      "mitochondrial dysfunction assessment"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "SFRP2 overexpression",
+      "intermediate": [
+        "FSTL1 protein stability"
+      ],
+      "effect": "DHT-induced mitochondrial dysfunction and senescence in DPCs",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "SFRP2 was found to bind to FSTL1, thereby promoting FSTL1 protein stability. Knocking down FSTL1 counteracted the negative effects of SFRP2 overexpression"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "SFRP2 is highly expressed in DPCs of AGA patients",
+      "finding_type": "positive",
+      "entities": [
+        "SFRP2"
+      ],
+      "evidence": "SFRP2 was highly expressed in the DPCs of AGA patients",
+      "direction": "upregulated in AGA patient DPCs"
+    },
+    {
+      "finding": "Knocking down SFRP2 improves hair regeneration and follicle morphology in AGA model mice",
+      "finding_type": "positive",
+      "entities": [
+        "SFRP2 knockdown"
+      ],
+      "evidence": "Knocking down SFRP2 improved hair regeneration and follicle morphology within AGA model mice",
+      "direction": "improves hair regeneration"
+    },
+    {
+      "finding": "SFRP2 promotes FSTL1 protein stability",
+      "finding_type": "positive",
+      "entities": [
+        "SFRP2",
+        "FSTL1"
+      ],
+      "evidence": "SFRP2 was found to bind to FSTL1, thereby promoting FSTL1 protein stability",
+      "direction": "increases FSTL1 stability"
+    },
+    {
+      "finding": "SFRP2 knockdown alleviates inflammation, senescence, mitochondrial dysfunction, and oxidative stress",
+      "finding_type": "positive",
+      "entities": [
+        "SFRP2 knockdown"
+      ],
+      "evidence": "SFRP2 knockdown also alleviated inflammation, senescence, mitochondrial dysfunction, and oxidative stress",
+      "direction": "alleviates senescence and mitochondrial dysfunction"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "unclear",
+    "direct_experimental": true,
+    "mechanistic_perturbation": true,
+    "orthogonal_validation": false,
+    "omics_support": false,
+    "functional_validation": true,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 0,
+      "reason": "No conserved mitochondrial dysfunction signatures across datasets and senescence triggers identified",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 0,
+      "reason": "No integration of multiple omics layers described",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 0,
+      "reason": "No characterization of mitochondrial dynamics and dysfunction-related hub molecules",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 0,
+      "reason": "No specific details on mitochondrial dynamics, mitophagy, ROS, metabolism, or bioenergetics",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 0,
+      "reason": "No detailed exploration of therapeutic targets beyond SFRP2 and FSTL1",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "unclear",
+    "reason": "unclear",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Moderate",
+    "components": {
+      "unclear": 0
+    },
+    "reason": "unclear"
+  },
+  "why_this_paper_matters": "This paper identifies SFRP2 and FSTL1 as key mediators in androgen-induced cellular dysfunction, suggesting that disrupting the SFRP2-FSTL1 axis could offer a promising therapeutic strategy for androgenetic alopecia (AGA).",
+  "confidence": {
+    "overall": "low",
+    "scientific_extraction": "low",
+    "mechanism": "low",
+    "relevance": "low"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "unclear"
+  }
+}

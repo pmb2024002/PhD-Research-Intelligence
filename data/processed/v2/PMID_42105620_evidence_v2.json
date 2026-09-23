@@ -1,0 +1,373 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42105620",
+    "title": "Transcriptome and metabolome analysis reveals that cuproptosis in bovine cumulus cells triggers the intercellular transmission of senescence and mitochondrial dysfunction to impair oocyte quality.",
+    "authors": [
+      "Hong Xu",
+      "Tian Tian",
+      "Dan Xu",
+      "Xiaoxue Du",
+      "Rui Su",
+      "Jinghong Liang",
+      "Ying Liu",
+      "Yuqing Zhang",
+      "Chang Liu",
+      "Shuang Liang",
+      "Qingying Li",
+      "Deli Ding",
+      "Yongsheng Han",
+      "Bo Zhai",
+      "Jidong Li",
+      "Chengzhen Chen",
+      "Jiabao Zhang",
+      "Hao Jiang",
+      "Bao Yuan"
+    ],
+    "journal": "Theriogenology",
+    "publication_date": "2026-05-05",
+    "doi": "10.1016/j.theriogenology.2026.117974",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42105620/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "bovine",
+    "species": "bovine",
+    "cell_type": "cumulus cells",
+    "tissue": "ovarian tissue",
+    "organ": "unclear",
+    "disease": "unclear",
+    "primary_model": "bovine cumulus cells",
+    "senescence_model": "unclear",
+    "senescence_trigger": "cuproptosis (induced by elesclomol and CuSO4 treatment)"
+  },
+  "senescence": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "trigger": "cuproptosis (induced by elesclomol and CuSO4 treatment)",
+    "markers": [
+      "AKT3",
+      "MORC3",
+      "RBL1",
+      "TGFB2",
+      "SIRT1",
+      "CHEK2"
+    ],
+    "phenotype": "oocyte maturation disruption"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "unclear",
+    "processes": [
+      "mitochondrial dysfunction",
+      "mitochondrial dynamics",
+      "mitophagy",
+      "ROS",
+      "metabolism",
+      "bioenergetics",
+      "morphology"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "unclear",
+    "ros": "unclear",
+    "metabolism": "unclear",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "AKT3",
+        "aliases": [],
+        "role": "senescence marker",
+        "direction": "upregulated in senescent cells"
+      },
+      {
+        "symbol": "MORC3",
+        "aliases": [],
+        "role": "senescence marker",
+        "direction": "upregulated in senescent cells"
+      },
+      {
+        "symbol": "RBL1",
+        "aliases": [],
+        "role": "senescence marker",
+        "direction": "upregulated in senescent cells"
+      },
+      {
+        "symbol": "TGFB2",
+        "aliases": [],
+        "role": "senescence marker",
+        "direction": "upregulated in senescent cells"
+      },
+      {
+        "symbol": "SIRT1",
+        "aliases": [],
+        "role": "senescence marker",
+        "direction": "upregulated in senescent cells"
+      },
+      {
+        "symbol": "CHEK2",
+        "aliases": [],
+        "role": "senescence marker",
+        "direction": "upregulated in senescent cells"
+      },
+      {
+        "symbol": "FBXO5",
+        "aliases": [],
+        "role": "oocyte meiosis marker",
+        "direction": "downregulated in oocyte maturation disruption"
+      },
+      {
+        "symbol": "CCNB3",
+        "aliases": [],
+        "role": "oocyte meiosis marker",
+        "direction": "downregulated in oocyte maturation disruption"
+      },
+      {
+        "symbol": "PLK1",
+        "aliases": [],
+        "role": "oocyte meiosis marker",
+        "direction": "downregulated in oocyte maturation disruption"
+      },
+      {
+        "symbol": "PPM1D",
+        "aliases": [],
+        "role": "DNA methylation marker",
+        "direction": "downregulated in oocyte maturation disruption"
+      },
+      {
+        "symbol": "DNMT3B",
+        "aliases": [],
+        "role": "DNA methylation marker",
+        "direction": "downregulated in oocyte maturation disruption"
+      },
+      {
+        "symbol": "KMT2A",
+        "aliases": [],
+        "role": "DNA methylation marker",
+        "direction": "downregulated in oocyte maturation disruption"
+      }
+    ],
+    "proteins": [],
+    "pathways": [
+      "cellular senescence",
+      "gap junctions",
+      "steroid biosynthesis",
+      "cell cycle regulation",
+      "oocyte meiosis",
+      "DNA methylation"
+    ],
+    "metabolites": [
+      "malic acid",
+      "PS (18:3(10,12,15)-OH(9)/14:0)",
+      "PA (21:0/LTE4)"
+    ],
+    "interventions": [
+      "elesclomol",
+      "CuSO4"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "transcriptomics",
+      "metabolomics"
+    ],
+    "integration_level": "multiple_separate",
+    "methods": [
+      "transcriptome sequencing",
+      "metabolome analysis"
+    ],
+    "targets": [
+      "cuproptosis",
+      "oocyte maturation"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "unclear",
+    "groups": [
+      "control",
+      "cuproptosis-induced"
+    ],
+    "controls": [
+      "unclear"
+    ],
+    "interventions": [
+      "elesclomol",
+      "CuSO4"
+    ],
+    "assays": [
+      "transcriptome sequencing",
+      "metabolome analysis",
+      "Smart-seq analysis"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "cuproptosis",
+      "intermediate": [
+        "senescence transmission"
+      ],
+      "effect": "oocyte maturation disruption",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "transcriptome and metabolome analysis revealed differential expression of genes involved in cellular senescence"
+    },
+    {
+      "cause": "cuproptosis",
+      "intermediate": [
+        "mitochondrial dysfunction"
+      ],
+      "effect": "oocyte quality impairment",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "the intercellular transmission of senescence and mitochondrial dysfunction to impair oocyte quality"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "Cuproptosis in bovine cumulus cells triggers intercellular transmission of senescence",
+      "finding_type": "positive",
+      "entities": [
+        "cuproptosis",
+        "senescence transmission"
+      ],
+      "evidence": "transcriptome analysis revealed differential expression of senescence markers (AKT3, MORC3, RBL1, etc.) in cumulus cells after cuproptosis induction",
+      "direction": "upregulated in senescent cells"
+    },
+    {
+      "finding": "Cuproptosis in bovine cumulus cells impairs oocyte maturation",
+      "finding_type": "positive",
+      "entities": [
+        "oocyte maturation"
+      ],
+      "evidence": "Smart-seq analysis revealed downregulation of oocyte meiosis markers (FBXO5, CCNB3, PLK1) and DNA methylation markers (PPM1D, DNMT3B, KMT2A)",
+      "direction": "downregulated in oocyte maturation disruption"
+    },
+    {
+      "finding": "Metabolomic changes associated with cuproptosis",
+      "finding_type": "positive",
+      "entities": [
+        "malic acid",
+        "PS (18:3(10,12,15)-OH(9)/14:0)",
+        "PA (21:0/LTE4)"
+      ],
+      "evidence": "metabolomic analysis revealed significant changes in levels of these compounds",
+      "direction": "unclear"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "moderate",
+    "direct_experimental": true,
+    "mechanistic_perturbation": false,
+    "orthogonal_validation": false,
+    "omics_support": true,
+    "functional_validation": false,
+    "uncertainties": [
+      "mitochondrial dysfunction not explicitly stated",
+      "exact role of mitochondrial dysfunction in senescence transmission unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "mitochondrial dysfunction not explicitly mentioned in the abstract",
+      "source": "unclear"
+    },
+    {
+      "limitation": "no explicit mention of ROS, bioenergetics, or mitochondrial dynamics",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "Mechanistic link between cuproptosis and mitochondrial dysfunction",
+      "source": "unclear",
+      "confidence": "high"
+    },
+    {
+      "gap": "Role of specific mitochondrial pathways in senescence transmission",
+      "source": "unclear",
+      "confidence": "medium"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 1,
+      "reason": "mitochondrial dysfunction is a key feature of senescence but not explicitly stated in the abstract",
+      "evidence": [
+        "the abstract mentions 'mitochondrial dysfunction' in the context of senescence transmission but does not specify the molecular mechanisms"
+      ],
+      "confidence": "high"
+    },
+    "O2": {
+      "level": 2,
+      "reason": "the abstract describes cuproptosis as the trigger but does not detail the molecular pathways",
+      "evidence": [
+        "the abstract mentions cuproptosis induced by elesclomol and CuSO4, but does not provide the exact molecular pathways"
+      ],
+      "confidence": "medium"
+    },
+    "O3": {
+      "level": 3,
+      "reason": "the abstract does not provide detailed mitochondrial dynamics or ROS analysis",
+      "evidence": [
+        "the abstract states 'mitochondrial dysfunction' but does not specify the mechanisms of ROS production or mitochondrial dynamics"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 1,
+      "reason": "the abstract does not explicitly link mitochondrial dysfunction to senescence markers",
+      "evidence": [
+        "the abstract mentions senescence markers (AKT3, MORC3, etc.) but does not specify how mitochondrial dysfunction affects these markers"
+      ],
+      "confidence": "high"
+    },
+    "O5": {
+      "level": 2,
+      "reason": "the abstract does not provide information on mitochondrial biogenesis or mitophagy",
+      "evidence": [
+        "the abstract mentions 'mitochondrial dysfunction' but does not discuss mitophagy or mitochondrial biogenesis"
+      ],
+      "confidence": "medium"
+    }
+  },
+  "phd_relevance": {
+    "classification": "unclear",
+    "reason": "unclear",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Moderate",
+    "components": {
+      "mitochondrial": 2,
+      "senescence": 3,
+      "oocyte_maturation": 2
+    },
+    "reason": "unclear"
+  },
+  "why_this_paper_matters": "This paper provides key insights into how cuproptosis in bovine cumulus cells can trigger senescence and mitochondrial dysfunction, leading to impaired oocyte maturation. The findings have implications for understanding reproductive health and potential interventions for female infertility.",
+  "confidence": {
+    "overall": "high",
+    "scientific_extraction": "high",
+    "mechanism": "medium",
+    "relevance": "high"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": true,
+    "matched_keywords": [
+      "compound"
+    ],
+    "reason": "Abstract contains intervention/treatment language; gene 'direction' fields should be manually verified against the abstract before trusting them as baseline disease-state findings.",
+    "category_normalized_from": "unclear"
+  }
+}

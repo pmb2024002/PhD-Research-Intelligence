@@ -1,0 +1,281 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42663794",
+    "title": "The organellar biology of aging: A mitochondrial vantage.",
+    "authors": [
+      "Madhusmita Pala",
+      "Abinash Nayak",
+      "Bandita Rath"
+    ],
+    "journal": "Molecular biology reports",
+    "publication_date": "2026-08-28",
+    "doi": "10.1007/s11033-026-12674-1",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42663794/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "unclear",
+    "tissue": "unclear",
+    "organ": "unclear",
+    "disease": "unclear",
+    "primary_model": "unclear",
+    "senescence_model": "unclear",
+    "senescence_trigger": "unclear"
+  },
+  "senescence": {
+    "investigated": false,
+    "evidence_type": "background",
+    "trigger": "unclear",
+    "markers": [
+      "unclear"
+    ],
+    "phenotype": "unclear"
+  },
+  "mitochondrial": {
+    "investigated": false,
+    "evidence_type": "background",
+    "dysfunction": "unclear",
+    "processes": [
+      "mitochondrial fission: unclear",
+      "mitochondrial fusion: unclear",
+      "mitochondrial dynamics: unclear",
+      "mitophagy: unclear",
+      "ROS: unclear",
+      "metabolism: unclear",
+      "bioenergetics: unclear",
+      "morphology: unclear"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "unclear",
+    "ros": "unclear",
+    "metabolism": "unclear",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "PARP1",
+        "aliases": [],
+        "role": "unclear",
+        "direction": "unclear"
+      },
+      {
+        "symbol": "SIRT1",
+        "aliases": [],
+        "role": "unclear",
+        "direction": "unclear"
+      },
+      {
+        "symbol": "PGC-1α",
+        "aliases": [],
+        "role": "unclear",
+        "direction": "unclear"
+      }
+    ],
+    "proteins": [
+      "PARP1",
+      "SIRT1",
+      "PGC-1α"
+    ],
+    "pathways": [
+      "unclear"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "unclear"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "unclear"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "unclear"
+    ],
+    "targets": [
+      "unclear"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "unclear",
+    "groups": [
+      "unclear"
+    ],
+    "controls": [
+      "unclear"
+    ],
+    "interventions": [
+      "unclear"
+    ],
+    "assays": [
+      "unclear"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "Oxidative damage to organellar genome",
+      "intermediate": [
+        "Impaired mitochondrial function",
+        "Redox imbalance",
+        "Energy depletion"
+      ],
+      "effect": "Aging",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "This axis does not operate in isolation but instead communicates with other organelles such as the endoplasmic reticulum, lysosome, and peroxisome to facilitate age-related changes."
+    },
+    {
+      "cause": "Defective PARP1 signaling",
+      "intermediate": [
+        "Reduced NAD+ levels",
+        "Impaired SIRT1 activity",
+        "Altered PGC-1α function"
+      ],
+      "effect": "Mitochondrial dysfunction",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "Concurrently, defective poly (ADP-ribose) polymerase 1 (PARP1) signaling and reduced cellular NAD+ levels affect molecular regulators such as SIRT1 (sirtuin 1) and peroxisome proliferator-activated receptor gamma coactivator 1-alpha, which are central to mitochondrial dynamics and function."
+    }
+  ],
+  "findings": [
+    {
+      "finding": "Mitochondrial dysfunction is a hallmark of aging",
+      "finding_type": "descriptive",
+      "entities": [
+        "mitochondrial dysfunction"
+      ],
+      "evidence": "Mitochondrial dysfunction has emerged as an established hallmark of aging owing to its critical involvement in bringing about aging-associated changes.",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Oxidative damage to the organellar genome impairs mitochondrial function",
+      "finding_type": "descriptive",
+      "entities": [
+        "oxidative damage"
+      ],
+      "evidence": "Oxidative damage to the organellar genome impairs its function, causing redox imbalance and energy depletion.",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Defective PARP1 signaling and reduced NAD+ levels affect SIRT1 and PGC-1α",
+      "finding_type": "descriptive",
+      "entities": [
+        "PARP1 signaling",
+        "NAD+ levels",
+        "SIRT1",
+        "PGC-1α"
+      ],
+      "evidence": "Concurrently, defective poly (ADP-ribose) polymerase 1 (PARP1) signaling and reduced cellular NAD+ levels affect molecular regulators such as SIRT1 (sirtuin 1) and peroxisome proliferator-activated receptor gamma coactivator 1-alpha, which are central to mitochondrial dynamics and function.",
+      "direction": "unclear"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "unclear",
+    "direct_experimental": false,
+    "mechanistic_perturbation": false,
+    "orthogonal_validation": false,
+    "omics_support": false,
+    "functional_validation": false,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 0,
+      "reason": "No evidence of conserved mitochondrial dysfunction signatures across datasets",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 0,
+      "reason": "No integration of multiple omics layers",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 0,
+      "reason": "No characterization of mitochondrial dynamics and dysfunction-related hub molecules",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 0,
+      "reason": "No characterization of mitochondrial processes associated with senescence",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 0,
+      "reason": "No mechanistic relationships connecting mitochondrial dysfunction to senescence",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "peripheral",
+    "reason": "The paper discusses mitochondrial dysfunction in aging but does not directly investigate cellular senescence or provide experimental evidence for mitochondrial dysfunction in senescence models",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Peripheral",
+    "components": {
+      "mechanistic_detail": 0,
+      "senescence_link": 0,
+      "mitochondrial_dysfunction": 0,
+      "organellar_crosstalk": 0
+    },
+    "reason": "The paper provides a general overview of mitochondrial dysfunction in aging but lacks specific focus on cellular senescence and experimental validation of mitochondrial processes in senescence models"
+  },
+  "why_this_paper_matters": "This paper highlights the role of mitochondrial dysfunction in aging and its connections to other organelles, but it does not provide experimental evidence for mitochondrial dysfunction in cellular senescence models. The paper is therefore peripheral to the specific focus on cellular senescence and mitochondrial processes in the context of the phd objectives.",
+  "confidence": {
+    "overall": "low",
+    "scientific_extraction": "low",
+    "mechanism": "low",
+    "relevance": "low"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "peripheral"
+  }
+}

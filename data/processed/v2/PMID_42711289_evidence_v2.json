@@ -1,0 +1,269 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42711289",
+    "title": "CAFs-mediated histone lactylation reprograms cholesterol metabolism in colorectal cancer to drive CD8+ T cell immunosuppression.",
+    "authors": [
+      "Huachi Li",
+      "Jun Hu",
+      "Lei Huang",
+      "Zihao Wang",
+      "Haoran Tao",
+      "Feng Cao",
+      "Min Xie"
+    ],
+    "journal": "The Journal of pathology",
+    "publication_date": "2026-09-08",
+    "doi": "10.1002/path.70119",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42711289/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "unclear",
+    "tissue": "unclear",
+    "organ": "unclear",
+    "disease": "colorectal cancer (CRC)",
+    "primary_model": "unclear",
+    "senescence_model": "unclear",
+    "senescence_trigger": "unclear"
+  },
+  "senescence": {
+    "investigated": false,
+    "evidence_type": "unclear",
+    "trigger": "unclear",
+    "markers": [
+      "unclear"
+    ],
+    "phenotype": "unclear"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "mitochondrial dysfunction",
+      "mitochondrial dynamics",
+      "mitophagy",
+      "ROS",
+      "bioenergetics",
+      "metabolism"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "unclear",
+    "ros": "unclear",
+    "metabolism": "unclear",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "DHCR7",
+        "aliases": [],
+        "role": "upstream regulator",
+        "direction": "upregulated in senescent CD8+ T cells"
+      },
+      {
+        "symbol": "CYP51A1",
+        "aliases": [],
+        "role": "upstream regulator",
+        "direction": "upregulated in senescent CD8+ T cells"
+      }
+    ],
+    "proteins": [
+      "unclear"
+    ],
+    "pathways": [
+      "unclear"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "unclear"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "unclear"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "unclear"
+    ],
+    "targets": [
+      "unclear"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "unclear",
+    "groups": [
+      "unclear"
+    ],
+    "controls": [
+      "unclear"
+    ],
+    "interventions": [
+      "unclear"
+    ],
+    "assays": [
+      "unclear"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "CAFs-derived lactate",
+      "intermediate": [
+        "histone lactylation (H3K9La, H3K18La)",
+        "elevated cholesterol metabolism"
+      ],
+      "effect": "mitochondrial dysfunction in CD8+ T cells",
+      "relationship": "causal",
+      "support_type": "experimentally_supported",
+      "evidence": "In vivo and in vitro experiments confirm that inhibiting DHCR7 significantly reverses CAF-mediated tumor promotion."
+    },
+    {
+      "cause": "elevated cholesterol metabolism",
+      "intermediate": [
+        "DHCR7 delivery via exosomes"
+      ],
+      "effect": "CD8+ T cell senescence",
+      "relationship": "causal",
+      "support_type": "experimentally_supported",
+      "evidence": "CAFs-induced CRC cells with elevated cholesterol metabolism deliver DHCR7 to CD8+ T cells via exosomes, thereby triggering mitochondrial dysfunction and driving the cellular senescence process."
+    }
+  ],
+  "findings": [
+    {
+      "finding": "CAFs promote CRC malignant progression through lactate-induced histone lactylation",
+      "finding_type": "positive",
+      "entities": [
+        "CAFs",
+        "lactate",
+        "histone lactylation (H3K9La, H3K18La)"
+      ],
+      "evidence": "This study reveals the mechanism by which CAFs promote CRC malignant progression and immune suppression through metabolic reprogramming.",
+      "direction": "upregulated in CRC cells"
+    },
+    {
+      "finding": "Inhibition of DHCR7 reverses CAF-mediated tumor promotion",
+      "finding_type": "positive",
+      "entities": [
+        "DHCR7"
+      ],
+      "evidence": "In vivo and in vitro experiments confirm that inhibiting DHCR7 significantly reverses CAF-mediated tumor promotion.",
+      "direction": "downregulated in tumor promotion"
+    },
+    {
+      "finding": "CD8+ T cell senescence in CRC due to mitochondrial dysfunction",
+      "finding_type": "positive",
+      "entities": [
+        "CD8+ T cells",
+        "mitochondrial dysfunction"
+      ],
+      "evidence": "This study revealed that CAF-induced CRC cells with elevated cholesterol metabolism deliver DHCR7 to CD8+ T cells via exosomes, thereby triggering mitochondrial dysfunction and driving the cellular senescence process.",
+      "direction": "present in CD8+ T cells"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "unclear",
+    "direct_experimental": true,
+    "mechanistic_perturbation": true,
+    "orthogonal_validation": false,
+    "omics_support": false,
+    "functional_validation": true,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 0,
+      "reason": "No conserved mitochondrial dysfunction signatures across datasets",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 0,
+      "reason": "No integration of multiple omics layers",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 0,
+      "reason": "No characterization of important mitochondrial dynamics and dysfunction-related hub molecules",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 0,
+      "reason": "No characterization of mitochondrial processes associated with cellular senescence",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 0,
+      "reason": "No mechanistic relationships connecting mitochondrial dysfunction to cellular senescence",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "peripheral",
+    "reason": "The paper describes a mechanism involving mitochondrial dysfunction in CD8+ T cells but does not directly investigate mitochondrial dysfunction in cellular senescence or provide multi-omics data for this context.",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Moderate",
+    "components": {
+      "unclear": 0
+    },
+    "reason": "unclear"
+  },
+  "why_this_paper_matters": "unclear",
+  "confidence": {
+    "overall": "low",
+    "scientific_extraction": "low",
+    "mechanism": "low",
+    "relevance": "low"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "unclear"
+  }
+}

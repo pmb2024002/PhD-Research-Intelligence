@@ -1,0 +1,27 @@
+[
+  {
+    "pmid": 42526698,
+    "status": "success",
+    "path": "/home/pmb2024002/PhD_Research_Intelligence/data/processed/v2/PMID_42526698_evidence_v2.json"
+  },
+  {
+    "pmid": 42385795,
+    "status": "success",
+    "path": "/home/pmb2024002/PhD_Research_Intelligence/data/processed/v2/PMID_42385795_evidence_v2.json"
+  },
+  {
+    "pmid": 42365779,
+    "status": "success",
+    "path": "/home/pmb2024002/PhD_Research_Intelligence/data/processed/v2/PMID_42365779_evidence_v2.json"
+  },
+  {
+    "pmid": 42624448,
+    "status": "success",
+    "path": "/home/pmb2024002/PhD_Research_Intelligence/data/processed/v2/PMID_42624448_evidence_v2.json"
+  },
+  {
+    "pmid": 42498093,
+    "status": "success",
+    "path": "/home/pmb2024002/PhD_Research_Intelligence/data/processed/v2/PMID_42498093_evidence_v2.json"
+  }
+]

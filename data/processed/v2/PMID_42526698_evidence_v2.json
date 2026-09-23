@@ -1,0 +1,316 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42526698",
+    "title": "Inhibition of ETS1/DRP1 axis attenuates intervertebral disc degeneration by suppressing excessive mitochondrial fission.",
+    "authors": [
+      "Pengfei Li",
+      "Yichen Que",
+      "Shuhao Zhang",
+      "Ganggang Zhang",
+      "Rui Tang",
+      "Han Jia",
+      "Yasong Zhao",
+      "Hongjian Liu",
+      "Yuqiang Wang",
+      "Yilin Liu"
+    ],
+    "journal": "Cellular signalling",
+    "publication_date": "2026-07-29",
+    "doi": "10.1016/j.cellsig.2026.112769",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42526698/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "human",
+    "species": "Homo sapiens",
+    "cell_type": "nucleus pulposus cell (NPC)",
+    "tissue": "intervertebral disc",
+    "organ": "unclear",
+    "disease": "intervertebral disc degeneration (IVDD)",
+    "primary_model": "human NPCs",
+    "senescence_model": "NPC senescence",
+    "senescence_trigger": "inflammatory cytokines"
+  },
+  "senescence": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "trigger": "inflammatory cytokines",
+    "markers": [
+      "cellular senescence"
+    ],
+    "phenotype": "ECM catabolism"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "mitochondrial fission",
+      "mitophagy",
+      "ROS"
+    ],
+    "mitochondrial_dynamics": [
+      "excessive mitochondrial fission"
+    ],
+    "mitophagy": "unclear",
+    "ros": "elevated",
+    "metabolism": "metabolic dysfunction",
+    "bioenergetics": "unclear",
+    "morphology": "fragmented"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "ETS1",
+        "aliases": [
+          "ETS proto-oncogene 1"
+        ],
+        "role": "regulator",
+        "direction": "upregulated in severe human IVDD and NPC senescence"
+      },
+      {
+        "symbol": "DRP1",
+        "aliases": [
+          "dynamin 1-like (DNM1L)"
+        ],
+        "role": "downstream effector",
+        "direction": "upregulated in severe human IVDD"
+      }
+    ],
+    "proteins": [
+      "ETS1",
+      "DRP1"
+    ],
+    "pathways": [
+      "mitochondrial fission pathway"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "AAV5-mediated RNA interference",
+      "CRISPR/dCas9-KRAB system",
+      "Mdivi-1"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "unclear"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "unclear"
+    ],
+    "targets": [
+      "unclear"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "in vitro",
+    "groups": [
+      "severe human IVDD NPCs",
+      "normal NPCs"
+    ],
+    "controls": [
+      "unclear"
+    ],
+    "interventions": [
+      "AAV5-mediated RNA interference",
+      "CRISPR/dCas9-KRAB system",
+      "Mdivi-1"
+    ],
+    "assays": [
+      "mitochondrial fission",
+      "reactive oxygen species accumulation",
+      "NPC senescence"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "inflammatory cytokines",
+      "intermediate": [
+        "ETS1 upregulation"
+      ],
+      "effect": "DRP1 activation",
+      "relationship": "directly induced",
+      "support_type": "experimentally_supported",
+      "evidence": "ETS1 was upregulated in severe human IVDD and correlated with disc degeneration severity and NPC senescence. Mechanistically, inflammatory cytokines induced ETS1 upregulation, which directly bound to the dynamin 1-like (DNM1L, encoding DRP1) promoter and activated its transcription."
+    },
+    {
+      "cause": "DRP1 activation",
+      "intermediate": [
+        "excessive mitochondrial fission"
+      ],
+      "effect": "ROS accumulation",
+      "relationship": "causes",
+      "support_type": "experimentally_supported",
+      "evidence": "Increased DRP1 triggered excessive mitochondrial fission, leading to reactive oxygen species accumulation"
+    },
+    {
+      "cause": "excessive mitochondrial fission",
+      "intermediate": [
+        "ROS accumulation"
+      ],
+      "effect": "NPC senescence",
+      "relationship": "causes",
+      "support_type": "experimentally_supported",
+      "evidence": "excessive mitochondrial fission, leading to reactive oxygen species accumulation, NPC senescence, and ECM catabolism"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "ETS1 was upregulated in severe human IVDD and correlated with disc degeneration severity and NPC senescence",
+      "finding_type": "positive",
+      "entities": [
+        "ETS1"
+      ],
+      "evidence": "ETS1 was upregulated in severe human IVDD and correlated with disc degeneration severity and NPC senescence",
+      "direction": "upregulated in severe human IVDD and NPC senescence"
+    },
+    {
+      "finding": "ETS1 directly binds to the DRP1 promoter and activates its transcription",
+      "finding_type": "positive",
+      "entities": [
+        "ETS1",
+        "DRP1"
+      ],
+      "evidence": "Mechanistically, inflammatory cytokines induced ETS1 upregulation, which directly bound to the dynamin 1-like (DNM1L, encoding DRP1) promoter and activated its transcription",
+      "direction": "upregulated in severe human IVDD"
+    },
+    {
+      "finding": "Increased DRP1 triggers excessive mitochondrial fission",
+      "finding_type": "positive",
+      "entities": [
+        "DRP1"
+      ],
+      "evidence": "Increased DRP1 triggered excessive mitochondrial fission",
+      "direction": "upregulated in severe human IVDD"
+    },
+    {
+      "finding": "Excessive mitochondrial fission leads to ROS accumulation",
+      "finding_type": "positive",
+      "entities": [
+        "ROS"
+      ],
+      "evidence": "Increased DRP1 triggered excessive mitochondrial fission, leading to reactive oxygen species accumulation",
+      "direction": "elevated"
+    },
+    {
+      "finding": "Excessive mitochondrial fission leads to NPC senescence",
+      "finding_type": "positive",
+      "entities": [
+        "NPC senescence"
+      ],
+      "evidence": "excessive mitochondrial fission, leading to reactive oxygen species accumulation, NPC senescence, and ECM catabolism",
+      "direction": "present"
+    },
+    {
+      "finding": "Inhibition of ETS1 or DRP1 alleviates mitochondrial dysfunction, cellular senescence, and ECM degradation",
+      "finding_type": "positive",
+      "entities": [
+        "ETS1",
+        "DRP1"
+      ],
+      "evidence": "Inhibition of ETS1 via AAV5-mediated RNA interference or targeting DRP1 with CRISPR/dCas9-KRAB system or Mdivi-1 alleviated mitochondrial dysfunction, cellular senescence, ECM degradation, and attenuated IVDD progression",
+      "direction": "reduced"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "strong",
+    "direct_experimental": true,
+    "mechanistic_perturbation": true,
+    "orthogonal_validation": true,
+    "omics_support": false,
+    "functional_validation": true,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 1,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 1,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 1,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 1,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 1,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "unclear",
+    "reason": "unclear",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Moderate",
+    "components": {
+      "unclear": 0
+    },
+    "reason": "unclear"
+  },
+  "why_this_paper_matters": "This paper identifies a novel pathogenic mechanism (ETS1/DRP1 axis) in intervertebral disc degeneration, providing potential therapeutic targets for IVDD. The findings demonstrate how inflammatory cytokines drive NPC senescence through ETS1-mediated DRP1 activation, leading to mitochondrial dysfunction and ECM degradation. This mechanism offers a new approach for treating IVDD by targeting the ETS1/DRP1 axis.",
+  "confidence": {
+    "overall": "high",
+    "scientific_extraction": "high",
+    "mechanism": "high",
+    "relevance": "high"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "unclear"
+  }
+}

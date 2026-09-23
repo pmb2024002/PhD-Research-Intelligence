@@ -1,0 +1,287 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42551124",
+    "title": "FABP5 drives silica-induced myofibroblast senescence and pulmonary fibrosis through a FASN/UCP2 metabolic-mitochondrial axis.",
+    "authors": [
+      "Wenqing Sun",
+      "Ting Wang",
+      "Qingyan Yang",
+      "Wenxiu Lian",
+      "Xinying Jia",
+      "Wei Wang",
+      "Yi Liu",
+      "Chunhui Ni"
+    ],
+    "journal": "Redox biology",
+    "publication_date": "2026-07-31",
+    "doi": "10.1016/j.redox.2026.104325",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42551124/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "Mus musculus",
+    "species": "Mouse",
+    "cell_type": "Myofibroblast",
+    "tissue": "Lung",
+    "organ": "Lung",
+    "disease": "Silicosis",
+    "primary_model": "Mouse model of pulmonary fibrosis",
+    "senescence_model": "Silica-induced senescence",
+    "senescence_trigger": "Silica dust"
+  },
+  "senescence": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "trigger": "Silica dust",
+    "markers": [
+      "β-catenin signaling"
+    ],
+    "phenotype": "Senescence-associated secretory phenotype (SASP)"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "mitochondrial dysfunction",
+      "ROS",
+      "bioenergetics"
+    ],
+    "mitochondrial_dynamics": [
+      "UCP2-dependent mitochondrial dysfunction"
+    ],
+    "mitophagy": "unclear",
+    "ros": "elevated",
+    "metabolism": "disrupted",
+    "bioenergetics": "impaired",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "FABP5",
+        "aliases": [],
+        "role": "regulator",
+        "direction": "upregulated in senescent cells"
+      },
+      {
+        "symbol": "FASN",
+        "aliases": [],
+        "role": "upstream regulator",
+        "direction": "sheltered from ubiquitin-proteasomal degradation"
+      },
+      {
+        "symbol": "UCP2",
+        "aliases": [],
+        "role": "downstream effector",
+        "direction": "impaired mitochondrial function"
+      }
+    ],
+    "proteins": [
+      "β-catenin"
+    ],
+    "pathways": [
+      "FASN/UCP2 metabolic-mitochondrial axis"
+    ],
+    "metabolites": [],
+    "interventions": [
+      "siFabp5-LNPs"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "transcriptomics",
+      "proteomics"
+    ],
+    "integration_level": "mechanistically_integrated",
+    "methods": [
+      "Lipid nanoparticle delivery"
+    ],
+    "targets": [
+      "FABP5"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "In vivo mouse model",
+    "groups": [
+      "Control",
+      "Silica-induced pulmonary fibrosis"
+    ],
+    "controls": [
+      "Wild-type mice"
+    ],
+    "interventions": [
+      "siFabp5-LNPs"
+    ],
+    "assays": [
+      "Senescence markers",
+      "Metabolic profiling"
+    ],
+    "time_points": [
+      "Young mouse models",
+      "Aged mouse models"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "Silica dust",
+      "intermediate": [
+        "FABP5",
+        "FASN"
+      ],
+      "effect": "Mitochondrial dysfunction",
+      "relationship": "causal",
+      "support_type": "experimentally_supported",
+      "evidence": "FABP5 shields FASN from ubiquitin-proteasomal degradation"
+    },
+    {
+      "cause": "FABP5",
+      "intermediate": [
+        "UCP2"
+      ],
+      "effect": "Mitochondrial dysfunction",
+      "relationship": "causal",
+      "support_type": "experimentally_supported",
+      "evidence": "UCP2-dependent mitochondrial dysfunction"
+    },
+    {
+      "cause": "FABP5",
+      "intermediate": [
+        "β-catenin"
+      ],
+      "effect": "Fibroblast activation",
+      "relationship": "causal",
+      "support_type": "experimentally_supported",
+      "evidence": "FABP5 activates β-catenin signaling"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "FABP5 drives silica-induced myofibroblast senescence",
+      "finding_type": "positive",
+      "entities": [
+        "FABP5"
+      ],
+      "evidence": "FABP5 is a central metabolic driver of silica-induced myofibroblast senescence",
+      "direction": "upregulated in senescent cells"
+    },
+    {
+      "finding": "FABP5/FASN/UCP2 metabolic-redox axis",
+      "finding_type": "positive",
+      "entities": [
+        "FABP5",
+        "FASN",
+        "UCP2"
+      ],
+      "evidence": "FABP5 interacts with FASN and causes UCP2-dependent mitochondrial dysfunction",
+      "direction": "dysfunction"
+    },
+    {
+      "finding": "siFabp5-LNPs attenuates senescence and fibrosis",
+      "finding_type": "positive",
+      "entities": [
+        "siFabp5-LNPs"
+      ],
+      "evidence": "Systemic silencing of FABP5 using siFabp5-LNPs robustly attenuates cellular senescence, metabolic disruption, and fibrotic remodeling",
+      "direction": "attenuated"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "strong",
+    "direct_experimental": true,
+    "mechanistic_perturbation": true,
+    "orthogonal_validation": true,
+    "omics_support": true,
+    "functional_validation": true,
+    "uncertainties": [
+      "Unclear mitochondrial morphology"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "Unclear role of mitochondrial morphology in senescence",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "Mechanistic role of mitochondrial dynamics in silica-induced senescence",
+      "source": "model_inference",
+      "confidence": "medium"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 2,
+      "reason": "Conserved mitochondrial dysfunction signatures in silica-induced senescence",
+      "evidence": [
+        "UCP2-dependent mitochondrial dysfunction"
+      ],
+      "confidence": "high"
+    },
+    "O2": {
+      "level": 2,
+      "reason": "Silica-induced mitochondrial dysfunction and cellular senescence",
+      "evidence": [
+        "FABP5/FASN/UCP2 metabolic-redox axis"
+      ],
+      "confidence": "high"
+    },
+    "O3": {
+      "level": 2,
+      "reason": "Mechanistic role of mitochondrial dysfunction in senescence",
+      "evidence": [
+        "UCP2-dependent mitochondrial dysfunction"
+      ],
+      "confidence": "high"
+    },
+    "O4": {
+      "level": 2,
+      "reason": "Therapeutic targeting of mitochondrial dysfunction",
+      "evidence": [
+        "siFabp5-LNPs attenuates senescence and fibrosis"
+      ],
+      "confidence": "high"
+    },
+    "O5": {
+      "level": 2,
+      "reason": "Cross-talk between mitochondrial dysfunction and senescence",
+      "evidence": [
+        "FABP5/FASN/UCP2 metabolic-redox axis"
+      ],
+      "confidence": "high"
+    }
+  },
+  "phd_relevance": {
+    "classification": "peripheral",
+    "reason": "Focus on mitochondrial dysfunction in silicosis and pulmonary fibrosis",
+    "supporting_evidence": [
+      "UCP2-dependent mitochondrial dysfunction",
+      "FABP5 as a therapeutic target"
+    ]
+  },
+  "research_priority": {
+    "category": "High",
+    "components": {
+      "mechanistic_understanding": 8,
+      "therapeutic_potential": 9,
+      "translational_impact": 7
+    },
+    "reason": "Strong mechanistic insights and therapeutic potential for silicosis"
+  },
+  "why_this_paper_matters": "This paper identifies a novel FABP5/FASN/UCP2 metabolic-mitochondrial axis that drives silica-induced senescence, with implications for therapeutic targeting of silicosis and other oxidative stress-driven fibrotic diseases.",
+  "confidence": {
+    "overall": "high",
+    "scientific_extraction": "high",
+    "mechanism": "high",
+    "relevance": "high"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "high"
+  }
+}

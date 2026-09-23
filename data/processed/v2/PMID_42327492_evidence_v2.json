@@ -1,0 +1,288 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42327492",
+    "title": "Neonatal muscle-derived extracellular vesicles containing miR-542-3p rejuvenate aged skeletal muscle via a functional microneedle patch.",
+    "authors": [
+      "Feifei Yuan",
+      "Yong Chen",
+      "Wenjie Li",
+      "Lin Zhang",
+      "Ruixue Du",
+      "Sheng Xu",
+      "Zhiyu Hu",
+      "Tao Zhang",
+      "Ling Qin",
+      "Hongbin Lu",
+      "Chengjun Li"
+    ],
+    "journal": "Bioactive materials",
+    "publication_date": "2026-06-13",
+    "doi": "10.1016/j.bioactmat.2026.06.011",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42327492/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "C2C12 cells",
+    "tissue": "skeletal muscle",
+    "organ": "unclear",
+    "disease": "sarcopenia",
+    "primary_model": "in vitro (C2C12 cells)",
+    "senescence_model": "PA-induced senescence in C2C12 cells",
+    "senescence_trigger": "palmitic acid (PA)"
+  },
+  "senescence": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "trigger": "palmitic acid (PA)",
+    "markers": [
+      "unclear"
+    ],
+    "phenotype": "lipid accumulation, mitochondrial dysfunction, senescence"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present (improved mitochondrial function, reduced mitochondrial dysfunction)",
+    "processes": [
+      "bioenergetics",
+      "mitochondrial dysfunction"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "unclear",
+    "ros": "unclear",
+    "metabolism": "lipid accumulation",
+    "bioenergetics": "improved",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "Asxl2",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "downregulated",
+        "direction": "downregulated in senescent cells (via miR-542-3p)"
+      },
+      {
+        "symbol": "PPARγ",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "downregulated",
+        "direction": "downregulated in senescent cells (via miR-542-3p)"
+      },
+      {
+        "symbol": "Eef1a1",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "suppressed",
+        "direction": "suppressed in senescent cells (via miR-542-3p)"
+      },
+      {
+        "symbol": "AMPK",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "activated",
+        "direction": "activated in senescent cells (via miR-542-3p)"
+      }
+    ],
+    "proteins": [
+      "unclear"
+    ],
+    "pathways": [
+      "AMPK pathway"
+    ],
+    "metabolites": [
+      "lipids"
+    ],
+    "interventions": [
+      "NMEVs (neonatal muscle extracellular vesicles)"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "unclear"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "unclear"
+    ],
+    "targets": [
+      "unclear"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "in vitro and in vivo",
+    "groups": [
+      "C2C12 cells with PA treatment",
+      "C2C12 cells with NMEVs",
+      "Aged mice with NMEVs@PLGA@Fucoidan-HA MN"
+    ],
+    "controls": [
+      "C2C12 cells without PA treatment",
+      "Aged mice without MN application"
+    ],
+    "interventions": [
+      "NMEVs",
+      "NMEVs@PLGA@Fucoidan-HA MN"
+    ],
+    "assays": [
+      "Mitochondrial function assays",
+      "Lipid accumulation assays",
+      "Senescence markers"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "miR-542-3p",
+      "intermediate": [
+        "Asxl2-PPARγ",
+        "Eef1a1"
+      ],
+      "effect": "reduced lipid accumulation and improved mitochondrial function",
+      "relationship": "direct targeting",
+      "support_type": "author_proposed",
+      "evidence": "NMEVs contain miR-542-3p that targets Asxl2-PPARγ and Eef1a1"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "NMEVs alleviate PA-induced senescence and mitochondrial dysfunction in C2C12 cells",
+      "finding_type": "positive",
+      "entities": [
+        "senescence",
+        "mitochondrial dysfunction"
+      ],
+      "evidence": "PA-induced senescence and mitochondrial dysfunction were alleviated by NMEVs in vitro",
+      "direction": "improved"
+    },
+    {
+      "finding": "NMEVs reduce lipid accumulation in skeletal muscle",
+      "finding_type": "positive",
+      "entities": [
+        "lipid accumulation"
+      ],
+      "evidence": "NMEVs reduce lipid accumulation in aged mice",
+      "direction": "reduced"
+    },
+    {
+      "finding": "miR-542-3p targets Asxl2-PPARγ and Eef1a1 to improve mitochondrial function",
+      "finding_type": "positive",
+      "entities": [
+        "miR-542-3p",
+        "Asxl2-PPARγ",
+        "Eef1a1"
+      ],
+      "evidence": "miR-542-3p directly targets and downregulates Asxl2-PPARγ and Eef1a1",
+      "direction": "downregulated"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "unclear",
+    "direct_experimental": true,
+    "mechanistic_perturbation": true,
+    "orthogonal_validation": false,
+    "omics_support": false,
+    "functional_validation": true,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 0,
+      "reason": "No conserved mitochondrial dysfunction signatures across datasets",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 0,
+      "reason": "No integration of multiple omics layers",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 0,
+      "reason": "No characterization of mitochondrial dynamics and hub molecules",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 2,
+      "reason": "Characterization of mitochondrial dysfunction, bioenergetics, and metabolism in senescence",
+      "evidence": [
+        "mitochondrial dysfunction improved by NMEVs",
+        "reduced lipid accumulation (metabolism)",
+        "improved mitochondrial function"
+      ],
+      "confidence": "medium"
+    },
+    "O5": {
+      "level": 2,
+      "reason": "Mechanistic link between miR-542-3p and mitochondrial function via AMPK pathway",
+      "evidence": [
+        "miR-542-3p suppresses Eef1a1 to activate AMPK pathway",
+        "AMPK pathway improves mitochondrial function"
+      ],
+      "confidence": "medium"
+    }
+  },
+  "phd_relevance": {
+    "classification": "unclear",
+    "reason": "unclear",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Moderate",
+    "components": {
+      "unclear": 0
+    },
+    "reason": "unclear"
+  },
+  "why_this_paper_matters": "unclear",
+  "confidence": {
+    "overall": "medium",
+    "scientific_extraction": "medium",
+    "mechanism": "medium",
+    "relevance": "medium"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "unclear"
+  }
+}

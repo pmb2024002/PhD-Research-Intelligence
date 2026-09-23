@@ -1,0 +1,314 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42586389",
+    "title": "PRMT6 drives hearing loss by promoting asymmetric arginine dimethylation-mediated FOXG1 degradation and suppressing mitophagy.",
+    "authors": [
+      "Jin Wu",
+      "Zhi Liu"
+    ],
+    "journal": "Experimental gerontology",
+    "publication_date": "2026-08-12",
+    "doi": "10.1016/j.exger.2026.113278",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42586389/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "mouse",
+    "species": "Mus musculus",
+    "cell_type": "HEI-OC1 cells",
+    "tissue": "cochlea",
+    "organ": "unclear",
+    "disease": "age-related hearing loss (ARHL)",
+    "primary_model": "D-galactose (D-gal)-induced aging mouse model",
+    "senescence_model": "D-galactose (D-gal)-treated HEI-OC1 cells",
+    "senescence_trigger": "D-galactose (D-gal)"
+  },
+  "senescence": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "trigger": "D-galactose (D-gal)",
+    "markers": [
+      "SA-β-gal staining",
+      "TUNEL assay"
+    ],
+    "phenotype": "cellular senescence and apoptosis"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "mitophagy",
+      "ROS",
+      "bioenergetics",
+      "metabolism",
+      "mitochondrial morphology"
+    ],
+    "mitochondrial_dynamics": [
+      "mitochondrial fission/fusion not explicitly mentioned"
+    ],
+    "mitophagy": "inhibited",
+    "ros": "elevated",
+    "metabolism": "impaired",
+    "bioenergetics": "impaired",
+    "morphology": "damaged"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "PRMT6",
+        "aliases": [],
+        "role": "regulator",
+        "direction": "upregulated in senescent cells"
+      },
+      {
+        "symbol": "FOXG1",
+        "aliases": [],
+        "role": "target",
+        "direction": "upregulated in senescent cells"
+      }
+    ],
+    "proteins": [
+      "PRMT6",
+      "FOXG1",
+      "LC3",
+      "TOM20",
+      "GFP-LC3-RFP-LC3ΔG",
+      "JC-1"
+    ],
+    "pathways": [
+      "asymmetric arginine dimethylation",
+      "mitophagy"
+    ],
+    "metabolites": [
+      "ATP",
+      "ROS"
+    ],
+    "interventions": [
+      "EPZ020411 (PRMT6 inhibitor)",
+      "siRNA-mediated PRMT6 silencing"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "protein expression",
+      "mitochondrial function"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "immunoprecipitation",
+      "cycloheximide chase assay"
+    ],
+    "targets": [
+      "asymmetric arginine dimethylation of FOXG1"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "in vivo and in vitro",
+    "groups": [
+      "D-galactose (D-gal)-treated HEI-OC1 cells",
+      "Control cells"
+    ],
+    "controls": [
+      "Untreated HEI-OC1 cells"
+    ],
+    "interventions": [
+      "EPZ020411 (PRMT6 inhibitor)",
+      "siRNA-mediated PRMT6 silencing"
+    ],
+    "assays": [
+      "SA-β-gal staining",
+      "TUNEL assay",
+      "JC-1 staining",
+      "ROS levels",
+      "ATP content",
+      "Transmission electron microscopy",
+      "LC3-TOM20 co-localization",
+      "GFP-LC3-RFP-LC3ΔG reporter system",
+      "Immunoprecipitation with D6A8 antibody",
+      "Cycloheximide chase assay"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "PRMT6",
+      "intermediate": [
+        "asymmetric arginine dimethylation of FOXG1",
+        "FOXG1 degradation"
+      ],
+      "effect": "inhibited mitophagy",
+      "relationship": "causal",
+      "support_type": "experimentally_supported",
+      "evidence": "PRMT6 silencing enhances mitophagy, FOXG1 knockdown partially reverses mitophagy impairment"
+    },
+    {
+      "cause": "PRMT6",
+      "intermediate": [
+        "FOXG1 protein stability"
+      ],
+      "effect": "mitophagy",
+      "relationship": "regulatory",
+      "support_type": "author_proposed",
+      "evidence": "PRMT6 silencing upregulates FOXG1 protein stability"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "PRMT6 is upregulated in D-gal-induced cochlear aging",
+      "finding_type": "descriptive",
+      "entities": [
+        "PRMT6"
+      ],
+      "evidence": "elevated PRMT6 expression in aging mice",
+      "direction": "upregulated in senescent cells"
+    },
+    {
+      "finding": "PRMT6 silencing improves mitochondrial function",
+      "finding_type": "descriptive",
+      "entities": [
+        "mitochondrial function"
+      ],
+      "evidence": "improved mitochondrial membrane potential, elevated ATP content, reduced ROS accumulation",
+      "direction": "improved in senescent cells"
+    },
+    {
+      "finding": "PRMT6 silencing enhances mitophagy",
+      "finding_type": "descriptive",
+      "entities": [
+        "mitophagy"
+      ],
+      "evidence": "enhanced autophagic flux",
+      "direction": "increased in senescent cells"
+    },
+    {
+      "finding": "PRMT6 promotes asymmetric arginine dimethylation of FOXG1",
+      "finding_type": "descriptive",
+      "entities": [
+        "FOXG1"
+      ],
+      "evidence": "PRMT6 silencing decreases asymmetric arginine dimethylation of FOXG1",
+      "direction": "reduced in senescent cells"
+    },
+    {
+      "finding": "PRMT6 suppresses FOXG1 protein stability",
+      "finding_type": "descriptive",
+      "entities": [
+        "FOXG1"
+      ],
+      "evidence": "PRMT6 silencing prolongs FOXG1 half-life",
+      "direction": "stabilized in senescent cells"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "strong",
+    "direct_experimental": true,
+    "mechanistic_perturbation": true,
+    "orthogonal_validation": true,
+    "omics_support": false,
+    "functional_validation": true,
+    "uncertainties": [
+      "unclear time points",
+      "mitochondrial dynamics not explicitly mentioned"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "Only in vitro and in vivo models with D-galactose treatment",
+      "source": "unclear"
+    },
+    {
+      "limitation": "No long-term follow-up data",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "Mechanism of how PRMT6 affects mitochondrial morphology",
+      "source": "unclear",
+      "confidence": "high"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 1,
+      "reason": "PRMT6 is a key regulator in cochlear aging",
+      "evidence": [
+        "PRMT6 upregulation in aging mice",
+        "PRMT6 silencing improves mitochondrial function"
+      ],
+      "confidence": "high"
+    },
+    "O2": {
+      "level": 2,
+      "reason": "PRMT6-FOXG1-mitophagy axis is a therapeutic target",
+      "evidence": [
+        "PRMT6 inhibitor EPZ020411 reverses cochlear aging",
+        "FOXG1 knockdown partially reverses mitophagy impairment"
+      ],
+      "confidence": "high"
+    },
+    "O3": {
+      "level": 3,
+      "reason": "Asymmetric arginine dimethylation of FOXG1 is critical for mitochondrial health",
+      "evidence": [
+        "PRMT6 silencing reduces asymmetric arginine dimethylation of FOXG1",
+        "PRMT6 silencing enhances mitophagy"
+      ],
+      "confidence": "high"
+    },
+    "O4": {
+      "level": 1,
+      "reason": "PRMT6 inhibition improves cochlear function",
+      "evidence": [
+        "EPZ020411 reverses D-gal-induced hearing loss"
+      ],
+      "confidence": "high"
+    },
+    "O5": {
+      "level": 2,
+      "reason": "FOXG1 protein stability is regulated by PRMT6",
+      "evidence": [
+        "PRMT6 silencing prolongs FOXG1 half-life",
+        "PRMT6 promotes FOXG1 degradation"
+      ],
+      "confidence": "high"
+    }
+  },
+  "phd_relevance": {
+    "classification": "unclear",
+    "reason": "PRMT6-FOXG1-mitophagy axis is a key pathway in cochlear aging",
+    "supporting_evidence": [
+      "PRMT6 silencing improves mitochondrial function",
+      "FOXG1 knockdown partially reverses mitophagy impairment"
+    ]
+  },
+  "research_priority": {
+    "category": "High",
+    "components": {
+      "mechanistic": 1,
+      "therapeutic": 1,
+      "translational": 1
+    },
+    "reason": "PRMT6-FOXG1-mitophagy axis is a potential therapeutic target for age-related hearing loss"
+  },
+  "why_this_paper_matters": "This paper identifies a novel mechanism by which PRMT6 drives cochlear aging through FOXG1 degradation and mitophagy inhibition, providing a potential therapeutic target for age-related hearing loss.",
+  "confidence": {
+    "overall": "high",
+    "scientific_extraction": "high",
+    "mechanism": "high",
+    "relevance": "high"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": true,
+    "matched_keywords": [
+      "inhibitor"
+    ],
+    "reason": "Abstract contains intervention/treatment language; gene 'direction' fields should be manually verified against the abstract before trusting them as baseline disease-state findings.",
+    "category_normalized_from": "high"
+  }
+}

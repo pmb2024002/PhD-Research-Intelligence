@@ -1,0 +1,249 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42468575",
+    "title": "Palmitoylation in cardiovascular aging and disease: Mechanistic insights and therapeutic opportunities.",
+    "authors": [
+      "Yuhao Song",
+      "Yan Chen",
+      "Yiheng Liu",
+      "Wenting Peng",
+      "Shengxi Gu",
+      "Qihang Kong",
+      "Zhewei Zhang",
+      "Xiaoqiang Tang",
+      "Xiaojing Liu",
+      "Ye Zhu"
+    ],
+    "journal": "Ageing research reviews",
+    "publication_date": "2026-07-17",
+    "doi": "10.1016/j.arr.2026.103261",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42468575/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "cardiomyocytes, endothelial cells, fibroblasts, immune cells",
+    "tissue": "unclear",
+    "organ": "unclear",
+    "disease": "cardiovascular disease (CVD)",
+    "primary_model": "cardiomyocytes, endothelial cells, fibroblasts, immune cells",
+    "senescence_model": "unclear",
+    "senescence_trigger": "unclear"
+  },
+  "senescence": {
+    "investigated": false,
+    "evidence_type": "indirect",
+    "trigger": "unclear",
+    "markers": [
+      "cellular senescence"
+    ],
+    "phenotype": "unclear"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "indirect",
+    "dysfunction": "present",
+    "processes": [
+      "mitochondrial dysfunction",
+      "oxidative stress",
+      "impaired autophagy"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "impaired",
+    "ros": "elevated",
+    "metabolism": "unclear",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "unclear",
+        "aliases": [
+          "unclear"
+        ],
+        "role": "unclear",
+        "direction": "unclear"
+      }
+    ],
+    "proteins": [
+      "unclear"
+    ],
+    "pathways": [
+      "unclear"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "unclear"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "unclear"
+    ],
+    "integration_level": "unclear",
+    "methods": [
+      "unclear"
+    ],
+    "targets": [
+      "unclear"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "review",
+    "groups": [
+      "unclear"
+    ],
+    "controls": [
+      "unclear"
+    ],
+    "interventions": [
+      "unclear"
+    ],
+    "assays": [
+      "unclear"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "metabolic disorders",
+      "intermediate": [
+        "enhanced palmitoylation"
+      ],
+      "effect": "progressive cardiovascular injury",
+      "relationship": "author_proposed",
+      "support_type": "author_proposed",
+      "evidence": "unclear"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "Dysregulated palmitoylation contributes to key features of cardiovascular aging",
+      "finding_type": "descriptive",
+      "entities": [
+        "palmitoylation"
+      ],
+      "evidence": "unclear",
+      "direction": "unclear"
+    },
+    {
+      "finding": "Palmitoylation drives a 'metabolic vicious cycle' linking metabolic disorders to cardiovascular injury",
+      "finding_type": "descriptive",
+      "entities": [
+        "palmitoylation"
+      ],
+      "evidence": "unclear",
+      "direction": "unclear"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "unclear",
+    "direct_experimental": false,
+    "mechanistic_perturbation": false,
+    "orthogonal_validation": false,
+    "omics_support": false,
+    "functional_validation": false,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O2": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O3": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O4": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    },
+    "O5": {
+      "level": 0,
+      "reason": "unclear",
+      "evidence": [
+        "unclear"
+      ],
+      "confidence": "low"
+    }
+  },
+  "phd_relevance": {
+    "classification": "peripheral",
+    "reason": "unclear",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Peripheral",
+    "components": {
+      "biological_relevance": 0,
+      "mechanistic_evidence": 0,
+      "mitochondrial_relevance": 0,
+      "senescence_relevance": 0,
+      "phd_objective_coverage": 0,
+      "methodological_usefulness": 0,
+      "evidence_strength": 0,
+      "model_compatibility": 0
+    },
+    "reason": "unclear"
+  },
+  "why_this_paper_matters": "unclear",
+  "confidence": {
+    "overall": "low",
+    "scientific_extraction": "low",
+    "mechanism": "low",
+    "relevance": "low"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "peripheral"
+  }
+}

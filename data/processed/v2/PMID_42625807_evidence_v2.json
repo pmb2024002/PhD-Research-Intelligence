@@ -1,0 +1,311 @@
+{
+  "schema_version": "2.0",
+  "paper_identity": {
+    "pmid": "42625807",
+    "title": "PDHA1 Hyperactivation Orchestrates Metabolic Reprogramming Promoting Endothelial Senescence.",
+    "authors": [
+      "Wen-Jing Zhong",
+      "Nan-Shi-Yu Yang",
+      "Chen-Yu Zhang",
+      "Yu-Biao Liu",
+      "Ling Jin",
+      "An-Jun Ou",
+      "Hui Chen",
+      "Juan Li",
+      "Yong Zhou",
+      "Bai-Mei He",
+      "Jia-Xi Duan"
+    ],
+    "journal": "Research (Washington, D.C.)",
+    "publication_date": "2026-08-20",
+    "doi": "10.34133/research.1398",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42625807/",
+    "source": "PubMed",
+    "retrieval_date": "2026-09-21"
+  },
+  "biological_context": {
+    "organism": "unclear",
+    "species": "unclear",
+    "cell_type": "endothelial cells",
+    "tissue": "unclear",
+    "organ": "unclear",
+    "disease": "unclear",
+    "primary_model": "primary aging endothelial cells",
+    "senescence_model": "D-galactose-induced senescence",
+    "senescence_trigger": "D-galactose"
+  },
+  "senescence": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "trigger": "D-galactose",
+    "markers": [
+      "cytosolic mitochondrial DNA release",
+      "cyclic GMP-AMP synthase-mediated senescence"
+    ],
+    "phenotype": "pulmonary vascular endothelial senescence and associated functional decline"
+  },
+  "mitochondrial": {
+    "investigated": true,
+    "evidence_type": "direct_experimental",
+    "dysfunction": "present",
+    "processes": [
+      "mitochondrial ROS production",
+      "mitochondrial DNA damage",
+      "cytosolic mitochondrial DNA release",
+      "mitochondrial homeostasis disruption"
+    ],
+    "mitochondrial_dynamics": [
+      "unclear"
+    ],
+    "mitophagy": "unclear",
+    "ros": "elevated",
+    "metabolism": "reprogrammed",
+    "bioenergetics": "unclear",
+    "morphology": "unclear"
+  },
+  "molecular_entities": {
+    "genes": [
+      {
+        "symbol": "PDHA1",
+        "aliases": [
+          "pyruvate dehydrogenase E1 component subunit alpha"
+        ],
+        "role": "hyperactivated",
+        "direction": "upregulated in senescent cells"
+      }
+    ],
+    "proteins": [
+      "PDHA1",
+      "cyclic GMP-AMP synthase",
+      "mitochondrial DNA"
+    ],
+    "pathways": [
+      "mitochondrial metabolism",
+      "reactive oxygen species production"
+    ],
+    "metabolites": [
+      "unclear"
+    ],
+    "interventions": [
+      "endothelial-specific Pdha1 knockdown"
+    ]
+  },
+  "omics": {
+    "modalities": [
+      "metabolomics"
+    ],
+    "integration_level": "single_modality",
+    "methods": [
+      "metabolomic profiling"
+    ],
+    "targets": [
+      "metabolic reprogramming"
+    ]
+  },
+  "experimental_design": {
+    "study_type": "in vivo",
+    "groups": [
+      "control",
+      "D-galactose-induced senescent endothelial cells"
+    ],
+    "controls": [
+      "unclear"
+    ],
+    "interventions": [
+      "endothelial-specific Pdha1 knockdown"
+    ],
+    "assays": [
+      "metabolomic profiling",
+      "mitochondrial ROS detection",
+      "cytosolic mitochondrial DNA release quantification"
+    ],
+    "time_points": [
+      "unclear"
+    ]
+  },
+  "mechanism": [
+    {
+      "cause": "decreased lactylation of PDHA1 at lysine 336",
+      "intermediate": [
+        "potentiated PDHA1 activity",
+        "dephosphorylation at serine 293"
+      ],
+      "effect": "PDHA1 hyperactivation",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "PDHA1 hyperactivation disrupts mitochondrial homeostasis"
+    },
+    {
+      "cause": "PDHA1 hyperactivation",
+      "intermediate": [
+        "excessive mitochondrial ROS production",
+        "oxidative mitochondrial DNA damage"
+      ],
+      "effect": "cytosolic mitochondrial DNA release",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "PDHA1 hyperactivation leads to cytosolic mitochondrial DNA release"
+    },
+    {
+      "cause": "cytosolic mitochondrial DNA release",
+      "intermediate": [
+        "cyclic GMP-AMP synthase activation"
+      ],
+      "effect": "senescence",
+      "relationship": "causal",
+      "support_type": "author_proposed",
+      "evidence": "cytosolic mitochondrial DNA release triggers cyclic GMP-AMP synthase-mediated senescence"
+    }
+  ],
+  "findings": [
+    {
+      "finding": "PDHA1 hyperactivation drives metabolic reprogramming in endothelial senescence",
+      "finding_type": "descriptive",
+      "entities": [
+        "PDHA1",
+        "metabolic reprogramming"
+      ],
+      "evidence": "PDHA1-dependent metabolic shift as a hallmark of cellular senescence",
+      "direction": "upregulated in senescent cells"
+    },
+    {
+      "finding": "Endothelial-specific Pdha1 knockdown alleviates pulmonary vascular endothelial senescence",
+      "finding_type": "positive",
+      "entities": [
+        "Pdha1 knockdown"
+      ],
+      "evidence": "alleviated pulmonary vascular endothelial senescence and associated functional decline",
+      "direction": "reduced senescence"
+    },
+    {
+      "finding": "PDHA1 hyperactivation disrupts mitochondrial homeostasis",
+      "finding_type": "negative",
+      "entities": [
+        "mitochondrial homeostasis"
+      ],
+      "evidence": "PDHA1 hyperactivation disrupts mitochondrial homeostasis",
+      "direction": "impaired"
+    },
+    {
+      "finding": "PDHA1 hyperactivation leads to excessive mitochondrial ROS production",
+      "finding_type": "positive",
+      "entities": [
+        "mitochondrial ROS"
+      ],
+      "evidence": "excessive mitochondrial reactive oxygen species production",
+      "direction": "elevated"
+    },
+    {
+      "finding": "PDHA1 hyperactivation causes oxidative mitochondrial DNA damage",
+      "finding_type": "positive",
+      "entities": [
+        "mitochondrial DNA"
+      ],
+      "evidence": "oxidative mitochondrial DNA damage",
+      "direction": "damaged"
+    },
+    {
+      "finding": "Cytosolic mitochondrial DNA release triggers cyclic GMP-AMP synthase-mediated senescence",
+      "finding_type": "causal",
+      "entities": [
+        "cytosolic mitochondrial DNA release",
+        "cyclic GMP-AMP synthase"
+      ],
+      "evidence": "cytosolic mitochondrial DNA release triggers cyclic GMP-AMP synthase-mediated senescence",
+      "direction": "induces senescence"
+    }
+  ],
+  "evidence_assessment": {
+    "overall_strength": "moderate",
+    "direct_experimental": true,
+    "mechanistic_perturbation": true,
+    "orthogonal_validation": false,
+    "omics_support": true,
+    "functional_validation": true,
+    "uncertainties": [
+      "unclear"
+    ]
+  },
+  "limitations": [
+    {
+      "limitation": "unclear",
+      "source": "unclear"
+    }
+  ],
+  "research_gaps": [
+    {
+      "gap": "unclear",
+      "source": "unclear",
+      "confidence": "low"
+    }
+  ],
+  "phd_objectives": {
+    "O1": {
+      "level": 1,
+      "reason": "PDHA1 hyperactivation is identified as a metabolic shift hallmark in endothelial senescence",
+      "evidence": [
+        "PDHA1-dependent metabolic shift as a hallmark of cellular senescence"
+      ],
+      "confidence": "medium"
+    },
+    "O2": {
+      "level": 1,
+      "reason": "Metabolomics data is used to characterize metabolic reprogramming",
+      "evidence": [
+        "metabolomic profiling"
+      ],
+      "confidence": "medium"
+    },
+    "O3": {
+      "level": 1,
+      "reason": "PDHA1 hyperactivation disrupts mitochondrial homeostasis",
+      "evidence": [
+        "PDHA1 hyperactivation disrupts mitochondrial homeostasis"
+      ],
+      "confidence": "medium"
+    },
+    "O4": {
+      "level": 1,
+      "reason": "Mechanistic insights into PDHA1 regulation",
+      "evidence": [
+        "decreased lactylation of PDHA1 at lysine 336"
+      ],
+      "confidence": "medium"
+    },
+    "O5": {
+      "level": 1,
+      "reason": "Cytosolic mitochondrial DNA release triggers senescence",
+      "evidence": [
+        "cytosolic mitochondrial DNA release triggers cyclic GMP-AMP synthase-mediated senescence"
+      ],
+      "confidence": "medium"
+    }
+  },
+  "phd_relevance": {
+    "classification": "unclear",
+    "reason": "unclear",
+    "supporting_evidence": [
+      "unclear"
+    ]
+  },
+  "research_priority": {
+    "category": "Moderate",
+    "components": {
+      "unclear": 0
+    },
+    "reason": "unclear"
+  },
+  "why_this_paper_matters": "unclear",
+  "confidence": {
+    "overall": "medium",
+    "scientific_extraction": "medium",
+    "mechanism": "medium",
+    "relevance": "medium"
+  },
+  "_review_flags": {
+    "direction_may_reflect_intervention_not_baseline": false,
+    "matched_keywords": [],
+    "reason": "No intervention/treatment keywords detected; direction fields are more likely to reflect baseline state, but manual spot-checking is still recommended.",
+    "category_normalized_from": "unclear"
+  }
+}
