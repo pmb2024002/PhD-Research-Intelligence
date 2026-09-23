@@ -4,11 +4,8 @@ New Paper Checker
 
 Searches PubMed, compares against the canonical 250-paper dataset,
 and maintains an ACCUMULATING log of all discovered-but-not-yet-in-
-canonical-dataset papers. Every check adds any genuinely new PMIDs
-to this log; papers already in the log are not re-fetched, and the
-full accumulated log is always returned (so nothing found in past
-checks disappears -- it stays until the user saves or the paper
-enters the canonical dataset).
+canonical-dataset papers in Supabase (persists reliably across
+Streamlit Cloud restarts, unlike local CSV files).
 """
 
 import sys
@@ -19,6 +16,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from pubmed_collector import SEARCH_QUERY, search_pubmed, fetch_articles
+from supabase_client import get_client
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -30,14 +28,12 @@ CANONICAL_FILE = (
     / "human_preference_layer_v1.csv"
 )
 
-DISCOVERED_PAPERS_FILE = (
-    BASE_DIR
-    / "data"
-    / "processed"
-    / "discovered_papers.csv"
-)
-
 MAX_RESULTS = 100
+
+DISCOVERED_COLUMNS = [
+    "pmid", "title", "abstract", "authors", "journal",
+    "publication_date", "journal_issue_date", "doi", "pubmed_url",
+]
 
 
 def get_known_pmids():
@@ -49,10 +45,13 @@ def get_known_pmids():
 
 
 def load_discovered():
-    if not DISCOVERED_PAPERS_FILE.exists():
-        return pd.DataFrame()
+    client = get_client()
+    result = client.table("discovered_papers").select("*").execute()
 
-    return pd.read_csv(DISCOVERED_PAPERS_FILE)
+    if not result.data:
+        return pd.DataFrame(columns=DISCOVERED_COLUMNS)
+
+    return pd.DataFrame(result.data)
 
 
 def check_for_new_papers():
@@ -87,17 +86,20 @@ def check_for_new_papers():
 
         print("\nFetching details for new papers...")
         new_articles = fetch_articles(genuinely_new_pmids)
-        new_df = pd.DataFrame(new_articles)
 
+        for article in new_articles:
+            article["pmid"] = str(article["pmid"])
+
+        client = get_client()
+        client.table("discovered_papers").upsert(new_articles).execute()
+
+        print(f"Added {len(new_articles)} papers to discovery log.")
+
+        new_df = pd.DataFrame(new_articles)
         discovered_df = pd.concat(
             [discovered_df, new_df],
             ignore_index=True,
         )
-
-        DISCOVERED_PAPERS_FILE.parent.mkdir(parents=True, exist_ok=True)
-        discovered_df.to_csv(DISCOVERED_PAPERS_FILE, index=False)
-
-        print(f"Added {len(new_df)} papers to discovery log.")
 
     else:
         print("\nNo genuinely new papers this check.")

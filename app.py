@@ -104,11 +104,9 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
             new_df = check_for_new_papers()
 
             # Exclude papers already saved -- they show in Saved Papers instead
-            _saved_file = BASE_DIR / "data" / "processed" / "saved_papers.csv"
-            if _saved_file.exists() and len(new_df) > 0:
-                _saved_pmids = set(
-                    pd.read_csv(_saved_file)["pmid"].astype(str)
-                )
+            from supabase_client import get_saved_pmids
+            if len(new_df) > 0:
+                _saved_pmids = get_saved_pmids()
                 new_df = new_df[
                     ~new_df["pmid"].astype(str).isin(_saved_pmids)
                 ]
@@ -174,22 +172,13 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
 
                     with btn_col2:
 
-                        SAVED_PAPERS_FILE = (
-                            BASE_DIR / "data" / "processed" / "saved_papers.csv"
+                        from supabase_client import (
+                            get_saved_pmids,
+                            save_paper,
+                            unsave_paper,
                         )
 
-                        SAVED_PAPERS_FILE.parent.mkdir(parents=True, exist_ok=True)
-
-                        if SAVED_PAPERS_FILE.exists():
-                            saved_df = pd.read_csv(SAVED_PAPERS_FILE)
-                        else:
-                            saved_df = pd.DataFrame(
-                                columns=list(nrow.index) + ["saved_at"]
-                            )
-
-                        currently_saved = str(pmid) in saved_df.get(
-                            "pmid", pd.Series(dtype=str)
-                        ).astype(str).values
+                        currently_saved = str(pmid) in get_saved_pmids()
 
                         if currently_saved:
 
@@ -197,10 +186,7 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
                                 "✅ Saved — Unsave",
                                 key=f"unsave_btn_{pmid}",
                             ):
-                                saved_df = saved_df[
-                                    saved_df["pmid"].astype(str) != str(pmid)
-                                ]
-                                saved_df.to_csv(SAVED_PAPERS_FILE, index=False)
+                                unsave_paper(pmid)
                                 st.rerun()
 
                         else:
@@ -209,17 +195,7 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
                                 "⭐ Save for Later",
                                 key=f"save_btn_{pmid}",
                             ):
-                                new_row = nrow.to_dict()
-                                new_row["saved_at"] = pd.Timestamp.now().isoformat(
-                                    timespec="seconds"
-                                )
-
-                                saved_df = pd.concat(
-                                    [saved_df, pd.DataFrame([new_row])],
-                                    ignore_index=True,
-                                )
-
-                                saved_df.to_csv(SAVED_PAPERS_FILE, index=False)
+                                save_paper(nrow.to_dict())
                                 st.rerun()
 
                     if quick_key in st.session_state:
@@ -242,47 +218,43 @@ st.divider()
 # SAVED PAPERS
 # ============================================================
 
-SAVED_PAPERS_FILE = BASE_DIR / "data" / "processed" / "saved_papers.csv"
+import sys as _sys2
+_sys2.path.insert(0, str(BASE_DIR / "pipeline"))
+from supabase_client import get_saved_papers, unsave_paper
 
-if SAVED_PAPERS_FILE.exists():
+_saved_list = get_saved_papers()
 
-    saved_df = pd.read_csv(SAVED_PAPERS_FILE)
+if len(_saved_list) > 0:
 
-    if len(saved_df) > 0:
+    with st.expander(f"⭐ Saved Papers ({len(_saved_list)})", expanded=False):
 
-        with st.expander(f"⭐ Saved Papers ({len(saved_df)})", expanded=False):
+        for srow in _saved_list:
 
-            for _, srow in saved_df.iterrows():
+            with st.container(border=True):
 
-                with st.container(border=True):
+                st.markdown(f"**{srow.get('title', 'Untitled')}**")
 
-                    st.markdown(f"**{srow.get('title', 'Untitled')}**")
+                st.caption(
+                    f"{srow.get('journal', '')} • "
+                    f"{srow.get('publication_date', '')} • "
+                    f"PMID {srow.get('pmid', '')} • "
+                    f"Saved {srow.get('saved_at', '')}"
+                )
 
-                    st.caption(
-                        f"{srow.get('journal', '')} • "
-                        f"{srow.get('publication_date', '')} • "
-                        f"PMID {srow.get('pmid', '')} • "
-                        f"Saved {srow.get('saved_at', '')}"
+                surl = srow.get("pubmed_url", "")
+                if surl:
+                    st.link_button(
+                        "🔗 Open in PubMed",
+                        surl,
+                        key=f"saved_link_{srow.get('pmid', '')}",
                     )
 
-                    surl = srow.get("pubmed_url", "")
-                    if surl:
-                        st.link_button(
-                            "🔗 Open in PubMed",
-                            surl,
-                            key=f"saved_link_{srow.get('pmid', '')}",
-                        )
-
-                    if st.button(
-                        "🗑️ Remove",
-                        key=f"remove_{srow.get('pmid', '')}",
-                    ):
-                        saved_df = saved_df[
-                            saved_df["pmid"].astype(str)
-                            != str(srow.get("pmid", ""))
-                        ]
-                        saved_df.to_csv(SAVED_PAPERS_FILE, index=False)
-                        st.rerun()
+                if st.button(
+                    "🗑️ Remove",
+                    key=f"remove_{srow.get('pmid', '')}",
+                ):
+                    unsave_paper(srow.get("pmid", ""))
+                    st.rerun()
 
 st.divider()
 
