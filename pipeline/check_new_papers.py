@@ -2,13 +2,13 @@
 Mitochondrial Research Intelligence
 New Paper Checker
 
-Searches PubMed using the same query as the original collector,
-compares results against the canonical 250-paper dataset, and
-saves any NEW papers (not already in the dataset) to a separate
-file for review.
-
-This does NOT touch the canonical 250-paper dataset or the V1/V2
-pipelines -- it's a read-only discovery step.
+Searches PubMed, compares against the canonical 250-paper dataset,
+and maintains an ACCUMULATING log of all discovered-but-not-yet-in-
+canonical-dataset papers. Every check adds any genuinely new PMIDs
+to this log; papers already in the log are not re-fetched, and the
+full accumulated log is always returned (so nothing found in past
+checks disappears -- it stays until the user saves or the paper
+enters the canonical dataset).
 """
 
 import sys
@@ -30,11 +30,11 @@ CANONICAL_FILE = (
     / "human_preference_layer_v1.csv"
 )
 
-NEW_PAPERS_FILE = (
+DISCOVERED_PAPERS_FILE = (
     BASE_DIR
     / "data"
     / "processed"
-    / "new_papers_found.csv"
+    / "discovered_papers.csv"
 )
 
 MAX_RESULTS = 100
@@ -48,6 +48,13 @@ def get_known_pmids():
     return set(df["pmid"].astype(str))
 
 
+def load_discovered():
+    if not DISCOVERED_PAPERS_FILE.exists():
+        return pd.DataFrame()
+
+    return pd.read_csv(DISCOVERED_PAPERS_FILE)
+
+
 def check_for_new_papers():
 
     print("=" * 70)
@@ -55,39 +62,56 @@ def check_for_new_papers():
     print("=" * 70)
 
     known_pmids = get_known_pmids()
+    discovered_df = load_discovered()
+
+    already_discovered_pmids = set()
+    if len(discovered_df) > 0 and "pmid" in discovered_df.columns:
+        already_discovered_pmids = set(discovered_df["pmid"].astype(str))
+
     print(f"Known papers in canonical dataset: {len(known_pmids)}")
+    print(f"Already in discovery log: {len(already_discovered_pmids)}")
 
     found_pmids = search_pubmed(SEARCH_QUERY, MAX_RESULTS)
     print(f"PubMed search returned: {len(found_pmids)} papers")
 
-    new_pmids = [
+    excluded = known_pmids | already_discovered_pmids
+
+    genuinely_new_pmids = [
         pmid for pmid in found_pmids
-        if str(pmid) not in known_pmids
+        if str(pmid) not in excluded
     ]
 
-    print(f"New papers (not in canonical dataset): {len(new_pmids)}")
+    print(f"Genuinely new papers this check: {len(genuinely_new_pmids)}")
 
-    if not new_pmids:
-        print("\nNo new papers found.")
-        # Still write an empty file so the website has something to read
-        pd.DataFrame(
-            columns=["pmid", "title", "abstract", "authors", "journal",
-                     "publication_date", "journal_issue_date", "doi", "pubmed_url"]
-        ).to_csv(NEW_PAPERS_FILE, index=False)
-        return pd.DataFrame()
+    if genuinely_new_pmids:
 
-    print("\nFetching details for new papers...")
-    articles = fetch_articles(new_pmids)
-    df = pd.DataFrame(articles)
+        print("\nFetching details for new papers...")
+        new_articles = fetch_articles(genuinely_new_pmids)
+        new_df = pd.DataFrame(new_articles)
 
-    NEW_PAPERS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(NEW_PAPERS_FILE, index=False)
+        discovered_df = pd.concat(
+            [discovered_df, new_df],
+            ignore_index=True,
+        )
 
-    print(f"\nSaved {len(df)} new papers to: {NEW_PAPERS_FILE}")
-    print("\nNew papers found:")
-    print(df[["pmid", "publication_date", "title"]].to_string(index=False))
+        DISCOVERED_PAPERS_FILE.parent.mkdir(parents=True, exist_ok=True)
+        discovered_df.to_csv(DISCOVERED_PAPERS_FILE, index=False)
 
-    return df
+        print(f"Added {len(new_df)} papers to discovery log.")
+
+    else:
+        print("\nNo genuinely new papers this check.")
+
+    print(f"\nTotal papers in discovery log: {len(discovered_df)}")
+
+    if len(discovered_df) > 0:
+        print("\nAll discovered papers:")
+        print(
+            discovered_df[["pmid", "publication_date", "title"]]
+            .to_string(index=False)
+        )
+
+    return discovered_df
 
 
 if __name__ == "__main__":

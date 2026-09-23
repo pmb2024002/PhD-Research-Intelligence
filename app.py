@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from pathlib import Path
 
 
@@ -102,6 +103,16 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
 
             new_df = check_for_new_papers()
 
+            # Exclude papers already saved -- they show in Saved Papers instead
+            _saved_file = BASE_DIR / "data" / "processed" / "saved_papers.csv"
+            if _saved_file.exists() and len(new_df) > 0:
+                _saved_pmids = set(
+                    pd.read_csv(_saved_file)["pmid"].astype(str)
+                )
+                new_df = new_df[
+                    ~new_df["pmid"].astype(str).isin(_saved_pmids)
+                ]
+
         st.session_state["new_papers_df"] = new_df
 
     new_df = st.session_state.get("new_papers_df")
@@ -140,23 +151,76 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
 
                     quick_key = f"quick_analysis_{pmid}"
 
-                    if st.button("🔬 Quick Analyze", key=f"analyze_btn_{pmid}"):
+                    btn_col1, btn_col2 = st.columns(2)
 
-                        with st.spinner("Analyzing abstract..."):
+                    with btn_col1:
+                        if st.button("🔬 Quick Analyze", key=f"analyze_btn_{pmid}"):
 
-                            import sys as _sys
-                            _sys.path.insert(0, str(BASE_DIR / "pipeline"))
+                            with st.spinner("Analyzing abstract..."):
 
-                            from quick_analyze import quick_analyze_paper
+                                import sys as _sys
+                                _sys.path.insert(0, str(BASE_DIR / "pipeline"))
 
-                            try:
-                                result = quick_analyze_paper(
-                                    title=nrow.get("title", ""),
-                                    abstract=abstract,
+                                from quick_analyze import quick_analyze_paper
+
+                                try:
+                                    result = quick_analyze_paper(
+                                        title=nrow.get("title", ""),
+                                        abstract=abstract,
+                                    )
+                                    st.session_state[quick_key] = result
+                                except Exception as exc:
+                                    st.error(f"Analysis failed: {exc}")
+
+                    with btn_col2:
+
+                        SAVED_PAPERS_FILE = (
+                            BASE_DIR / "data" / "processed" / "saved_papers.csv"
+                        )
+
+                        SAVED_PAPERS_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+                        if SAVED_PAPERS_FILE.exists():
+                            saved_df = pd.read_csv(SAVED_PAPERS_FILE)
+                        else:
+                            saved_df = pd.DataFrame(
+                                columns=list(nrow.index) + ["saved_at"]
+                            )
+
+                        currently_saved = str(pmid) in saved_df.get(
+                            "pmid", pd.Series(dtype=str)
+                        ).astype(str).values
+
+                        if currently_saved:
+
+                            if st.button(
+                                "✅ Saved — Unsave",
+                                key=f"unsave_btn_{pmid}",
+                            ):
+                                saved_df = saved_df[
+                                    saved_df["pmid"].astype(str) != str(pmid)
+                                ]
+                                saved_df.to_csv(SAVED_PAPERS_FILE, index=False)
+                                st.rerun()
+
+                        else:
+
+                            if st.button(
+                                "⭐ Save for Later",
+                                key=f"save_btn_{pmid}",
+                            ):
+                                new_row = nrow.to_dict()
+                                new_row["saved_at"] = pd.Timestamp.now().isoformat(
+                                    timespec="seconds"
                                 )
-                                st.session_state[quick_key] = result
-                            except Exception as exc:
-                                st.error(f"Analysis failed: {exc}")
+
+                                saved_df = pd.concat(
+                                    [saved_df, pd.DataFrame([new_row])],
+                                    ignore_index=True,
+                                )
+
+                                saved_df.to_csv(SAVED_PAPERS_FILE, index=False)
+                                st.rerun()
 
                     if quick_key in st.session_state:
 
@@ -170,6 +234,55 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
 
                         st.markdown("**📝 Conclusion:**")
                         st.write(result.get("conclusion", ""))
+
+st.divider()
+
+
+# ============================================================
+# SAVED PAPERS
+# ============================================================
+
+SAVED_PAPERS_FILE = BASE_DIR / "data" / "processed" / "saved_papers.csv"
+
+if SAVED_PAPERS_FILE.exists():
+
+    saved_df = pd.read_csv(SAVED_PAPERS_FILE)
+
+    if len(saved_df) > 0:
+
+        with st.expander(f"⭐ Saved Papers ({len(saved_df)})", expanded=False):
+
+            for _, srow in saved_df.iterrows():
+
+                with st.container(border=True):
+
+                    st.markdown(f"**{srow.get('title', 'Untitled')}**")
+
+                    st.caption(
+                        f"{srow.get('journal', '')} • "
+                        f"{srow.get('publication_date', '')} • "
+                        f"PMID {srow.get('pmid', '')} • "
+                        f"Saved {srow.get('saved_at', '')}"
+                    )
+
+                    surl = srow.get("pubmed_url", "")
+                    if surl:
+                        st.link_button(
+                            "🔗 Open in PubMed",
+                            surl,
+                            key=f"saved_link_{srow.get('pmid', '')}",
+                        )
+
+                    if st.button(
+                        "🗑️ Remove",
+                        key=f"remove_{srow.get('pmid', '')}",
+                    ):
+                        saved_df = saved_df[
+                            saved_df["pmid"].astype(str)
+                            != str(srow.get("pmid", ""))
+                        ]
+                        saved_df.to_csv(SAVED_PAPERS_FILE, index=False)
+                        st.rerun()
 
 st.divider()
 
