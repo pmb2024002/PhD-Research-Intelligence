@@ -3,6 +3,7 @@ import pandas as pd
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 
 # ============================================================
@@ -37,15 +38,19 @@ sys.path.insert(0, str(BASE_DIR / "pipeline"))
 
 
 def format_discovered_at(value: str) -> str:
-    """Format an ISO timestamp (as stored in Supabase) into a readable
-    'D Mon YYYY, H:MM AM/PM' string. Returns '' if value is missing/invalid."""
+    """Format an ISO timestamp (as stored in Supabase, UTC) into a
+    readable IST 'D Mon YYYY, H:MM AM/PM' string. Returns '' if value
+    is missing/invalid. Always converts to Asia/Kolkata regardless of
+    the server's own local timezone (local machine vs Streamlit Cloud
+    can differ), so the displayed time is consistent everywhere."""
     if not value:
         return ""
     try:
         dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
-        if dt.tzinfo is not None:
-            dt = dt.astimezone()
-        return dt.strftime("%d %b %Y, %I:%M %p")
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        dt_ist = dt.astimezone(ZoneInfo("Asia/Kolkata"))
+        return dt_ist.strftime("%d %b %Y, %I:%M %p IST")
     except (ValueError, TypeError):
         return ""
 

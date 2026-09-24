@@ -107,6 +107,11 @@ def check_for_new_papers():
     else:
         print("\nNo genuinely new papers this check.")
 
+    if len(discovered_df) > 0 and "discovered_at" in discovered_df.columns:
+        discovered_df = discovered_df.sort_values(
+            by="discovered_at", ascending=False, na_position="last"
+        ).reset_index(drop=True)
+
     print(f"\nTotal papers in discovery log: {len(discovered_df)}")
 
     if len(discovered_df) > 0:
