@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -33,6 +34,30 @@ st.markdown(
 BASE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(BASE_DIR / "pipeline"))
 
+
+
+def format_discovered_at(value: str) -> str:
+    """Format an ISO timestamp (as stored in Supabase) into a readable
+    'D Mon YYYY, H:MM AM/PM' string. Returns '' if value is missing/invalid."""
+    if not value:
+        return ""
+    try:
+        dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        if dt.tzinfo is not None:
+            dt = dt.astimezone()
+        return dt.strftime("%d %b %Y, %I:%M %p")
+    except (ValueError, TypeError):
+        return ""
+
+
+def centered_caption(text: str):
+    """Render a caption centered under a full-width diagram (st.caption
+    is always left-aligned, which looks off-center under a centered SVG)."""
+    st.markdown(
+        f'<div style="text-align:center; color:#94a3b8; font-size:0.85rem; '
+        f'margin-top:-8px;">{text}</div>',
+        unsafe_allow_html=True,
+    )
 
 
 def render_svg(svg_markup: str):
@@ -209,6 +234,10 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
                         f"{nrow.get('publication_date', '')} • "
                         f"PMID {pmid}"
                     )
+
+                    _discovered_str = format_discovered_at(nrow.get("discovered_at", ""))
+                    if _discovered_str:
+                        st.caption(f"🕒 Discovered: {_discovered_str}")
 
                     abstract = nrow.get("abstract", "")
                     if abstract:
@@ -513,7 +542,7 @@ with image_col:
         <text x="280" y="345" fill="#93c5fd" font-size="16" text-anchor="middle" font-weight="600">Mitochondrion</text>
     </svg>
     """)
-    st.caption("A mitochondrion, showing the folded inner membrane (cristae) and matrix.")
+    centered_caption("A mitochondrion, showing the folded inner membrane (cristae) and matrix.")
 
 st.divider()
 
@@ -671,7 +700,7 @@ theory).
         </svg>
         """)
 
-        st.caption(
+        centered_caption(
             "Mitochondrial structure and major functional compartments."
         )
 
@@ -739,7 +768,7 @@ inner membrane.
             </defs>
         </svg>
 """)
-    st.caption("The electron transport chain and chemiosmotic ATP production.")
+    centered_caption("The electron transport chain and chemiosmotic ATP production.")
 
     st.markdown("#### Explore each step")
 
@@ -964,7 +993,7 @@ of the others.
             <text x="360" y="507" fill="white" font-size="8" text-anchor="middle">Dysregulation</text>
         </svg>
 """)
-    st.caption(
+    centered_caption(
         "The 12 Hallmarks of Aging (López-Otín et al., 2013; updated 2023)."
     )
 

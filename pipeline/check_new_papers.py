@@ -9,6 +9,7 @@ Streamlit Cloud restarts, unlike local CSV files).
 """
 
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -87,8 +88,10 @@ def check_for_new_papers():
         print("\nFetching details for new papers...")
         new_articles = fetch_articles(genuinely_new_pmids)
 
+        discovered_at_now = datetime.now(timezone.utc).isoformat()
         for article in new_articles:
             article["pmid"] = str(article["pmid"])
+            article["discovered_at"] = discovered_at_now
 
         client = get_client()
         client.table("discovered_papers").upsert(new_articles).execute()
