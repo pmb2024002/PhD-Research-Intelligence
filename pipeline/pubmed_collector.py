@@ -54,6 +54,20 @@ AND
     PINK1[Title/Abstract]
     OR
     PRKN[Title/Abstract]
+    OR
+    "multi-omics"[Title/Abstract]
+    OR
+    "multiomics"[Title/Abstract]
+    OR
+    "biomarker discovery"[Title/Abstract]
+    OR
+    "systems biology"[Title/Abstract]
+    OR
+    "single-cell RNA sequencing"[Title/Abstract]
+    OR
+    "machine learning"[Title/Abstract]
+    OR
+    "deep learning"[Title/Abstract]
 )
 """
 
