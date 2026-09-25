@@ -321,6 +321,48 @@ st.divider()
 
 
 # ============================================================
+# RESEARCH STORY
+# ============================================================
+
+from supabase_client import get_research_story
+
+_story = get_research_story()
+
+with st.expander("📖 Research Story: The Field at a Glance", expanded=False):
+
+    if _story and _story.get("content"):
+
+        st.caption(
+            f"Generated: {_story.get('generated_at', '')} · "
+            f"Covers {_story.get('papers_covered', 0)} papers"
+        )
+
+        st.markdown(_story["content"])
+
+        if st.button("🔄 Regenerate Now", key="regenerate_story_btn"):
+            with st.spinner("Regenerating research story..."):
+                try:
+                    from generate_story import generate_and_save
+                    generate_and_save()
+                    st.rerun()
+                except Exception as exc:
+                    st.error(f"Could not regenerate: {exc}")
+
+    else:
+        st.info("No research story generated yet.")
+        if st.button("✨ Generate Research Story", key="generate_story_btn"):
+            with st.spinner("Generating research story (this may take 20-30 seconds)..."):
+                try:
+                    from generate_story import generate_and_save
+                    generate_and_save()
+                    st.rerun()
+                except Exception as exc:
+                    st.error(f"Could not generate: {exc}")
+
+st.divider()
+
+
+# ============================================================
 # SAVED PAPERS
 # ============================================================
 

@@ -98,6 +98,13 @@ def check_for_new_papers():
 
         print(f"Added {len(new_articles)} papers to discovery log.")
 
+        try:
+            from generate_story import generate_and_save
+            print("\nRegenerating research story (new papers found)...")
+            generate_and_save()
+        except Exception as exc:
+            print(f"Research story generation skipped/failed: {exc}")
+
         new_df = pd.DataFrame(new_articles)
         discovered_df = pd.concat(
             [discovered_df, new_df],

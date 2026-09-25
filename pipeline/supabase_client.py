@@ -91,3 +91,24 @@ def unsave_paper(pmid: str):
     """Remove a paper from saved_papers by pmid."""
     client = get_client()
     client.table("saved_papers").delete().eq("pmid", str(pmid)).execute()
+
+
+def get_research_story():
+    """Return the latest saved research story as a dict, or None if
+    none has been generated yet."""
+    client = get_client()
+    result = client.table("research_story").select("*").eq("id", 1).execute()
+    rows = result.data or []
+    return rows[0] if rows else None
+
+
+def save_research_story(content: str, generated_at: str, papers_covered: int):
+    """Upsert the single research-story row (id=1)."""
+    client = get_client()
+    row = {
+        "id": 1,
+        "content": content,
+        "generated_at": generated_at,
+        "papers_covered": papers_covered,
+    }
+    client.table("research_story").upsert(row).execute()
