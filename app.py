@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import sys
@@ -551,45 +552,19 @@ growth arrest linked to aging and age-related disease.
     )
 
 with image_col:
-    render_svg("""
-    <svg viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
-        <defs>
-            <linearGradient id="heroCristae" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#fb923c"/>
-                <stop offset="100%" stop-color="#c2410c"/>
-            </linearGradient>
-        </defs>
-
-        <rect x="40" y="60" width="480" height="220" rx="110" fill="#3b0764" stroke="#c084fc" stroke-width="2.5"/>
-        <rect x="66" y="86" width="428" height="168" rx="84" fill="#1e1b4b" stroke="#a78bfa" stroke-width="1.5"/>
-
-        <circle cx="105" cy="115" r="3" fill="#fbbf24"/>
-        <circle cx="125" cy="225" r="3" fill="#fbbf24"/>
-        <circle cx="440" cy="115" r="3" fill="#fbbf24"/>
-        <circle cx="455" cy="215" r="3" fill="#fbbf24"/>
-        <circle cx="150" cy="100" r="3" fill="#fbbf24"/>
-        <circle cx="400" cy="235" r="3" fill="#fbbf24"/>
-        <circle cx="475" cy="150" r="3" fill="#fbbf24"/>
-        <circle cx="90" cy="170" r="3" fill="#fbbf24"/>
-
-        <path d="M 88,170
-                 C 108,120 138,120 158,170
-                 C 178,220 208,220 228,170
-                 C 248,120 278,120 298,170
-                 C 318,220 348,220 368,170
-                 C 388,120 418,120 438,170
-                 C 458,120 468,120 478,150"
-              fill="none" stroke="url(#heroCristae)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
-
-        <circle cx="268" cy="170" r="16" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="3 3"/>
-        <circle cx="268" cy="170" r="3" fill="#fbbf24"/>
-        <circle cx="262" cy="162" r="2" fill="#fbbf24"/>
-        <circle cx="277" cy="180" r="2" fill="#fbbf24"/>
-
-        <text x="280" y="345" fill="#93c5fd" font-size="16" text-anchor="middle" font-weight="600">Mitochondrion</text>
-    </svg>
-    """)
-    centered_caption("A mitochondrion, showing the folded inner membrane (cristae) and matrix.")
+    _mito_svg_path = os.path.join(os.path.dirname(__file__), "assets", "mitochondrion_wikipedia.svg")
+    with open(_mito_svg_path, "r", encoding="utf-8") as _f:
+        _mito_svg = _f.read()
+    render_svg(
+        f'<div style="background:#ffffff; border-radius:20px; padding:18px; overflow:hidden; '
+        f'max-width:520px; margin:0 auto 18px auto; box-sizing:border-box;">'
+        f'<style>div > svg {{ width:100% !important; height:auto !important; display:block; }}</style>'
+        f'{_mito_svg}</div>'
+    )
+    centered_caption(
+        "A mitochondrion, showing the folded inner membrane (cristae) and matrix. "
+        "(Diagram: Kelvinsong, Wikimedia Commons, public domain)"
+    )
 
 st.divider()
 
@@ -689,66 +664,19 @@ theory).
             st.write(STRUCTURE_DETAILS[selected_part])
 
     with col_image:
-        render_svg("""
-        <svg viewBox="0 0 640 440" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
-            <defs>
-                <linearGradient id="structCristae" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#fb923c"/>
-                    <stop offset="100%" stop-color="#c2410c"/>
-                </linearGradient>
-            </defs>
-
-            <rect x="60" y="90" width="520" height="240" rx="120" fill="#3b0764" stroke="#c084fc" stroke-width="2.5"/>
-            <rect x="88" y="118" width="464" height="184" rx="92" fill="#1e1b4b" stroke="#a78bfa" stroke-width="1.5"/>
-
-            <circle cx="130" cy="150" r="3.5" fill="#fbbf24"/>
-            <circle cx="150" cy="270" r="3.5" fill="#fbbf24"/>
-            <circle cx="480" cy="150" r="3.5" fill="#fbbf24"/>
-            <circle cx="500" cy="260" r="3.5" fill="#fbbf24"/>
-            <circle cx="180" cy="130" r="3.5" fill="#fbbf24"/>
-            <circle cx="430" cy="280" r="3.5" fill="#fbbf24"/>
-            <circle cx="520" cy="180" r="3.5" fill="#fbbf24"/>
-            <circle cx="110" cy="210" r="3.5" fill="#fbbf24"/>
-
-            <path d="M 108,210
-                     C 132,150 168,150 192,210
-                     C 216,270 252,270 276,210
-                     C 300,150 336,150 360,210
-                     C 384,270 420,270 444,210
-                     C 468,150 504,150 528,210"
-                  fill="none" stroke="url(#structCristae)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
-
-            <circle cx="318" cy="210" r="18" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="4 4"/>
-            <circle cx="318" cy="210" r="3" fill="#fbbf24"/>
-            <circle cx="310" cy="200" r="2" fill="#fbbf24"/>
-            <circle cx="328" cy="222" r="2" fill="#fbbf24"/>
-
-            <text x="200" y="30" fill="#93c5fd" font-size="15" text-anchor="middle" font-weight="600">Outer membrane</text>
-            <line x1="200" y1="37" x2="170" y2="88" stroke="#93c5fd" stroke-width="1.5"/>
-
-            <text x="150" y="62" fill="#c084fc" font-size="15" text-anchor="middle" font-weight="600">Inner membrane</text>
-            <line x1="150" y1="69" x2="132" y2="116" stroke="#c084fc" stroke-width="1.5"/>
-
-            <text x="440" y="30" fill="#fdba74" font-size="15" text-anchor="middle" font-weight="600">Cristae</text>
-            <text x="440" y="46" fill="#94a3b8" font-size="12" text-anchor="middle">Folds of inner membrane</text>
-            <line x1="440" y1="52" x2="400" y2="150" stroke="#fdba74" stroke-width="1.5"/>
-
-            <text x="560" y="150" fill="#e9d5ff" font-size="15" text-anchor="middle" font-weight="600">Matrix</text>
-            <line x1="560" y1="157" x2="480" y2="220" stroke="#e9d5ff" stroke-width="1.5"/>
-
-            <text x="70" y="360" fill="#eab308" font-size="15" text-anchor="middle" font-weight="600">Intermembrane space</text>
-            <line x1="70" y1="353" x2="100" y2="285" stroke="#eab308" stroke-width="1.5"/>
-
-            <text x="260" y="410" fill="#d1d5db" font-size="15" text-anchor="middle" font-weight="600">Ribosomes</text>
-            <line x1="260" y1="403" x2="240" y2="260" stroke="#d1d5db" stroke-width="1.5"/>
-
-            <text x="380" y="410" fill="#fde68a" font-size="15" text-anchor="middle" font-weight="600">Mitochondrial DNA</text>
-            <line x1="370" y1="403" x2="330" y2="228" stroke="#fde68a" stroke-width="1.5"/>
-        </svg>
-        """)
+        _mito_svg_path2 = os.path.join(os.path.dirname(__file__), "assets", "mitochondrion_wikipedia.svg")
+        with open(_mito_svg_path2, "r", encoding="utf-8") as _f2:
+            _mito_svg2 = _f2.read()
+        render_svg(
+            f'<div style="background:#ffffff; border-radius:20px; padding:18px; overflow:hidden; '
+            f'max-width:520px; margin:0 auto 18px auto; box-sizing:border-box;">'
+            f'<style>div > svg {{ width:100% !important; height:auto !important; display:block; }}</style>'
+            f'{_mito_svg2}</div>'
+        )
 
         centered_caption(
-            "Mitochondrial structure and major functional compartments."
+            "Mitochondrial structure and major functional compartments. "
+            "(Diagram: Kelvinsong, Wikimedia Commons, public domain)"
         )
 
 # ------------------------------------------------------------
