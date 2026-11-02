@@ -52,11 +52,32 @@ RESEARCH_FOCUS = (
 QUICK_SCHEMA = {
     "type": "object",
     "additionalProperties": False,
-    "required": ["key_findings", "relevance", "conclusion"],
+    "required": [
+        "key_findings",
+        "relevance",
+        "conclusion",
+        "plain_summary",
+        "paper_type",
+        "novelty",
+    ],
     "properties": {
         "key_findings": {"type": "string"},
         "relevance": {"type": "string"},
         "conclusion": {"type": "string"},
+        "plain_summary": {"type": "string"},
+        "paper_type": {
+            "type": "string",
+            "enum": [
+                "Methodology",
+                "Novel Finding",
+                "Conceptual Framework",
+                "Review",
+            ],
+        },
+        "novelty": {
+            "type": "string",
+            "enum": ["High", "Moderate", "Established"],
+        },
     },
 }
 
@@ -71,7 +92,7 @@ TITLE: {title}
 ABSTRACT: {abstract}
 
 Using ONLY information in the abstract above, respond with a JSON
-object with EXACTLY these three keys (no other keys, no markdown,
+object with EXACTLY these six keys (no other keys, no markdown,
 no code fences -- just the raw JSON object):
 
 - "key_findings": 2-3 sentences summarizing the main findings.
@@ -79,6 +100,25 @@ no code fences -- just the raw JSON object):
   dysfunction and cellular senescence research. If it is not clearly
   related, say so plainly rather than forcing a connection.
 - "conclusion": 1-2 sentence brief conclusion of what the paper shows.
+- "plain_summary": 3-4 sentences explaining what this paper found and
+  why it matters, written for someone NEW to the field. Avoid or
+  briefly define jargon (e.g. instead of just "mitophagy", say
+  "mitophagy (the cell's process for clearing out damaged
+  mitochondria)"). Prioritize being easy to understand over being
+  technically dense.
+- "paper_type": classify as exactly one of "Methodology" (introduces
+  or validates a method, assay, model, or analytical technique),
+  "Novel Finding" (reports a genuinely new result, mechanism, or
+  discovery not previously well-established), "Conceptual Framework"
+  (proposes a model, hypothesis, or way of thinking about the field
+  rather than new data), or "Review" (summarizes/synthesizes existing
+  literature rather than presenting new primary results).
+- "novelty": rate as exactly one of "High" (challenges or extends
+  established understanding in a significant way), "Moderate" (adds
+  incremental evidence to an existing line of work), or "Established"
+  (confirms or applies already well-known findings/mechanisms).
+  Base this ONLY on what the abstract itself claims -- do not guess
+  beyond what is stated.
 
 Do not invent details not present in the abstract.
 """

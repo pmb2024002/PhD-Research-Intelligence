@@ -309,6 +309,39 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
 
                         result = st.session_state[quick_key]
 
+                        _TYPE_COLORS = {
+                            "Methodology": "#2563eb",
+                            "Novel Finding": "#16a34a",
+                            "Conceptual Framework": "#7c3aed",
+                            "Review": "#6b7280",
+                        }
+                        _NOV_COLORS = {
+                            "High": "#dc2626",
+                            "Moderate": "#d97706",
+                            "Established": "#6b7280",
+                        }
+                        _pt = result.get("paper_type", "")
+                        _nv = result.get("novelty", "")
+                        _badges = ""
+                        if _pt in _TYPE_COLORS:
+                            _badges += (
+                                f'<span style="background:{_TYPE_COLORS[_pt]};color:#fff;'
+                                f'padding:3px 10px;border-radius:12px;font-size:0.8rem;'
+                                f'margin-right:6px;">{_pt}</span>'
+                            )
+                        if _nv in _NOV_COLORS:
+                            _badges += (
+                                f'<span style="background:{_NOV_COLORS[_nv]};color:#fff;'
+                                f'padding:3px 10px;border-radius:12px;font-size:0.8rem;">'
+                                f'Novelty: {_nv}</span>'
+                            )
+                        if _badges:
+                            st.markdown(_badges, unsafe_allow_html=True)
+
+                        _plain = result.get("plain_summary", "")
+                        if _plain:
+                            st.info("💡 **In simple words:** " + _plain)
+
                         st.markdown("**🔑 Key Findings:**")
                         st.write(result.get("key_findings", ""))
 
