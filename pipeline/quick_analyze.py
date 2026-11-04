@@ -18,6 +18,7 @@ than the ~10-15 minutes the full V2 pipeline takes.
 
 import json
 import os
+import time
 
 import requests
 
@@ -150,20 +151,37 @@ def _analyze_with_groq(title: str, abstract: str, timeout: int = 60):
 
     prompt = _build_prompt(title, abstract)
 
-    resp = requests.post(
-        "https://api.groq.com/openai/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "Content-Type": "application/json",
-        },
-        json={
-            "model": GROQ_MODEL,
-            "messages": [{"role": "user", "content": prompt}],
-            "response_format": {"type": "json_object"},
-            "temperature": 0.2,
-        },
-        timeout=timeout,
-    )
+    _url = "https://api.groq.com/openai/v1/chat/completions"
+    _headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type": "application/json",
+    }
+    _body = {
+        "model": GROQ_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "response_format": {"type": "json_object"},
+        "temperature": 0.2,
+    }
+
+    resp = requests.post(_url, headers=_headers, json=_body, timeout=timeout)
+
+    _tries = 0
+    while resp.status_code == 429 and _tries < 2:
+        try:
+            _wait = float(resp.headers.get("retry-after", "10"))
+        except ValueError:
+            _wait = 10.0
+        time.sleep(min(_wait, 20.0) + 1.0)
+        resp = requests.post(
+            _url, headers=_headers, json=_body, timeout=timeout
+        )
+        _tries += 1
+
+    if resp.status_code == 429:
+        raise RuntimeError(
+            "Groq free-tier rate limit reached. Wait about a minute "
+            "and try again."
+        )
     if resp.status_code == 401:
         _k = GROQ_API_KEY or ""
         raise RuntimeError(
