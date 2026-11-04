@@ -397,6 +397,7 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
                         }
                         _pt = result.get("paper_type", "")
                         _nv = result.get("novelty", "")
+                        _rl = result.get("thesis_relevance", "")
                         _badges = ""
                         if _pt in _TYPE_COLORS:
                             _badges += (
@@ -409,6 +410,18 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
                                 f'<span style="background:{_NOV_COLORS[_nv]};color:#fff;'
                                 f'padding:3px 10px;border-radius:12px;font-size:0.8rem;">'
                                 f'Novelty: {_nv}</span>'
+                            )
+                        _REL_COLORS = {
+                            "High": "#0d9488",
+                            "Medium": "#ca8a04",
+                            "Low": "#6b7280",
+                        }
+                        if _rl in _REL_COLORS:
+                            _badges += (
+                                f'<span style="background:{_REL_COLORS[_rl]};'
+                                f'color:#fff;padding:3px 10px;border-radius:12px;'
+                                f'font-size:0.8rem;margin-left:6px;">'
+                                f'Thesis relevance: {_rl}</span>'
                             )
                         if _badges:
                             st.markdown(_badges, unsafe_allow_html=True)

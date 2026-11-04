@@ -46,7 +46,9 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen3:4b")
 
 RESEARCH_FOCUS = (
     "Multi-Omics Analysis of Mitochondrial Dysfunction in "
-    "Cellular Senescence"
+    "Cellular Senescence. Central question: which senescence "
+    "programs in human fibroblasts depend on mitochondria, which "
+    "genes are their hubs, and do interventions reverse them?"
 )
 
 QUICK_SCHEMA = {
@@ -59,6 +61,7 @@ QUICK_SCHEMA = {
         "plain_summary",
         "paper_type",
         "novelty",
+        "thesis_relevance",
     ],
     "properties": {
         "key_findings": {"type": "string"},
@@ -78,6 +81,10 @@ QUICK_SCHEMA = {
             "type": "string",
             "enum": ["High", "Moderate", "Established"],
         },
+        "thesis_relevance": {
+            "type": "string",
+            "enum": ["High", "Medium", "Low"],
+        },
     },
 }
 
@@ -92,13 +99,15 @@ TITLE: {title}
 ABSTRACT: {abstract}
 
 Using ONLY information in the abstract above, respond with a JSON
-object with EXACTLY these six keys (no other keys, no markdown,
+object with EXACTLY these seven keys (no other keys, no markdown,
 no code fences -- just the raw JSON object):
 
 - "key_findings": 2-3 sentences summarizing the main findings.
 - "relevance": 1-2 sentences on how this relates to mitochondrial
-  dysfunction and cellular senescence research. If it is not clearly
-  related, say so plainly rather than forcing a connection.
+  dysfunction and cellular senescence research. Only say the paper
+  addresses mitochondria or senescence if the abstract EXPLICITLY
+  says so. If it does not, say plainly that it does not, rather
+  than forcing a connection.
 - "conclusion": 1-2 sentence brief conclusion of what the paper shows.
 - "plain_summary": 3-4 sentences explaining what this paper found and
   why it matters, written for someone NEW to the field. Avoid or
@@ -119,6 +128,19 @@ no code fences -- just the raw JSON object):
   (confirms or applies already well-known findings/mechanisms).
   Base this ONLY on what the abstract itself claims -- do not guess
   beyond what is stated.
+- "thesis_relevance": usefulness for the PhD focus above, as exactly
+  one of "High", "Medium" or "Low". "High": the abstract itself shows
+  that a senescence program (for example SASP, mtDNA release,
+  mitophagy, mitochondrial calcium, mtDNA repair) depends on
+  mitochondria, especially by perturbing mitochondria (removal,
+  inhibitors, knockdown) or by multi-omics (RNA-seq, proteomics,
+  phosphoproteomics, single-cell) of senescent human cells.
+  "Medium": mitochondria or senescence is central and the other is
+  only linked; OR a compound or intervention changes senescence;
+  OR a computational / multi-omics method that could be applied to
+  senescence data. "Low": mitochondria and senescence are only
+  mentioned in passing, or the paper is mainly about an unrelated
+  disease or process. Judge ONLY from the abstract.
 
 Do not invent details not present in the abstract.
 """
