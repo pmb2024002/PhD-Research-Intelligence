@@ -161,6 +161,8 @@ def _analyze_with_groq(title: str, abstract: str, timeout: int = 60):
         "messages": [{"role": "user", "content": prompt}],
         "response_format": {"type": "json_object"},
         "temperature": 0.0,
+        "reasoning_effort": "low",
+        "max_completion_tokens": 4096,
     }
 
     resp = requests.post(_url, headers=_headers, json=_body, timeout=timeout)
