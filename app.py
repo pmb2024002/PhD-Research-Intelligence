@@ -429,6 +429,11 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
                         _plain = result.get("plain_summary", "")
                         if _plain:
                             st.info("💡 **In simple words:** " + _plain)
+                            st.caption(
+                                "AI-generated from the abstract only. "
+                                "Tags and summary can be wrong, so verify "
+                                "against the paper (use 'Open in PubMed' above)."
+                            )
 
                         st.markdown("**🔑 Key Findings:**")
                         st.write(result.get("key_findings", ""))
