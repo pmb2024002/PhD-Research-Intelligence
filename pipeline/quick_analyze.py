@@ -160,7 +160,7 @@ def _analyze_with_groq(title: str, abstract: str, timeout: int = 60):
         "model": GROQ_MODEL,
         "messages": [{"role": "user", "content": prompt}],
         "response_format": {"type": "json_object"},
-        "temperature": 0.2,
+        "temperature": 0.0,
     }
 
     resp = requests.post(_url, headers=_headers, json=_body, timeout=timeout)
