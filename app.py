@@ -227,13 +227,88 @@ with st.expander("🆕 Check for New Aging & Senescence Research", expanded=Fals
         else:
             st.success(f"Found {len(new_df)} new paper(s)!")
 
+            _SEN = ["senescen", "senolytic", "sasp"]
+            _MITO_STRONG = [
+                "mitophagy", "drp1", "dnm1l", "opa1", "mfn1", "mfn2",
+                "pink1", "parkin", "prkn", "oxphos", "mtdna", "mitoribosom",
+                "mitochondrial dysfunction", "mitochondrial dynamics",
+                "mitochondrial fission", "mitochondrial fusion",
+                "mitochondrial quality", "mitochondrial homeostasis",
+                "mitochondrial ros", "mtros",
+            ]
+            _METH = [
+                "multi-omics", "multiomics", "machine learning",
+                "deep learning", "bioinformatic", "single-cell rna",
+                "scrna", "network analysis",
+            ]
+
+            def _topic_tier(title, abstract):
+                _title = str(title).lower()
+                _text = _title + " " + str(abstract).lower()
+                _sen_ok = (
+                    any(k in _title for k in _SEN)
+                    or sum(_text.count(k) for k in _SEN) >= 2
+                )
+                if not _sen_ok:
+                    return "other"
+                _mito_title = "mitochond" in _title or any(
+                    k in _title for k in _MITO_STRONG
+                )
+                _strong_hits = sum(_text.count(k) for k in _MITO_STRONG)
+                _any_hits = _text.count("mitochond")
+                if _mito_title or _strong_hits >= 2 or _any_hits >= 4:
+                    return "core"
+                if any(k in _text for k in _METH):
+                    return "method"
+                return "other"
+
+            _tiers = {
+                str(_r.get("pmid", "")): _topic_tier(
+                    _r.get("title", ""), _r.get("abstract", "")
+                )
+                for _, _r in new_df.iterrows()
+            }
+            _n_core = sum(1 for _v in _tiers.values() if _v == "core")
+            _n_meth = sum(1 for _v in _tiers.values() if _v == "method")
+            _view = st.radio(
+                "Show",
+                [
+                    "🧬 Core only (mitochondria + senescence)",
+                    "🧬 + 🧪 Core and Method (omics/ML)",
+                    "Everything",
+                ],
+                index=0,
+                key="topic_view",
+                horizontal=True,
+            )
+            if _view.startswith("🧬 Core only"):
+                _allowed = {"core"}
+            elif _view.startswith("🧬 + 🧪"):
+                _allowed = {"core", "method"}
+            else:
+                _allowed = {"core", "method", "other"}
+            st.caption(
+                f"{_n_core} core, {_n_meth} method, "
+                f"{len(new_df) - _n_core - _n_meth} off-topic "
+                f"(of {len(new_df)} new papers)"
+            )
+
             for _, nrow in new_df.iterrows():
 
                 pmid = nrow.get("pmid", "")
 
+                _tier = _tiers.get(str(pmid), "other")
+                if _tier not in _allowed:
+                    continue
+
                 with st.container(border=True):
 
                     st.markdown(f"**{nrow.get('title', 'Untitled')}**")
+                    st.caption(
+                        {"core": "🧬 Core: senescence + mitochondria",
+                         "method": "🧪 Method: senescence + omics/ML",
+                         "other": "⚪ Off-topic"}[_tier]
+                    )
 
                     st.caption(
                         f"{nrow.get('journal', '')} • "
