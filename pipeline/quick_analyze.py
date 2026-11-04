@@ -32,7 +32,7 @@ def _get_secret(name):
     if st is not None:
         try:
             if name in st.secrets:
-                return st.secrets[name]
+                return str(st.secrets[name]).strip()
         except Exception:
             pass
     return os.getenv(name)
