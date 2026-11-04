@@ -142,6 +142,11 @@ def _analyze_with_groq(title: str, abstract: str, timeout: int = 60):
         },
         timeout=timeout,
     )
+    if resp.status_code == 401:
+        _k = GROQ_API_KEY or ""
+        raise RuntimeError(
+            f"Groq rejected the key (len={len(_k)}, ends '...{_k[-4:]}')"
+        )
     resp.raise_for_status()
 
     data = resp.json()
