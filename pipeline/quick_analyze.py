@@ -183,10 +183,17 @@ def _analyze_with_groq(title: str, abstract: str, timeout: int = 60):
             "and try again."
         )
     if resp.status_code == 401:
-        _k = GROQ_API_KEY or ""
         raise RuntimeError(
-            f"Groq rejected the key (len={len(_k)}, ends '...{_k[-4:]}')"
+            "Groq rejected the API key. Check GROQ_API_KEY in Secrets "
+            "and reboot the app."
         )
+    if resp.status_code == 400:
+        resp = requests.post(
+            _url, headers=_headers,
+            json=dict(_body, temperature=0.3), timeout=timeout
+        )
+    if resp.status_code == 400:
+        raise RuntimeError(f"Groq 400: {resp.text[:300]}")
     resp.raise_for_status()
 
     data = resp.json()
